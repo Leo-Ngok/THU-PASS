@@ -1,0 +1,553 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Advanced Linear Algebra: Mid-Term}
+\begin{document}
+\maketitle
+\subsection*{Solution 1}
+\begin{enumerate}
+    \item Proof:
+    \[i^2=\left[
+    \begin{array}{cccc}
+     & -1 \\
+    1 & \\
+    &&& -1 \\
+    && 1
+    \end{array}
+    \right]^2=\left[
+    \begin{array}{cccc}
+     & -1 \\
+    1 & \\
+    &&& -1 \\
+    && 1
+    \end{array}
+    \right]\left[
+    \begin{array}{cccc}
+     & -1 \\
+    1 & \\
+    &&& -1 \\
+    && 1
+    \end{array}
+    \right]=\left[
+    \begin{array}{cccc}
+    -1 \\ & -1 \\ & & -1 \\ & & & -1
+    \end{array}
+    \right]\]
+    
+    \[j^2=\left[
+    \begin{array}{cccc}
+     & & -1 \\
+     & & & 1 \\
+    1 \\
+     & -1
+    \end{array}
+    \right]^2=
+    \left[
+    \begin{array}{cccc}
+     & & -1 \\
+     & & & 1 \\
+    1 \\
+     & -1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{cccc}
+     & & -1 \\
+     & & & 1 \\
+    1 \\
+     & -1
+    \end{array}
+    \right]=
+    \left[
+    \begin{array}{cccc}
+    -1 \\ & -1 \\ & & -1 \\ & & & -1
+    \end{array}
+    \right]
+    \]
+    
+    \[k^2=\left[
+    \begin{array}{cccc}
+     & & & -1 \\
+     & & -1 \\
+     & 1 \\
+     1
+    \end{array}
+    \right]^2=
+    \left[
+    \begin{array}{cccc}
+     & & & -1 \\
+     & & -1 \\
+     & 1 \\
+     1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{cccc}
+     & & & -1 \\
+     & & -1 \\
+     & 1 \\
+     1
+    \end{array}
+    \right]=
+    \left[
+    \begin{array}{cccc}
+    -1 \\ & -1 \\ & & -1 \\ & & & -1
+    \end{array}
+    \right]
+    \]
+    
+    \[ijk =
+    \left[
+    \begin{array}{cccc}
+     & -1 \\
+    1 & \\
+    &&& -1 \\
+    && 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{cccc}
+     & & -1 \\
+     & & & 1\\
+    1 \\
+    & -1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{cccc}
+     & & & -1 \\
+     & & -1\\
+    & 1 \\
+     1
+    \end{array}
+    \right]
+    \]
+    
+    \[=
+    \left[
+    \begin{array}{cccc}
+     & -1 \\
+    1 & \\
+    &&& -1 \\
+    && 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{cccc}
+     & -1 \\
+    1 & \\
+    &&& -1 \\
+    && 1
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{cccc}
+    -1 \\ & -1 \\ & & -1 \\ & & & -1
+    \end{array}
+    \right]
+    \]
+    \item (Actually, it is known as Hamilton product)
+    \[L_q = 
+    \left[
+    \begin{array}{cccc}
+    r & -x & -y & -z \\
+    x &  r & -z &  y \\
+    y &  z &  r & -x \\
+    z & -y &  x &  r
+    \end{array}
+    \right], R_q =
+    \left[
+    \begin{array}{cccc}
+    r & -x & -y & -z \\
+    x &  r &  z & -y \\
+    y & -z &  r &  x \\
+    z &  y & -x &  r
+    \end{array}
+    \right]
+    \]
+    \[L_qR_q=\left[
+    \begin{array}{cccc}
+    r & -x & -y & -z \\
+    x &  r & -z &  y \\
+    y &  z &  r & -x \\
+    z & -y &  x &  r
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{cccc}
+    r & -x & -y & -z \\
+    x &  r &  z & -y \\
+    y & -z &  r &  x \\
+    z &  y & -x &  r
+    \end{array}
+    \right]
+    \]
+    \[
+    =
+    \left[
+    \begin{array}{cccc}
+    r^2 - x^2 - y^2 - z^2 & -2rx & -2ry & -2rz \\
+    2rx &  r^2 -x^2 + y^2 + z^2 &  -2xy & -2xz \\
+    2ry & -2xy &  r^2 + x^2 -y^2 + z^2 &  -2yz \\
+    2rz & -2xz & -2yz & r^2 + x^2 + y^2 -z^2
+    \end{array}
+    \right]
+    \]
+    \[R_qL_q=
+    \left[
+    \begin{array}{cccc}
+    r & -x & -y & -z \\
+    x &  r &  z & -y \\
+    y & -z &  r &  x \\
+    z &  y & -x &  r
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{cccc}
+    r & -x & -y & -z \\
+    x &  r & -z &  y \\
+    y &  z &  r & -x \\
+    z & -y &  x &  r
+    \end{array}
+    \right]
+    \]
+    \[
+    =\left[
+    \begin{array}{cccc}
+    r^2 - x^2 - y^2 - z^2 & -2rx & -2ry & -2rz \\
+    2rx &  r^2 -x^2 + y^2 + z^2 &  -2xy & -2xz \\
+    2ry & -2xy &  r^2 + x^2 -y^2 + z^2 &  -2yz \\
+    2rz & -2xz & -2yz & r^2 + x^2 + y^2 - z^2
+    \end{array}
+    \right]
+    \]
+    So, $L_qR_q=R_qL_q$.
+    \item
+    \[L_qR_{\Bar{q}} = 
+    \left[
+    \begin{array}{cccc}
+    r^2 + x^2 + y^2 + z^2 & 0 & 0 & 0 \\
+    0 &  r^2 + x^2 - y^2 - z^2 & 2xy -2rz & 2xz + 2ry \\
+    0 & 2xy + 2rz &  r^2 - x^2 + y^2 - z^2 &  2yz - 2xr \\
+    0 & 2xz - 2yr & 2yz - 2rx & r^2 - x^2 - y^2 + z^2
+    \end{array}
+    \right]
+    \]
+    Say $q=r+xi+yj+zk$, its matrix representation is
+    $$\left[
+    \begin{array}{cccc}
+    r & -x & -y & -z \\
+    x &  r & -z &  y \\
+    y &  z &  r & -x \\
+    z & -y &  x &  r
+    \end{array}
+    \right].$$
+    Then its conjugate $\Bar{q}$ has matrix representation of
+    $$
+    \left[
+    \begin{array}{cccc}
+    r &  x &  y &  z \\
+    -x & r &  z & -y \\
+    -y & -z & r &  x \\
+    -z & y & -x &  r
+    \end{array}
+    \right]
+    $$
+    which is exactly the transpose of its conjugate form.\\
+    By letting $Q =\left[
+    \begin{array}{ccc}
+     r^2 + x^2 - y^2 - z^2 & 2xy -2rz & 2xz + 2ry \\
+    2xy + 2rz &  r^2 - x^2 + y^2 - z^2 &  2yz - 2xr \\
+     2xz - 2yr & 2yz - 2rx & r^2 - x^2 - y^2 + z^2
+    \end{array}
+    \right] $ (here it is not necessary orthogonal, but its orthognality will be shown below),
+    \[L_qR_{\Bar{q}} = \left[
+    \begin{array}{cc}
+     1 & 0 \\
+    0 &  Q \\
+    \end{array}
+    \right], (L_qR_{\Bar{q}})^T(L_qR_{\Bar{q}}) = \left[
+    \begin{array}{cc}
+     1 & 0 \\
+    0 &  Q^T \\
+    \end{array}
+    \right] \left[
+    \begin{array}{cc}
+     1 & 0 \\
+    0 &  Q \\
+    \end{array}
+    \right] =
+    \left[
+    \begin{array}{cc}
+     1 & 0 \\
+    0 &  Q^TQ \\
+    \end{array}
+    \right]\]
+    So $Q$ is orthogonal iff $L_qR_{\Bar{q}}$ is. \\
+    Due to the fact that $q$ is unit quaternion, the matrix representation of $q\Bar{q}$ has to be the identity matrix, therefore
+    \[(L_qR_{\Bar{q}})^T(L_qR_{\Bar{q}}) = R_{\Bar{q}}^TL_q^TL_qR_{\Bar{q}}
+    =R_qL_{\Bar{q}}L_qR_{\Bar{q}} = R_qR_{\Bar{q}} = I
+    \]
+    Hence $Q$ is orthogonal. $\blacksquare$
+\end{enumerate}
+
+\subsection*{Solution 2}
+\begin{enumerate}
+    \item 
+    \item 
+    \[AA^{(D)} = X \left[
+    \begin{array}{cc}
+     A_R & 0 \\
+     0 &  A_N \\
+    \end{array}
+    \right]X^{-1}X\left[
+    \begin{array}{cc}
+     A_R ^ {-1} & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1}
+    =
+    X\left[
+    \begin{array}{cc}
+     I  & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1}
+    \]
+    \[A^{(D)}A = X \left[
+    \begin{array}{cc}
+     A_R ^ {-1} & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1}X\left[
+    \begin{array}{cc}
+     A_R & 0 \\
+     0 &  A_N \\
+    \end{array}
+    \right]X^{-1}
+    =
+    X\left[
+    \begin{array}{cc}
+     I  & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1}
+    \]
+    $\Rightarrow A^{(D)}A = AA ^ {(D)}$. \\
+    \[A ^ {(D)} A A ^ {(D)} = X\left[
+    \begin{array}{cc}
+     I  & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1}X \left[
+    \begin{array}{cc}
+     A_R ^ {-1} & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1} = X \left[
+    \begin{array}{cc}
+     A_R ^ {-1} & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1} = A^{(D)}
+    \]
+    
+    \[A(D) A ^ {k + 1} - A ^ k = X \left[
+    \begin{array}{cc}
+     A_R ^ {-1} & 0 \\
+     0 &  0 \\
+    \end{array}
+    \right]X^{-1} X\left[
+    \begin{array}{cc}
+     A_R ^ {k + 1} & 0 \\
+     0 &  A_N ^ {k + 1}\\
+    \end{array}
+    \right]X^{-1} - X\left[
+    \begin{array}{cc}
+     A_R ^ {k } & 0 \\
+     0 &  A_N ^ {k }\\
+    \end{array}
+    \right]X^{-1}\]
+    \[ = X\left[
+    \begin{array}{cc}
+     A_R ^ {k } & 0 \\
+     0 &  0\\
+    \end{array}
+    \right]X^{-1} - X\left[
+    \begin{array}{cc}
+     A_R ^ {k } & 0 \\
+     0 &  0\\
+    \end{array}
+    \right]X^{-1} = 0\]
+    \item Claim: 
+    \[\mathbf{(ab^*)}^{(D)} = X\left[
+    \begin{array}{cc}
+     1/(\mathbf{b^*a}) & 0 \\
+     0 &  0\\
+    \end{array}
+    \right]X^{-1}\]
+    Proof:
+    \[\]
+\end{enumerate}
+\subsection*{Solution 3}
+\begin{enumerate}
+    \item
+    \[(I_m-AB)^{-1} = I_m+AB+ABAB+ABABAB+\cdots\]
+    \item 
+    \[(I_m-AB)^{-1}=\sum_{k=0}^{+\infty} (AB)^k = I_m+\sum_{k=1}^{+\infty}(AB)^k = I_m+A(\sum_{k=1}^{+\infty}(BA)^{k-1})B=I_m+A(I_n-BA)^{-1}B\]
+    \item
+    Let $p(x)=\sum_{k=0}^na_kx^k$, then
+    \[Ap(BA)=A(\sum_{k=0}^na_k(BA)^k)=\sum_{k=0}^na_kA(BA)^k=\sum_{k=0}^na_k(AB)^kA = p(AB)A\]
+    \item
+    \item
+    $f$ is defined on $AB$ and $BA$, so $\exists p$ s.t. 
+    \[p(AB) = f(AB), p(BA)=f(BA)\]
+    Therefore,
+    \[Af(BA) = Ap(BA) = p(AB)A = f(AB)A\]
+    \item
+    \[I_m + Af(BA)B = I_m + f(AB)AB =I_m + (\sum_{k=0}^{+\infty} (AB)^k)(AB) = \sum_{k=0}^{+\infty} (AB)^k = f(AB) \]
+\end{enumerate}
+\subsection*{Solution 4}
+\begin{enumerate}
+    \item Let $X=
+    \left[\begin{array}{cccc} 
+    a_{11} & a_{12} & \cdots & a_{1n} \\ 
+    a_{21} &  a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & & \vdots \\
+    a_{(n-1)1} &  a_{(n-1)2} & \cdots & a_{(n-1)n} \\
+    a_{n1} & a_{n2} & \cdots & a_{nn}
+    \end{array}\right]
+    $. \\
+    Then $XN = 
+    \left[\begin{array}{cccc} 
+    0 & a_{11} & \cdots & a_{1(n-1)} \\ 
+    0 & a_{21} & \cdots & a_{2(n-1)} \\
+    \vdots & \vdots & & \vdots \\
+    0 & a_{n1} & \cdots & a_{n(n-1)}
+    \end{array}\right]
+    $, 
+    $NX = 
+    \left[\begin{array}{cccc} 
+    a_{21} & a_{22} & \cdots & a_{2n} \\ 
+    a_{31} & a_{32} & \cdots & a_{3n} \\
+    \vdots & \vdots & & \vdots \\
+    a_{(n1} &  a_{n2} & \cdots & a_{nn} \\
+    0 & 0 & \cdots & 0
+    \end{array}\right]
+    $. \\
+    By observation, 
+    \[a_{i1} = 0, (i = 2, 3, \cdots, n), a_{1j} = 0, (j = 1, 2,\cdots, n - 1), a_{ij} = a_{(i - 1)(j - 1)}\]
+    Hence, $X$ is an upper triangular matrix, with equal elements on every upper diagonals, which is a linear combination of powers of nilpotent matrices.
+    \item
+    \[Y = e ^ N =\sum_{k = 0} ^ {+\infty} \frac{1}{k!}N^k = \sum_{k = 0} ^ {n - 1} \frac{1}{k!} N ^ k, Y - I = \sum_{k = 1} ^ {n - 1} \frac{1}{k!} N ^ k\]
+    \[(Y-I) ^ k = N ^ k \sum _{i_1 = 1} ^ {n - 1}\cdots \sum_{i_k = 1} ^ {n - 1} \frac{1}{i_1!\cdots i_k!}N ^ {i_1+\cdots+i_k - k}\]
+    Suppose by contradiction that $Y, Y - I, (Y - I) ^ 2, \cdots (Y - I)^{n - 1}$ are not independent matrices, then W.L.O.G. we may let
+    \[Y = \sum_{k = 1} ^ {n - 1} a_k (Y - I) ^ k\]
+    That immediately results in
+    \[I + \sum_{k = 1} ^ {n - 1} \frac{1}{k!} N ^ k = Y = \sum_{k = 1} ^ {n - 1} a_k N ^ k \sum _{i_1 = 1} ^ {n - 1}\cdots \sum_{i_k = 1} ^ {n - 1} \frac{1}{i_1!\cdots i_k!}N ^ {i_1+\cdots+i_k - k}
+    \]
+    then, $I$ cannot be represented by linear combinations of the other matrices, which is a contradiction (so Y is independent to other matrices). \\
+    Similarly, if we let 
+    \[(Y - I) ^ j = \sum_{k = j + 1} ^ {n - 1} a_k (Y - I) ^ k\]
+    then, 
+    \[(N ^ j)\sum _{i_1 = 1} ^ {n - 1}\cdots \sum_{i_j = 1} ^ {n - 1} \frac{1}{i_1!\cdots i_j!}N ^ {i_1+\cdots+i_j - j} = (Y - I) ^ j = \sum_{k = j + 1} ^ {n - 1} a_k N ^ k\sum _{i_1 = 1} ^ {n - 1}\cdots \sum_{i_k = 1} ^ {n - 1} \frac{1}{i_1!\cdots i_k!}N ^ {i_1+\cdots+i_k - k}\]
+    The elements of the $N ^ j$ component cannot be expressed by the linear combinations of the matrices of $(Y -I) ^ {j + 1}$, $(Y -I) ^ {j +2}, \cdots$ which is another contradiction. \\
+    Therefore, these matrices are linearly independent. \\
+    In addition, since $N ^ n = 0$, but $N ^ {n - 1} \neq 0$, so dimension of the solution space of $X$ is $n$, corresponding to these $n$ matrices, therefore these matrices form a basis of the solution space of $X$.
+    \item
+    $e ^ N$ is upper triangular with ones on main diagonal, so it is invertible. \\
+    Therefore,
+    \[e ^ {-N}e ^ X = I = e ^ X e ^ {-N}\]
+    Thus $N$ and $X$ commutes, and
+    \[X - N = 2\pi k iI, k\in \mathbf{Z} \Rightarrow X = N + 2\pi k iI, k\in \mathbf{Z}\]
+    \item
+    \item
+\end{enumerate}
+\subsection*{Solution 5}
+\begin{enumerate}
+    \item Let $\lambda_n$ be any one of the eigenvalues of $X_n$, where $v$ is the eigenvector associates with it, i.e. $X_nv = \lambda_n v$. \\
+    Then,this immediately yields $X_n^{-1}v = v/\lambda$.\\
+    That means $X_{n+1}$ and $X_n$ both have the eigenvector $v$. \\
+    Since $X_{n+1} = \frac{1}{2} (X_n+X_n^{-1})$, if $\lambda_{n+1}$ satisfies $X_{n+1}v=\lambda_{n+1}v$, \\
+    then $\lambda_{n + 1} = \frac{1}{2}(\lambda_n + 1/\lambda_n)$. \\
+    Let $\lambda_n = x + iy$, $x\neq 0$
+    \[\lambda_{n + 1} = 
+    \frac{x(x ^ 2 + y ^ 2 + 1)}{2(x ^ 2 + y ^ 2)} 
+    + i\frac{y(x ^ 2 + y ^ 2 - 1)}{2(x ^ 2 + y ^ 2)}\]
+    So that implies $\Re(\lambda_{n + 1}) \neq 0$. $\blacksquare$
+    \item
+    \[\frac{X_n + 1}{X_n - 1} 
+    = \frac{X_n + X_n^{-1} + 2}{X_n + X_n^{-1} - 2} 
+    = \frac{(X_n + 1) ^ 2}{(X_n - 1) ^ 2}
+    = \frac{(A + 1) ^ {2 ^ n}}{(A - 1) ^ {2 ^ n}}
+    \Rightarrow
+    X_n = \frac{\frac{(A + 1) ^ {2 ^ n}}{(A - 1) ^ {2 ^ n}} + 1}
+    {\frac{(A + 1) ^ {2 ^ n}}{(A - 1) ^ {2 ^ n}} - 1} 
+    = \frac{1 + \frac{(A - 1) ^ {2 ^ n}}{(A + 1) ^ {2 ^ n}}}
+    {1 - \frac{(A - 1) ^ {2 ^ n}}{(A + 1) ^ {2 ^ n}}}
+    \]
+    When $A > 0$, $|A + 1| ^ {2 ^ n} > |A - 1| ^ {2 ^ n}$,
+    \[\lim_{n\to +\infty} X_n = \lim_{n\to+\infty}\frac{1 + \frac{(A - 1) ^ {2 ^ n}}{(A + 1) ^ {2 ^ n}}}
+    {1 - \frac{(A - 1) ^ {2 ^ n}}{(A + 1) ^ {2 ^ n}}} = \frac{1 + 0}{1 - 0} = 1\]
+    When $A < 0$, $|A + 1| ^ {2 ^ n} < |A - 1| ^ {2 ^ n}$,
+    \[\lim_{n\to +\infty} X_n = \lim_{n\to+\infty} \frac{\frac{(A + 1) ^ {2 ^ n}}{(A - 1) ^ {2 ^ n}} + 1}
+    {\frac{(A + 1) ^ {2 ^ n}}{(A - 1) ^ {2 ^ n}} - 1} = \frac{0 + 1}{0 - 1} = -1\]
+    So in general, for 1 by one matrix,
+    \[\lim_{n\to +\infty} X_n = \mathrm{sgn}(A)\]
+    \item 
+    $A$ is diagonalizable, so does $X_n$. 
+    \[X_n = B \Lambda B^{-1}\]
+    Then,
+    \[\lim_{t\to+\infty}X_t = B \lim_{t\to+\infty} \mathrm{diag}(\lambda_{1t},\cdots,\lambda_{nt})B^{-1}\]
+    When $A = B\mathrm{diag}(\lambda_{10},\cdots,\lambda_{n0})B^{-1} $, 
+    \[ B \lim_{t\to+\infty} \mathrm{diag}(\lambda_{1t},\cdots,\lambda_{nt})B^{-1} 
+    = B \mathrm{diag}(\mathrm{sgn}(\lambda_{10}), \cdots, \mathrm{sgn}(\lambda_{n0})) B^{-1} = \mathrm{sgn}(A)\]
+    \item
+\end{enumerate}
+\subsection*{Solution 6}
+Let $A = \left[\begin{array}{cc} a_1 & b_1 \\ c_1 &  d_1 \\ \end{array}\right]$,
+ $B = \left[\begin{array}{cc} a_2 & b_2 \\ c_2 &  d_2 \\ \end{array}\right]$.
+\begin{enumerate}
+    \item 
+     On one hand,
+     \[AB = \left[\begin{array}{cc} a_1 & b_1 \\ c_1 &  d_1 \\ \end{array}\right] \left[\begin{array}{cc} a_2 & b_2 \\ c_2 &  d_2 \\ \end{array}\right] = \left[\begin{array}{cc} a_1a_2 + b_1c_2 & a_1b_2+b_1d_2 \\ c_1a_2 + d_1c_2 &  c_1b_2+d_1d_2 \\ \end{array}\right]\]
+     On the other hand,
+     \[f_A(f_B(x)) = \frac{a_1(\frac{a_2x+b_2}{c_2x+d_2})+b_1}{c_1 (\frac{a_2x+b_2}{c_2x+d_2})+d_1} = \frac{a_1a_2x+a_1b_2+b_1c_2x+b_1d_2}{c_1a_2x+c_1b_2+d_1c_2x+d_1d_2} = \frac{(a_1a_2+b_1c_2)x+(a_1b_2+b_1d_2)}{(c_1a_2+d_1c_2)x+ (c_1b_2+d_1d_2)}\]
+     Therefore $f_A \circ f_B = f_{AB}$
+     \item
+      If $k\neq 0$, then 
+     \[f_{kA}(x) = \frac{(ka_1)x + (kb_1)}{(kc_1)x +(kd_1)} = \frac{a_1x+b_1}{c_1x+d_1}=f_A(x)\]
+     Conversely, when $f_A(x)=f_B(x)$
+     \[\frac{a_1x+b_1}{c_1x+d_1}=\frac{a_2x+b_2}{c_2x+d_2}\Leftrightarrow a_1c_2x^2+(a_1d_2+b_1c_2)x+b_1d_2=a_2c_1x^2+(b_2c_1+d_1a_2)x+b_2d_1\]
+     As x is an arbitary value, let $k_1=a_1c_2=a_2c_1$, $k_2=b_1d_2=b_2d_1$, then 
+     \[a_2=k_1/c_1, b_2=k_2/d_1, c_2 = k_1/a_1, d_2 = k_2/b_1\]
+     \[a_1d_2+b_2c_2=d_1a_2+b_2c_1 \Rightarrow \frac{a_1}{b_1}k_2 + \frac{b_1}{a_1}k_1= \frac{d_1}{c_1}k_1+\frac{c_1}{d_1}k_2\Rightarrow\frac{k_1}{k_2}=\frac{a_1c_1}{b_1d_1}\]
+     With all these, 
+     \[\frac{a_1c_1}{b_1d_1}=\frac{a_1c_2}{b_1d_2}\Rightarrow \frac{c_1}{c_2}=\frac{d_1}{d_2}, \frac{a_1c_1}{b_1d_1}= \frac{a_1c_2}{b_2d_1}\Rightarrow \frac{b_1}{b_2}=\frac{c_1}{c_2}
+     \frac{a_1c_1}{b_1d_1}=\frac{a_2c_1}{b_2d_1}\Rightarrow \frac{a_1}{a_2}=\frac{b_1}{b_2}
+     \]
+     Hence
+     \[\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}=\frac{d_1}{d_2}\Leftrightarrow A = k B\]
+     for some constant $k$.
+     \item 
+     \[A\left[\begin{array}{r}x\\y\end{array}\right]=\left[\begin{array}{cc} a_1 & b_1 \\ c_1 &  d_1 \\ \end{array}\right]\left[\begin{array}{r}x\\y\end{array}\right] = \left[\begin{array}{r}a_1x+b_1y\\c_1x+d_1y\end{array}\right]\]
+     is interpreted as $\frac{a_1x+b_1y}{c_1x+d_1y}$, while
+     \[f_A\left(\frac{x}{y}\right) = \frac{a_1(x/y)+b_1}{c_1(x/y)+d_1}=\frac{a_1x+b_1y}{c_1x+d_1y}\]
+     So they are equal.
+     \item
+\end{enumerate}
+\end{document}
