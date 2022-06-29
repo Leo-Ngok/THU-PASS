@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Calculus A(1): Homework 2}
+
+\begin{document}
+\maketitle
+
+\section*{Assigned Exercises}
+Exercises 11.1
+\subsection*{59.} 
+Convergence of $a_n = \frac{n!}{n^n}$
+\subsection*{Solution.}
+Obviously, $a_n \geq 0  (\forall n \in \mathbb{N})$.\newline
+On the other hand, 
+\[a_n=\frac{n}{n}\cdot\frac{n-1}{n}\cdot\frac{n-2}{n}\cdots\frac{2}{n}\cdot\frac{1}{n}\leq 1\cdot1\cdot1\cdots1\cdot\frac{1}{n}\]
+Hence,
+\[0\leq\lim_{n\to\infty} a_n \leq\lim_{n\to\infty} \frac{1}{n}=0\]
+Thus, $a_n$ converges, and \[\lim _{n\to\infty} a_n=0\]
+\subsection*{85.}
+The first term of a sequence is $x_1=1$. Each succeeding term is the sum of all those that come before it:
+\[x_{n+1}=x_1+x_2+\cdots+x_n\]
+Write out enough early terms of the sequence to deduce a general formula for $x_n$ that holds for 
+ $n\geq 2$.
+\subsection*{Solution.}
+By definition,
+\[x_1=1,x_2=x_1=1,x_3=x_1+x_2=2,x_4=x_1+x_2+x_3=4,\dots\]
+The following proves (by induction) that $a_n=2^{n-2}$, $n\in\mathbb{N}$, $n\geq2$.\newline
+Let $P(n):a_n=2^{n-2}$. The following proves $(\forall n\in \mathbb{N},n\geq2)P(n)$ is true.\newline\newline
+\textbf{Proof:}
+\begin{enumerate}
+    \item $P(2): a_2=2^0=1$, so P(2) is true.
+    \item Assume $P(2),P(3),\dots ,P(k-1),P(k)$ is true for some integers $k>2$ .\newline
+$P(k+1):$ \[a_{k+1}=\sum_{i=1}^k a_i=1+\sum_{i=2}^k 2^{i-2}=1+\frac{2^{k-1}-1}{2-1}=2^{k-1}\]
+Thus $P(k+1)$ is true.
+\end{enumerate}
+By (1),(2) and the second principle of mathematical induction, $P(n)$ is true for all integers $n\geq2$.
+
+\subsection*{92.}
+\textbf{The zipper theorem} Prove the “zipper theorem” for sequences: If $\{a_n\}$ and $\{b_n\}$ both converge to $L$, then the sequence 
+\[a_1,b_1,a_2,b_2,\dots,a_n,b_n,\dots\]
+converges to $L$.
+\subsection*{Solution.}
+Let $\{c_n\}_{n\geq1}$ such that
+\[ c_n=\begin{cases} 
+       a_{\frac{n+1}{2}}& , 2\nmid n \\
+       b_{\frac{n}{2}} & , 2 \mid n
+   \end{cases}
+\]
+By definition, $\forall \epsilon>0, \exists N\in\mathbb{N}$ such that $\forall n>N$,
+\[|a_n-L|<\epsilon \]
+and
+\[|b_n-L|<\epsilon\]
+Let $N'=2N-1,N''=2N$\newline
+Above implies that for any odd number $n'>N'$,
+\[|a_{n'}-L|<\epsilon \]
+and for any even number $n''>N''$,
+\[|b_{n''}-L|<\epsilon\]
+Thus, $\forall \epsilon>0, \forall n>N''$,
+\[ |c_n-L|=\begin{cases} 
+       |a_{\frac{n+1}{2}}-L|<\epsilon & , 2\nmid n \\
+       |b_{\frac{n}{2}}-L| <\epsilon & , 2\mid n
+   \end{cases}
+\]
+Which shows that $c_n\rightarrow L$ .
+\subsection*{119.}
+For a sequence $\{a_n\}$ the terms of even index are denoted by $a_{2k}$
+and the terms of odd index by $a_{2k+1}$. Prove that if $a_{2k} \rightarrow L$ and $a_{2k+1} \rightarrow L$, then $a_n \rightarrow L$.
+\subsection*{Solution.}
+Refer to solution 92. The proof follows by letting the sequence of odd indices as $\{a_n\}$, the even indices as $\{b_n\}$ and the sequence itself as $\{c_n\}$.
+\section*{Bonus Exercises}
+\subsection*{86.}
+(Pell's equation) A sequence of rational numbers is defined as follows:
+\[\frac{1}{1},\frac{3}{2},\frac{7}{5},\frac{17}{12},\dots,\frac{a}{b},\frac{a+2b}{a+b},\dots\]
+Here, the numerators form one sequence, the denominators form a second sequence, and their ratios form a third sequence. Let $x_n$ and $y_n$ be respectively the numerator and the denominator of the fraction $r_n=x_n/y_n$.
+\begin{enumerate} [a.]
+    \item Verify that $x_1^2-2y_1^2=-1$, $x_2^2-2y_2^2=+1$ and, more generally, that if $a^2-2b^2= \mp 1$, then
+    \[(a+2b)^2-2(a+b)^2=\pm 1\] respectively.
+    \item The fractions $r_n=x_n/y_n$ approach a limit as $n$ increases. What is that limit?
+\end{enumerate}
+\subsection*{Solution.}
+\begin{enumerate}[a.]
+    \item By definition, $x_1=1,x_2=3,y_1=1,y_2=2$,
+\[x_1^2-2y_1^2=1-2=-1,x_2^2-2y_2^2=9-8=1\]
+\[(a+2b)^2-2(a+b)^2=a^2+4ab+4b^2-2a^2-4ab-2b^2=-a^2+2b^2=-(a^2-2b^2)=\pm 1\]
+    \item By definition of $x_n,y_n$,
+    \[\begin{cases}
+    x_n=x_{n-1}+2y_{n-1}\\
+    y_n=x_{n-1}+y_{n-1}
+    \end{cases}\]
+    \[r_n=\frac{x_n}{y_n}=\frac{x_{n-1}+2y_{n-1}}{x_{n-1}+y_{n-1}}=\frac{\frac{x_{n-1}}{y_{n-1}}+2}{\frac{x_{n-1}}{y_{n-1}}+1}=\frac{r_{n-1}+2}{r_{n-1}+1}\]
+    Consider $\frac{r_n-\sqrt{2}}{r_n+\sqrt{2}}$.
+    \[\frac{r_n-\sqrt{2}}{r_n+\sqrt{2}}=\frac{\frac{r_{n-1}+2}{r_{n-1}+1}-\sqrt{2}}{\frac{r_{n-1}+2}{r_{n-1}+1}+\sqrt{2}}\]
+    \[=\frac{(1-\sqrt{2})r_{n-1}+2-\sqrt{2}}{(1+\sqrt{2})r_{n-1}+2+\sqrt{2}}\]
+    \[=\frac{(1-\sqrt{2})(r_{n-1}+\frac{2-\sqrt{2}}{1-\sqrt{2}})}{(1+\sqrt{2})(r_{n-1}+\frac{2+\sqrt{2}}{1+\sqrt{2}})}\]
+    \[=\frac{1-\sqrt{2}}{1+\sqrt{2}}\cdot\frac{r_{n-1}-\sqrt{2}}{r_{n-1}+\sqrt{2}}\]
+    Thus,
+    \[\frac{r_n-\sqrt{2}}{r_n+\sqrt{2}}=(\frac{1-\sqrt{2}}{1+\sqrt{2}})^n\]
+    \[r_n=\sqrt{2}\cdot\frac{1+(\frac{1-\sqrt{2}}{1+\sqrt{2}})^n}{1-(\frac{1-\sqrt{2}}{1+\sqrt{2}})^n}\]
+    Hence,
+    \[\lim_{n\to\infty}r_n=\sqrt{2}\].
+    
+\end{enumerate}
+
+
+\end{document}

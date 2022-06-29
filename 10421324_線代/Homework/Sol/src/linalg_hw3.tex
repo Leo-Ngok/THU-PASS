@@ -1,0 +1,229 @@
+\documentclass{article}
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Linear Algebra: Homework 3}
+
+\begin{document}
+\maketitle
+
+\subsection*{Question 1.} 
+Let $W$ be the union of the first and the third quadrants in the $xy$-plane. That is, let 
+\[W=\left\{\left.\left[\begin{array}{cc}x\\y\end{array}\right]\right\rvert xy \geq 0\right\}.\]
+\begin{enumerate}
+    \item If $\Vec{u}$ is in $W$ and $c$ any any scalar, is $c\Vec{u}$ in $W$? Why?
+    \item Find specific vectors $\Vec{u}$ and $\Vec{v}$ in $W$ such that $\Vec{u}+\Vec{v}$ is not in $W$. This is enough to show that W is not a vector space.
+\end{enumerate}
+\subsection*{Solution 1.}
+\begin{enumerate}
+    \item Let $\Vec{u}=\left[\begin{array}{cc}x\\y \end{array}\right]\in W \Rightarrow xy \geq 0$.
+    \[c\Vec{u}=\left[\begin{array}{cc}cx\\cy\end{array}\right],(cx)\cdot(cy)=c^2\cdot xy \geq 0\]\newline
+    Therefore, $c\Vec{u}\in W$.
+    \item Let \[\Vec{u}=\left[\begin{array}{cc}-\frac{\sqrt{3}}{2}\\-\frac{1}{2}\end{array}\right], \Vec{v}=\left[\begin{array}{cc}\frac{1}{2}\\ \frac{\sqrt{3}}{2}\end{array}\right]\]
+    \[\Vec{u},\vec{v}\in W, but\, \vec{u}+\vec{v}=\left[\begin{array}{cc}\frac{1-\sqrt{3}}{2}\\ \frac{\sqrt{3}-1}{2}\end{array}\right]\notin W\]Thus $W$ is not a vector space.
+\end{enumerate}
+\subsection*{Question 2.}
+Determine if the given set is a subspace of $\mathbb{P}_n$ for an appropriate n, justify your answer.
+\begin{enumerate}
+    \item All polynomials of the form $P(t)=at^2$, with $a\in \mathbb{R}$.
+    \item All polynomials of the form $P(t)=a+t^2$, with $a\in \mathbb{R}$.
+    \item All polynomials of degree at most 3, with integers as coefficients.
+    \item All polynomials in $\mathbb{P}_n$ such that $P(0)=0$.
+\end{enumerate}
+\subsection*{Solution 2.}
+\begin{enumerate}
+    \item \textbf{True.}
+    \begin{enumerate}
+        \item Let $a=0$. Then it is the zero element.
+        \item Let $a,b\in\mathbb{R}$. Then, as $\mathbb{R}$ is a field, $(a+b)\in\mathbb{R}$.
+        \[P_1(t)+P_2(t)=at^2+bt^2=(a+b)t^2\in\mathbb{P}_2\]
+        Thus, the set is closed under addition.
+        \item Let $a,c\in\mathbb{R},(ac)\in\mathbb{R}$
+        \[c\cdot P(t)=c\cdot at^2=(ca)t^2\in\mathbb{P}_2\]
+        Thus, the set is closed under scalar multiplication.
+    \end{enumerate}
+    
+    \item \textbf{False.} Zero element does not exist, even though $a=0$.
+    \item \textbf{False.} The set is not closed under scalar multiplication. That is, for a real number c, if it is not an integer, then the product of the polynomial and c does not belong to the set.
+    \item \textbf{True}.All polynomials in the set has the form of 
+    \[P(t)=\sum_{i=1}^n a_ix^i.\]
+    \begin{enumerate}
+        \item Let $a_1=a_2=\cdots=a_n=0$. Then it is the zero element.
+        \item Let $P_1(t), P_2(t)\in\mathbb{P}_n$ . Also let $A,B\in\mathbb{R}$.Then,
+        \[A\cdot P_1(t)+B\cdot P_2(t)=A\cdot \sum_{i=1}^n a_{1i}x^i+B\cdot \sum_{i=1}^n a_{2i}x^i=\sum_{i=1}^n (A\cdot a_{1i}+B\cdot a_{2i})x^i\in\mathbb{P}_n\]
+        Thus, the set is closed under addition and scalar multiplication.
+    \end{enumerate}
+    
+\end{enumerate}
+\subsection*{Question 3.}
+Let $H$ and $K$ be subspaces of a vector space $V$. The intersection of $H$ and $K$ is defined to be
+\[H\cap K=\{\Vec{v} \in V | \Vec{v} \in H \, and\, \Vec{v} \in K\}.\]
+Show that $H\cap K$ is a subspace of $V$. Give and example in $\mathbb{R}^2$ to show that the union of two subspaces is, in general, not a subspace.
+\subsection*{Solution 3.}
+With regards to the intersection of subspaces,
+$H$ and $K$ are both subspaces of $V$, thus
+\begin{enumerate}
+    \item $\vec{0}\in H \land \vec{0}\in K\Rightarrow \vec{0}\in H\cap V$.
+    \item Let $\vec{u},\vec{v}\in H\cap V$.\newline
+    Then, $\vec{u},\vec{v}\in H\Rightarrow \vec{u}+\vec{v}\in H$.(1)\newline
+    Similarly, $\vec{u}+\vec{v}\in K$.(2) \newline 
+    With (1) and (2), $\vec{u}+\vec{v}\in H \cap V$, thus $U\cap V$ is closed under addition.
+    \item Let $\vec{v}\in H\cap V, c\in \mathbb{R}$.\newline
+    Then, $\vec{v}\in H\Rightarrow c \cdot \vec{v}\in H$.(1)\newline
+    Similarly, $c\cdot \vec{v}\in K$.(2) \newline 
+    With (1) and (2), $\ c \cdot\vec{v}\in H \cap V$, thus $U\cap V$ is closed under scalar multiplication.
+\end{enumerate}
+Q.E.D.\newline
+With regards to the union of two subspaces $U$ and $V$,
+let $U=\{c_1\cdot \vec{e_1}|c_1\in\mathbb{R}\},V=\{c_2\cdot \vec{e_2}|c_2\in\mathbb{R}\}$.\newline
+However, $\vec{e_1}+\vec{e_2}=\left[\begin{array}{c}1\\1\end{array}\right]\notin (H\cup V)$. Thus, $H\cup V$ is not a subspace.
+\subsection*{Question 4.}
+Consider the polynomials $P_1(t)=1+t^2$ and $P_2(t)=1-t^2$. Is $\{P_1,P_2\}$ a linear independent set in $\mathbb{P}_3$? Why or why not?
+\subsection*{Solution 4.}
+The set of polynomials is linearly independent $\Leftrightarrow$ $A\cdot P_1(t)+B\cdot P_2(t)=0$ yields $A=B=0$. 
+\[A\cdot P_1(t)+B\cdot P_2(t)=(A+B)+(A-B)t^2=0\]
+Since t is arbitrary, $A=B\land A=-B\Rightarrow A=B=0$, thus $\{P_1,P_2\}$ is a linear independent set in $\mathbb{P}_3$.
+\subsection*{Question 5.}
+Use coordinate vectors to test the linear independence of the set of polynomials. Explain your work.
+\begin{enumerate}
+    \item $1+2t^3 , 2+t-3t^2 , -t+2t^2-t^3$
+    \item $1-2t^2-t^3,t+2t^3,1+t-2t^2$
+\end{enumerate}
+\subsection*{Solution 5.}
+W.L.O.G., assume $1\mapsto \vec{e_1},t\mapsto\vec{e_2},t^2\mapsto\vec{e_3},t^3\mapsto\vec{e_4}$
+\begin{enumerate}
+    \item The images of the polynomials are (1,0,0,2), (2,1,-3,0) and (0,-1,2,-1) respectively.
+    \[\left[\begin{array}{ccc}1&2&0\\0&1&-1\\0&-3&2\\2&0&-1\end{array}\right]\rightarrow\left[\begin{array}{ccc}1&2&0\\0&1&-1\\0&-3&2\\0&-4&-1\end{array}\right]\rightarrow\left[\begin{array}{ccc}1&2&0\\0&1&-1\\0&0&-1\\0&0&-5\end{array}\right]\rightarrow\left[\begin{array}{ccc}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{array}\right]\]
+    Thus, all columns are pivot columns, hence the polynomials are linearly independent.
+    \item The images of the polynomials are (1,0,-2,-1), (0,1,0,2) and (1,1,-2,0) respectively.
+    \[\left[\begin{array}{ccc}1&0&1\\0&1&1\\-2&0&-2\\-1&2&0\end{array}\right]\rightarrow\left[\begin{array}{ccc}1&0&1\\0&1&1\\0&0&0\\0&2&1\end{array}\right]\rightarrow\left[\begin{array}{ccc}1&0&1\\0&1&1\\0&0&0\\0&0&-1\end{array}\right]\rightarrow\left[\begin{array}{ccc}1&0&0\\0&1&0\\0&0&0\\0&0&1\end{array}\right]\]
+    Thus, all columns are pivot columns, hence the polynomials are linearly independent.
+\end{enumerate}
+\subsection*{Question 6.}
+The first four Laguerre polynomials are $1,1-t,2-4t+t^2$ and $6-18t+9t-t^3$. Show that these polynomials form a basis of $\mathbb{P}_3$.
+\subsection*{Solution 6.}
+The vector representations of these polynomials,relative to $\{1,t,t^2,t^3\}$, are $\left[\begin{array}{c}1\\0\\0\\0\end{array}\right]$,$\left[\begin{array}{c}1\\-1\\0\\0\end{array}\right]$,$\left[\begin{array}{c}2\\-4\\1\\0\end{array}\right]$ and $\left[\begin{array}{c}6\\-18\\9\\-1\end{array}\right]$ respectively.\newline
+If $\left[\begin{array}{cccc}1&1&2&6\\0&-1&-4&-18\\0&0&1&9\\0&0&0&-1\end{array}\right]\cdot \vec{x}=\vec{0}$ has trivial solution only, then these vectors (these polynomials) are linearly independent. Clearly, it is true.As there are 4 vectors, and $dim(\mathbb{P}_3)=4$, thus these polynomials form a basis of $\mathbb{P}_3$.
+\subsection*{Question 7.}
+Show that the space $C(\mathbb{R})$ of all continuous functions on the real line is an infinite dimensional vector space.
+\subsection*{Solution 7.}
+$\mathbb{P}_n$ is a subspace of $C(\mathbb{R})$.\newline
+Suppose $dim(\mathbb{P})=l<\infty$. $\forall n$, $\mathbb{P}_n\leq\mathbb{P}$. Thus, for $\mathbb{P}_{l-1}$,its dimension is $l$. Thus, that implies $\mathbb{P}_{L-1}=\mathbb{P}$, arising a contradiction.
+\newline
+\textbf{ In 8 and 9, }$\mathbf{dim(V)<\infty}$, \textbf{and the vectors listed belong to $V$.}
+\subsection*{Question 8.}
+\begin{enumerate}
+    \item If there exists a set $\{\Vec{v_1},\cdots , \Vec{v_p}\}$ that spans $V$, then $dim(V)\leq p$.
+    \item If there exists a linearly independent set $\{\Vec{v_1},\cdots , \Vec{v_p}\}$ in $V$, then $dim(V)\geq p$.
+    \item If $dim(V)= p$, then there exists a spanning set of $p+1$ vectors in $V$.
+\end{enumerate}
+\subsection*{Solution 8.}
+\begin{enumerate}
+    \item \textbf{True.} Let $\{\Vec{v_1},\cdots , \Vec{v_r}\}$ be a linearly independent set by removing p-r vectors. The set spans a space of $r\leq p$, thus $dim(V) \leq p$
+    \item \textbf{True.} Since the set is linearly independent, it spans a space which is the subspace of V with dimension p. Thus, dim(V) must not less than p.
+    \item \textbf{True.} Insert an arbitary vector other than the vectors into the set of basis to form the new spanning set. 
+\end{enumerate}
+\subsection*{Question 9.}
+\begin{enumerate}
+    \item If there exists a linearly dependent set $\{\Vec{v_1},\cdots , \Vec{v_p}\}$ in $V$, then $dim(V)\leq p$.
+    \item If every set of $p$ elements in $V$ fails to span $V$, then $dim(V)>p$.
+    \item If $p\geq 2$ and $dim(V)=p$, then every set of $p-1$ nonzero vectors is linearly independent.
+\end{enumerate}
+\subsection*{Solution 9.}
+\begin{enumerate}
+    \item \textbf{False.} A counter example is by letting the space be $\mathbb{R}^3$ and the set be $\left\{\left[\begin{array}{c}1\\0\\0\end{array}\right],\left[\begin{array}{c}2\\0\\0\end{array}\right]\right\}$
+    \item \textbf{True.} The proposition is equivalent to "If $dim(V)\leq p$, then there exists a set of p elements that span V. For a vector subspace V, $dim(V)\leq p$,basis for V has no more than p vectors, which is the spanning set for V. 
+    \item \textbf{False.} 9.1 demonstrates a counter-example.
+\end{enumerate}
+\subsection*{Question 10.}
+Let $A=\left[\begin{array}{cccc}
+1&3&9&2\\1&0&3&-4\\0&1&2&3\\-2&3&0&5 
+\end{array}\right]$.
+\begin{enumerate}
+    \item Solve the equation $A\Vec{x}=0$.
+    \item Let $\Vec{b}=\left[\begin{array}{cccc}-1\\3\\-1\\4
+    \end{array}\right]$, is $\Vec{b}$ in the range of the linear transformation $\Vec{x}\mapsto A\Vec{x}$? Why or why not?
+\end{enumerate}
+\subsection*{Solution 10.}
+\begin{enumerate}
+    \item 
+The corresponding augmented matrix is
+\[\left[\begin{array}{ccccc}1&3&9&2&0\\1&0&3&-4&0\\0&1&2&3&0\\2&3&0&5&0\end{array}\right]\]
+\[\Rightarrow\left[\begin{array}{ccccc}1&3&9&2&0\\0&-3&-6&-6&0\\0&1&2&3&0\\0&9&18&9&0\end{array}\right]\]
+\[\Rightarrow\left[\begin{array}{ccccc}1&3&9&2&0\\0&1&2&2&0\\0&0&0&1&0\\0&0&0&-1&0\end{array}\right]\]
+\[\Rightarrow\left[\begin{array}{ccccc}1&3&9&2&0\\0&1&2&2&0\\0&0&0&1&0\\0&0&0&0&0\end{array}\right]\]
+Here, $x_4=0$, and Let $x_3=t$ as a parameter, where $t\in\mathbb{R}$.\newline
+Thus, $x_2=-2t$, and $x_1=-3t$. $\vec{x}=t\cdot \left[\begin{array}{c}-3\\-2\\1\\0\end{array}\right],t\in\mathbb{R}$
+\item Let $\vec{x}=\left[\begin{array}{c}-3\\-2\\1\\0\end{array}\right]$, where $\vec{x}\in Ker(A)$, the kernel of A.
+If $\vec{b}\in C(A)$, the range of A, then $\vec{b}$ is orthogonal to $\vec{x}$. However,
+\[\vec{b}\cdot\vec{x}=3-6-1=-4,\]
+thus $b$ is outside the range of transformation of A.
+\end{enumerate}
+\subsection*{Question 11.}
+An affine transformation $T:\mathbb{R}^n \rightarrow \mathbb{R}^m$ has the form $T(\Vec{x})=A\Vec{x}+\Vec{b}$, with $A$ an $m\times n$ matrix and $\Vec{b}\in \mathbb{R}^m$. Show that $T$ is not a linear transformation if $\Vec{b}\neq 0$.
+\subsection*{Solution 11.}
+If $T$ is a linear transformation, then $\forall \vec{v_i}\in\mathbb{R}^n,c_i\in \mathbb{R}, i=\{1,2,3,\cdots,k\}$
+\[T(\sum_{i=1}^k c_i\vec{v_i})=\sum_{i=1}^k c_i T(\vec{v_i})\]
+Given $T(\Vec{x})=A\Vec{x}+\Vec{b}$, so for linear transformation T,
+\[\Rightarrow Left=A(\sum_{i=1}^k c_i\vec{v_i})+\vec{b}\]
+\[=\sum_{i=1}^k c_i A\vec{v_i} +\vec{b},\]
+\[Right=\sum_{i=1}^k c_i (A\vec{v_i}+\vec{b})\]
+\[=\sum_{i=1}^k c_i A\vec{v_i}+\sum_{i=1}^k c_i\vec{b}\]
+Thus,
+\[\vec{b}=\sum_{i=1}^k c_i\vec{b}\]
+As $c_i$ is arbitary, $\vec{b}=0$.
+\subsection*{Question 12.}
+Let $T:\mathbb{R}^n \rightarrow \mathbb{R}^m$ be a linear transformation, and let $\{\Vec{v_1},\Vec{v_2},\Vec{v_3}\}$ be a linearly dependent set in $\mathbb{R}^n$. Explain why $\{T(\Vec{v_1}),T(\Vec{v_2}),T(\Vec{v_3})\}$ is linearly dependent.
+\subsection*{Solution 12.}
+Let $\vec{v_3}=a\vec{v_1}+b\vec{v_2}$. As T is a linear transformation,
+$T(\vec{v_3})=T(a\vec{v_1}+b\vec{v_2})=aT(\vec{v_1})+bT(\vec{v_2})$
+\subsection*{Question 13.}
+Let $T:\mathbb{R}^2\rightarrow \mathbb{R}^2$ be the linear transformation that first reflects points through the horizontal $x_1$-axis and then reflects points through the line $x_1=x_2$. What is the standard matrix of $T$?
+\subsection*{Solution 13.}
+W.L.O.G., assume $\Vec{e_1}=\left[\begin{array}{c}1\\0\end{array}\right],\Vec{e_2}=\left[\begin{array}{c}0\\1\end{array}\right]$,where $\vec{e_1}$ and $\vec{e_2}$ lie on $x_1$- and $x_2$- axes respectively.\newline
+The two transformations are then represented by $\left[\begin{array}{cc}1&0\\0&-1\end{array}\right]$ and $\left[\begin{array}{cc}0&1\\1&0\end{array}\right]$ respectively.\newline
+Thus, the standard matrix of $T$ is 
+\[\left[\begin{array}{cc}0&1\\1&0\end{array}\right]\cdot \left[\begin{array}{cc}1&0\\0&-1\end{array}\right]=\left[\begin{array}{cc}0&-1\\1&0\end{array}\right],\]
+\subsection*{Question 14.}
+A linear transformation $T:\mathbb{R}^2\rightarrow \mathbb{R}^2$ first reflects points through the $x_1$-axis and then reflects points through the $x_2$-axis. Show that $T$ can also be described as a linear transformation that rotates points about the origin. What is the angle of the rotation?
+\subsection*{Solution 14.}
+W.L.O.G., assume $\Vec{e_1}=\left[\begin{array}{c}1\\0\end{array}\right],\Vec{e_2}=\left[\begin{array}{c}0\\1\end{array}\right]$,where $\vec{e_1}$ and $\vec{e_2}$ lie on $x_1$- and $x_2$- axes respectively.\newline
+The matrices correspond to reflections along $x_1$- and $x_2$- axes are $\left[\begin{array}{cc}1&0\\0&-1\end{array}\right]$ and $\left[\begin{array}{cc}-1&0\\0&1\end{array}\right]$ respectively.
+The matrix that corresponds to this composite transformation is
+\[\left[\begin{array}{cc}-1&0\\0&1\end{array}\right]\cdot \left[\begin{array}{cc}1&0\\0&-1\end{array}\right]=\left[\begin{array}{cc}-1&0\\0&-1\end{array}\right],\]
+Which is a rotation of $\pi$ rad along the origin.
+\subsection*{Question 15.}
+\begin{enumerate}
+    \item Not every linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$ is a matrix transformation.
+    \item The columns of the standard matrix for a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$ are the images of the columns of the $n \times n$ identity matrix.
+    \item The standard matrix of a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$ that reflects points through the horizontal axis, the vertical axis, or the origin has the form $\left[\begin{array}{cc}
+        a & 0 \\
+        0 & d
+    \end{array}\right]$, where $a$ and $d$ are $\pm 1$.
+    \item A mapping $T:\mathbb{R}^n \rightarrow \mathbb{R}^m$ is one-to-one if each vector in $\mathbb{R}^n$ maps onto a unique vector in $\mathbb{R}^m$.
+    \item If $A$ is a $3 \times 2$ matrix, then the transformation $\Vec{x}\mapsto A\Vec{x}$ can not map $\mathbb{R}^2$ onto $\mathbb{R}^3$.
+\end{enumerate}
+\subsection*{Solution 15.}
+\begin{enumerate}
+    \item \textbf{False.} Suppose $\{\Vec{e_1},\Vec{e_2},\cdots,\Vec{e_n}\}$ are te basis vectors of $\mathbb{R}^n$, and let the transformation be T. Then, T maps the basis vectors to $T(\Vec{e_1}),T(\Vec{e_2}),\cdots,T(\Vec{e_n})$ respectively.\newline
+    Every vector $\vec{u}\in\mathbb{R}^n$ can be expressed as a linear combination of the basis vectors, so linear transformation 
+    \[T(\vec{u})=T(\sum_{i=1}^n u_i\cdot\vec{e_i})=\sum_{i=1}^n u_i\cdot T(\vec{e_i})=\left[\begin{array}{cccc}T(\vec{e_1})&T(\vec{e_2})&\cdots&T(\vec{e_n})\end{array}\right]\left[\begin{array}{c}u_1\\u_2\\\vdots\\u_n\end{array}\right]\]
+    $\left[\begin{array}{cccc}T(\vec{e_1})&T(\vec{e_2})&\cdots&T(\vec{e_n})\end{array}\right]$ is the standard matrix corresponds to the linear transformation.
+    \item \textbf{True.} Identity matrix, $I_n=\left[\begin{array}{cccc}\vec{e_1}&\vec{e_2}&\cdots&\vec{e_n}\end{array}\right]$. Hence, from solution 15.1, the columns of the standard matrix are the images of columns of $I_n$.
+    \item \textbf{False.}\newline
+    Unless n=m=2, $\mathbb{R}^n,\mathbb{R}^m$ does neither match the domain and range of the transformation for $\left[\begin{array}{cc}a&0\\0&d\end{array}\right]$.
+    \item \textbf{True.} Mapping uniquely is the definition of one-to-one.
+    \item \textbf{True.} Since A is $3 \times 2$, $dim(C(A))\leq 2$, so $\mathbb{R}^3\setminus C(A)\neq \emptyset$. Thus, the range of the transformation is a proper subset of $\mathbb{R}^3$, so the transformation is not onto.
+\end{enumerate}
+\end{document}

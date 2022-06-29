@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Calculus A(1): Homework 4}
+\begin{document}
+\maketitle
+\subsection*{52.}
+Prove that $\lim _{x\to c} f(x) = L$ if and only if $\lim _{h\to 0} f(h+c) = L$.
+\subsection*{Solution}
+Let $g(x)=x+c$. Clearly, $g$ is a bijective continuous function. So the given proposition is equivalent to 
+\[\lim_{x\to g(b)} f(x)=L \Leftrightarrow \lim _{h\to b} (f \circ g)(h)=L\]
+"$\Leftarrow$": \\
+\[\lim _{h\to b} (f \circ g)(h)=L \Leftrightarrow\]
+\[(\forall\epsilon>0)(\exists\delta>0)(\forall h)((0<|h-b|<\delta)\Rightarrow (|(f\circ g)(h)-L|<\epsilon))\]
+In addition, $g^{-1}$ is also a bijective continuous function, thus
+\[(\forall \epsilon_1>0)(\exists \delta_1>0)(\forall x)((0<|x-g(b)|<\delta_1)\Rightarrow (0<|g^{-1}(x)-b|<\epsilon_1))\]
+Choose $\epsilon_1$ such that $\epsilon_1<\delta$, and $h=g^{-1}(x)$. Then,
+\[((0<|x-g(b)|<\delta_1)\Rightarrow (0<|g^{-1}(x)-b|<\epsilon_1<\delta)\Rightarrow (|(f\circ g)(g^{-1}(x))-L|<\epsilon)\Rightarrow(|(f(x))-L|<\epsilon))\]
+So, by letting $b=0$,
+\[\lim_{x\to g(b)} f(x)=\lim_{x\to c} f(x)=L\]
+"$\Rightarrow$":\newline
+Let $s=f\circ g,b=g^{-1}(c)$. Thus we are proving 
+\[\lim_{x\to c} s(g^{-1}(x))=L \Leftrightarrow \lim _{x\to g^{-1}(c)} s(x)=L\]
+Replace $g(b),b$ involved the proof above with $g^{-1}(c),c$ directly completes the proof.
+$\blacksquare$
+\subsection*{54}
+\textbf{Another wrong statement about limits} Show by example that the following statement is wrong.
+\begin{center}
+The number $L$ is the limit of $f(x)$ as $x$ approaches $x_0$ if, given any $\epsilon >0$, there exists a value of $x$ for which $|f(x)-L|<\epsilon$.
+\end{center}
+Explain why the function in your example does not have the given value of $L$ as a limit as $x\to x_0$.
+\subsection*{Solution}
+Let $f(x)=x$.\newline
+Given any $\epsilon>0$, exists a value of $x$ for which  $|f(x)-0|=0<\epsilon$.
+In that case above, $x=0$.
+However, when $x$ approaches 1,i.e. $x_0=1$, $f(x)$ approaches 1.
+\subsection*{5.}
+Let $f(x)=\left\{\begin{array}{ll}0,&x\leq 0\\\sin{\frac{1}{x}},&x>0\end{array}\right.$.
+\begin{enumerate} [label=\alph*]
+    \item Does $\lim _{x\to 0^+} f(x)$ exist? If so, what is it? If not, why not?
+    \item Does $\lim _{x\to 0^-} f(x)$ exist? If so, what is it? If not, why not?
+    \item Does $\lim _{x\to 0} f(x)$ exist? If so, what is it? If not, why not?
+\end{enumerate}
+\subsection*{Solution} 
+\begin{enumerate} [label=\alph*]
+    \item No. \newline Suppose the limit exists.\newline
+    Let $n_1\in\mathbb{N}^+$ such that $n_1>\frac{1}{\pi\delta}-\frac{1}{2}$. Then,  $0<\frac{2}{(2n_1+1)\pi}<\delta$.\newline
+    $\forall \epsilon>0$,\newline
+    $|\sin{\frac{1}{x}}-L|=|\sin{\frac{(2n_1+1)\pi}{2}}-L|=|1-L|<\epsilon$.\newline
+    Also let $n_2\in\mathbb{N}^+$ such that $n_2>\frac{1}{\delta\pi}$, then $0<\frac{1}{n_2\pi}<\delta$\newline
+    $\forall \epsilon>0$,\newline
+    $|\sin{\frac{1}{x}}-L|=|\sin{n_2\pi}-L|=|L|<\epsilon$.\newline
+    Hence, $2\epsilon>|1-L|+|L|\geq|1|$, which fails for $0<\epsilon<1/2$\newline
+    $\blacksquare$
+    \item Yes. 
+    \[\lim _{x\to 0^-}f(x)=0\]
+    \item No.
+    \[\lim _{x\to 0^-}f(x)=0,\text{but} \lim _{x\to 0^+}f(x)\text{ does not exist.}\]
+\end{enumerate}
+\subsection*{66.}
+Suppose that $f$ is an even function of $x$. Does knowing that $\lim _{x\to 2^-} f(x)=7$ tell you anything about either $\lim _{x\to 2^-} f(x)$ or $\lim _{x\to -2^+} f(x)$? Give reasons for your answer.
+\subsection*{Solution}
+\[(\lim_{x\to 2^-}f(x)=7)\Rightarrow (\forall \epsilon>0)(\exists \delta>0)(\forall x)((2-\delta<x<2)\Rightarrow (|f(x)-7|<\epsilon))\]
+So we have
+\[(2-\delta<-x<2)\Rightarrow (|f(-x)-7|<\epsilon),\text{or}(-2+\delta>x>-2)\Rightarrow (|f(-x)-7|<\epsilon)\]
+Since $f$ is even, i.e. $f(-x)=f(x)$, that implies
+\[(-2<x<-2+\delta)\Rightarrow (|f(x)-7|<\epsilon)\]
+Thus, 
+\[\lim_{x\to 2^-}f(x)=\lim_{x\to -2^+}f(x)=7\]
+$\blacksquare$
+\subsection*{69}
+How many horizontal asymptotes can the graph of a give rational function have? Give reasons for your answer.
+\subsection*{Solution}
+Horizontal asymptotes of a function $f(x)$ are linear equations in the form of $y=k$,where $k$ satisfies
+\[\lim_{x\to-\infty}f(x)=k \text{ or} \lim_{x\to+\infty}f(x)=k\]
+Since limit is unique if it exists, thus $f(x)$ can have at most 2 asymptotes. \newline
+For a rational function $f(x)$, $f(x)=\frac{P(x)}{Q(x)}$, where $P(x)$ and $Q(x)$ are both polynomials.
+By polynomial division, $f(x)=A(x)+\frac{R(x)}{Q(x)}$, where $A(x)$ and $R(x)$ are polynomials, and deg R$<$deg Q.
+Let n=deg R, k=deg Q-deg R.Then,
+\[\lim _{x\to +\infty} \frac{R(x)}{Q(x)}=\lim _{x\to +\infty} \frac{\sum_{i=0}^{n}r_ix^i}{\sum_{i=0}^{n+k}q_ix^i}=\lim _{x\to  +\infty} \frac{\sum_{i=0}^{n}r_ix^{i-n}}{\sum_{i=0}^{n+k}q_ix^{i-n}}=0\]
+The fraction does also approach to zero when $x\to-\infty$. Hence, 
+$\lim_{x\to +\infty}f(x)=\lim_{x\to +\infty}A(x)$. The limit exists if and only if $A(x)$ is constant, and has the same value as $x\to -\infty$
+So, the graph of a function can have 0 or 1 asymptotes.
+\subsection*{A1.}
+Let $c\in\mathbb{R}$ and $f$ be a function defined on an open interval $I$ containing $c$, except possibly at $c$. Show that for $ \ell \in \mathbb{R}$, the following assertions are equivalent.
+\begin{enumerate}
+    \item $\lim_{x\to c} f(x)=\ell$.
+    \item For \textbf{any} sequence $(x_n)_{n\geq 0}$ converging to $c$ such that $x_n\in I-\{c\}$ for all $n\geq 0$, we have $\lim _{n\to +\infty}f(x_n)=\ell$.
+\end{enumerate}
+\subsection*{Solution}
+(1)$\Rightarrow$(2). \newline
+Suppose 
+\[\lim_{x\to c} f(x)=\ell\text{ and} \lim_{n\to\infty}x_n=c\]
+Then, \[(\forall \epsilon>0)(\exists \delta>0)(\forall x)((0<|x-c|<\delta)\Rightarrow(|f(x)-\ell|<\epsilon))\]
+Also,
+\[(\forall \epsilon'>0)(\exists N\in \mathbb{N}^*)(\forall n)((n>N)\Rightarrow(0<|x_n-c|<\epsilon'))\]
+Hence, choose $\epsilon'=\delta$,
+\[(\forall \epsilon>0)(\exists N\in\mathbb{N}^*)(\forall n)((n>N)\Rightarrow(0<|x_n-c|<\delta)\Rightarrow(|f(x_n)-\ell|<\epsilon))\]
+So \[\lim_{n\to\infty}f(x_n)=\ell.\]
+(2)$\Rightarrow$(1).\newline
+Assume $\lim_{x\to c} f(x)$ does not exist or it is not $\ell$, but $\lim_{n\to\infty}x_n=c$ .
+Then, 
+\[(\exists \epsilon_1>0)(\forall \delta>0)(\exists x)((0<|x-c|<\delta)\Rightarrow(|f(x)-\ell|\geq \epsilon_1))\]
+As we have
+\[(\forall \epsilon'>0)(\exists N\in \mathbb{N}^*)(\forall n)((n>N)\Rightarrow(0<|x_n-c|<\epsilon'))\]
+If we choose $\delta=\epsilon',\epsilon'/2,\cdots,\epsilon'/n,\cdots,$ then there exists $x_1,x_2,x_3,\cdots,x_n$ such that 
+\[0<|x_n-c|<\frac{\epsilon'}{n}\text{  and  }|f(x_n)-\ell|\geq \epsilon_1\]
+That contradicts the assumption that $\lim_{n\to\infty}f(x_n)=\ell$, hence $\lnot (1)\Rightarrow\lnot(2)$.
+$\blacksquare$
+\subsection*{B1.}
+Prove that for any $c\in\mathbb{R}$, we have $\lim _{x\to c} \sin{(x)}=\sin{(c)}$. You are allowed to use the following limits, already proved in class: $\lim _{x\to 0} \sin{(x)}=0$ and $\lim _{x\to 0} \cos{(x)}=1$.
+\subsection*{Solution.}
+
+\[\lim _{x\to c}\sin{x}=\lim_{x\to 0} \sin{(x+c)}=\lim_{x\to 0}(\sin{(x)}\cos{(c)}+\cos{(x)}\sin{(c)})\]
+\[=\cos(c)\lim_{x\to 0} \sin(x)+\sin(c)\lim_{x\to 0} \cos(x)=\sin(c)\]
+$\blacksquare$
+\end{document}

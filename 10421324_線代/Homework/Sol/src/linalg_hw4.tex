@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Linear Algebra: Homework 4}
+\begin{document}
+\maketitle
+\subsection*{Question 1.}
+Let $A=\left[\begin{array}{ccc}1&1&1\\1&2&3\\1&4&5\end{array}\right]$ and $D=\left[\begin{array}{ccc}2&0&0\\0&3&0\\0&0&5\end{array}\right]$. Compute $AD$ and $DA$. Explain how the columns or rows of $A$ change when $A$ is multiplied by $D$ on the right or on the left. Find a $3\times 3$ matrix $B$, not the identity matrix or the zero matrix, such that $AB=BA$.
+\subsection*{Solution 1.}
+\[AD=\left[\begin{array}{ccc}1&1&1\\1&2&3\\1&4&5\end{array}\right]\left[\begin{array}{ccc}2&0&0\\0&3&0\\0&0&5\end{array}\right]=\left[\begin{array}{ccc}2&3&5\\2&6&15\\2&12&25\end{array}\right]\]
+\[DA=\left[\begin{array}{ccc}2&0&0\\0&3&0\\0&0&5\end{array}\right]\left[\begin{array}{ccc}1&1&1\\1&2&3\\1&4&5\end{array}\right]=\left[\begin{array}{ccc}2&2&2\\3&6&9\\5&20&25\end{array}\right]\]
+When $A$ is multiplied by $D$ on the right, the i-th column of $A$ is enlarged by a scalar $(D)_{ii}$, while multiplying $D$ on the left yields the enlargement of the i-th row of $A$ by scalar $(D)_{ii}$.\newline
+Since $A$ is not singular, one possible matrix $B$ is the inverse of $A$.
+\[[A|B]=\left[\begin{array}{ccc}1&1&1\\1&2&3\\1&4&5\end{array}\middle\vert\begin{array}{ccc}1&0&0\\0&1&0\\0&0&1\end{array}\right]
+\sim\left[\begin{array}{ccc}1&1&1\\0&1&2\\0&3&4\end{array}\middle\vert\begin{array}{ccc}1&0&0\\-1&1&0\\-1&0&1\end{array}\right]
+\sim\left[\begin{array}{ccc}1&1&1\\0&1&2\\0&0&-2\end{array}\middle\vert\begin{array}{ccc}1&0&0\\-1&1&0\\2&-3&1\end{array}\right]\]
+\[\sim\left[\begin{array}{ccc}1&1&1\\0&1&2\\0&0&1\end{array}\middle\vert\begin{array}{ccc}1&0&0\\-1&1&0\\-1&\frac{3}{2}&-\frac{1}{2}\end{array}\right]
+\sim\left[\begin{array}{ccc}1&1&0\\0&1&0\\0&0&1\end{array}\middle\vert\begin{array}{ccc}2&-\frac{3}{2}&\frac{1}{2}\\1&-2&1\\-1&\frac{3}{2}&-\frac{1}{2}\end{array}\right]
+\sim\left[\begin{array}{ccc}1&0&0\\0&1&0\\0&0&1\end{array}\middle\vert\begin{array}{ccc}1&\frac{1}{2}&-\frac{1}{2}\\1&-2&1\\-1&\frac{3}{2}&-\frac{1}{2}\end{array}\right]\]
+Thus, $B=\left[\begin{array}{ccc}1&\frac{1}{2}&-\frac{1}{2}\\1&-2&1\\-1&\frac{3}{2}&-\frac{1}{2}\end{array}\right]$ is possible.
+\subsection*{Question 2.}
+Show that if the columns of $B$ are linearly dependent, then so are the columns of $AB$.
+\subsection*{Solution 2.}
+B is singular, so $\Rightarrow B\Vec{x}=0$ has non-trivial solutions.\newline
+Consider $A(B\Vec{x})$,where $\Vec{x}$ is the solution of the equation above. Since matrix multiplication is associative, $A(B\Vec{x})=0\Rightarrow (AB)\Vec{x}=0$, thus $AB$ is singular. 
+\subsection*{Question 3.}
+Suppose that $CA=I_n$. Show that the equation $A\Vec{x}= 0$ has only the trivial solution. Explain $A$ not have more columns than rows.
+\subsection*{Solution 3.}
+$\forall\Vec{x}\in\mathbb{R}^n$ s.t. $A\Vec{x}=0$, $C(A\Vec{x})=C\cdot 0=0$\newline
+Also, $C(A\Vec{x})=(CA)\Vec{x}=I_n\Vec{x}=0$, thus $\Vec{x}=0$. Since $\Vec{x}=0$ is the only solution, there should not be any free variable, and every column is pivot column.
+\subsection*{Question 4.}
+Suppose that $A$ is an $m \times n$ matrix and there exists $n \times m$ matrices $C$ and $D$ such that $CA=I_n$ and $AD=I_m$. Prove that $m=n$ and $C=D$.
+\subsection*{Solution 4.}
+$\left\{\begin{array}{c}CA=I_n\Rightarrow m\geq n\\AD=I_m\Rightarrow m \leq n\end{array} \Rightarrow m=n\right.,C=I_n C=(DA)C=D(AC)=D I_m=D$ 
+\subsection*{Question 5.}
+Let $A$ be an invertible $n \times n$ matrix, let $B$ be an $n \times p$ matrix. Show that the equation $AX=B$ has a unique solution $A^{-1}B$.
+\subsection*{Solution 5.}
+$X=A^{-1}B$ is a solution, since $AX=A(A^{-1}B)=(AA^{-1})B=I_nB=B$.
+To prove uniqueness, use left multiplication. Let $X_1$ below be any solution of $AX=B$. Since $\exists A^{-1}$, thus $A^{-1}(AX_1)=A^{-1}B\Rightarrow(AA^{-1})X_1=A^{-1}B\Rightarrow I_n X_1=A^{-1}B\Rightarrow X_1=A^{-1}B$ is unique.
+\subsection*{Question 6.}
+Let $A$ be an invertible $n \times n$ matrix, let $B$ be an $n \times p$ matrix. Explain why$A^{-1}B$ can be computed by row reduction: If $[A\,\, B] \sim \cdots \sim [I_n \,\,X]$, then $X=A^{-1}B$.
+\subsection*{Solution 6.}
+Let $B=[\begin{array}{cccc}\Vec{b_1}&\Vec{b_2}&\cdots&\Vec{b_p}\end{array}]$, where $\Vec{b_1},\Vec{b_2},\cdots,\Vec{b_p}\in\mathbb{R}^n$ are the column vectors of B,
+and $X=[\begin{array}{cccc}\Vec{x_1}&\Vec{x_2}&\cdots&\Vec{x_p}\end{array}]$, where $\Vec{x_1},\Vec{x_2},\cdots,\Vec{x_p}\in\mathbb{R}^n$ are the column vectors of X. 
+Then $AX=B$ can be decomposed into  $A\Vec{x_i}=\Vec{b_i},i\in\{1,2,\cdots,p\}$\newline
+Use $[A\,\,\,\Vec{b_i}]$ to solve for $\Vec{x_i}$. Since the manipulation of the components of $\Vec{b_i}$ depends on $A$ only, and must yield $[I_n\,\,\,\vec{x_i}]$, this manipulation can be done simultaneously. That is, $[\begin{array}{ccccc}A&\vec{b_1}&\vec{b_2}&\cdots&\vec{b_p}\end{array}]$ yields $[\begin{array}{ccccc}I_n&\vec{x_1}&\vec{x_2}&\cdots&\vec{x_p}\end{array}]=[I_n\,\,\,\,X]$. By solution 5, this $X=A^{-1}B$ is the unique solution of $AX=B$.
+\subsection*{Question 7.}
+Use the algorithm of this section to find the inverse of 
+\[\left[\begin{array}{ccc}1&0&0\\1&1&0\\1&1&1\end{array}\right]\text{ and }\left[\begin{array}{cccc}1&0&0&0\\1&1&0&0\\1&1&1&0\\1&1&1&1\end{array}\right].\]
+Let $A$ be an $n \times n$ matrix of the same form, find its inverse $A^{-1}$.
+\subsection*{Solution 7.}
+\[\left[\begin{array}{cccccc}1&0&0&1&0&0\\1&1&0&0&1&0\\1&1&1&0&0&1\end{array}\right]\sim\left[\begin{array}{cccccc}1&0&0&1&0&0\\0&1&0&-1&1&0\\0&1&1&-1&0&1\end{array}\right]\sim\left[\begin{array}{cccccc}1&0&0&1&0&0\\0&1&0&-1&1&0\\0&0&1&0&-1&1\end{array}\right]\]
+\[\left[\begin{array}{cccccccc}1&0&0&0&1&0&0&0\\1&1&0&0&0&1&0&0\\1&1&1&0&0&0&1&0\\1&1&1&1&0&0&0&1\end{array}\right]\sim\left[\begin{array}{cccccccc}1&0&0&0&1&0&0&0\\0&1&0&0&-1&1&0&0\\0&1&1&0&-1&0&1&0\\0&1&1&1&-1&0&0&1\end{array}\right]\]
+\[\sim\left[\begin{array}{cccccccc}1&0&0&0&1&0&0&0\\0&1&0&0&-1&1&0&0\\0&0&1&0&-0&-1&1&0\\0&0&1&1&0&-1&0&1\end{array}\right]\sim\left[\begin{array}{cccccccc}1&0&0&0&1&0&0&0\\0&1&0&0&-1&1&0&0\\0&0&1&0&-0&-1&1&0\\0&0&0&1&0&0&-1&1\end{array}\right]\]
+Thus, the inverses of the matrices are $\left[\begin{array}{ccc}1&0&0\\-1&1&0\\0&-1&1\end{array}\right] and \left[\begin{array}{cccc}1&0&0&0\\-1&1&0&0\\0&-1&1&0\\0&0&-1&1\end{array}\right]$
+\subsection*{Question 8.}
+Find the inverse of $A=\left[\begin{array}{ccccc}1&0&0&\cdot&0\\0&2&0&&0\\0&2&3&&0\\\vdots&&&\ddots&\vdots\\0&2&3&\cdots&n\end{array}\right]$.
+\subsection*{Solution 8.}
+\[\left[\begin{array}{cccccccccc}1&0&0&\cdots&0&1&0&0&\cdots&0\\1&2&0&&0&0&1&0&&0\\1&2&3&&0&0&0&1&&0\\ \vdots&&&\ddots&\vdots&\vdots&&&\ddots&\vdots\\1&2&3&\cdots&n&0&0&0&\cdots&1\end{array}\right]\sim\left[\begin{array}{cccccccccc}1&0&0&\cdots&0&1&0&0&\cdots&0\\0&2&0&&0&-1&1&0&&0\\0&2&3&&0&-1&0&1&&0\\ \vdots&&&\ddots&\vdots&\vdots&&&\ddots&\vdots\\0&2&3&\cdots&n&-1&0&0&\cdots&1\end{array}\right]\]
+\[\sim\left[\begin{array}{cccccccccc}1&0&0&\cdots&0&1&0&0&\cdots&0\\0&2&0&&0&-1&1&0&&0\\0&0&3&&0&0&-1&1&&0\\ \vdots&&&\ddots&\vdots&\vdots&&&\ddots&\vdots\\0&0&3&\cdots&n&0&-1&0&\cdots&1\end{array}\right]\sim\cdots\sim\left[\begin{array}{cccccccccc}1&0&0&\cdots&0&1&0&0&\cdots&0\\0&2&0&&0&-1&1&0&&0\\0&0&3&&0&0&-1&1&&0\\ \vdots&&&\ddots&\vdots&\vdots&&\ddots&\ddots&\vdots\\0&0&0&\cdots&n&0&0&\cdots&-1&1\end{array}\right]\]
+\[\sim\left[\begin{array}{cccccccccc}1&0&0&\cdots&0&1&0&0&\cdots&0\\0&1&0&&0&-1/2&1/2&0&&0\\0&0&1&&0&0&-1/3&1/3&&0\\ \vdots&&&\ddots&\vdots&\vdots&&\ddots&\ddots&\vdots\\0&0&0&\cdots&1&0&0&\cdots&-1/n&1/n\end{array}\right]\]
+Thus,
+\[A^{-1}=\left[\begin{array}{ccccc}1&0&0&\cdots&0\\-1/2&1/2&0&&0\\0&-1/3&1/3&&0\\\vdots&&\ddots&\ddots&\vdots\\0&0&\cdots&-1/n&1/n\end{array}\right]\]
+\subsection*{Question 9.}
+Show that if $AB$ is invertible, so is $A$ and $B$.
+\subsection*{Solution 9.}
+Suppose $K=(AB)^{-1}$. Then, $(AB)K=A(BK)=I_n$. The converse of the proposition in question 2 is: If the columns of $AB$ are independent, then so are the columns of $A$ and $B$. Since $AB$ is invertible, columns of $AB$ are independent. From solution 2 and solution 3, both $A$ and $B$ are square. Otherwise, either $A$ or $B$ would have more columns than rows, making the columns of $AB$ linearly dependent.Columns of $A$ and $B$ are both independent, they are both invertible.
+\end{document}

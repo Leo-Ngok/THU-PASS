@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Calculus A(1): Homework 6}
+\begin{document}
+\maketitle
+\section*{3.1.}
+\subsection*{58.}
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item Let $f(x)$ be a function satisfying $|f(x)|\leq x^2$ for $-1\leq x\leq 1$. Show that $f$ is differentiable at $x=0$ and find $f'(0)$.
+    \item Show that
+    \[f(x)=\left\{\begin{array}{ll}
+       x^2\sin{\frac{1}{x}}, & x\neq 0 \\
+       0,  & x=0
+    \end{array}\right.\]
+    is differentiable at $x=0$ and find $f'(0)$.
+\end{enumerate}
+\subsection*{Solution.}
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item 
+    $f(x)$ satisfies $|f(x)|\leq x^2$, so $|f(0)|\leq 0\Rightarrow f(0)=0$.
+    Also, \[0\leq \lim_{x\to 0}|f(x)|\leq \lim_{x\to 0}x^2=0\]
+    Hence $f$ is continuous at $x=0$.
+    $f$ is differentiable at $x=0$ iff \[\lim_{h\to 0} \frac{f(h)-f(0)}{h}\] exists.
+    \[\Leftrightarrow (\exists A)(\forall \epsilon>0)(\exists \delta>0)(\forall h)(0<|h|<\delta\rightarrow\left\vert\frac{f(h)-f(0)}{h}-A\right\vert<\epsilon)\]
+    We also have
+    \[\left\vert\frac{f(h)-f(0)}{h}\right\vert\leq|h^2/h|=|h|<\delta\]
+    by choosing $A=0$. Set $\delta =\epsilon$ proves the existence of $\delta$, and hence $f'(0)=0$.  $\blacksquare$
+    \item 
+    \[\lim _{h\to 0}\frac{f(h)-f(0)}{h}=\lim _{h\to 0}\frac{h^2\sin{\frac{1}{h}}}{h}=\lim _{h\to 0} h\sin{\frac{1}{h}}=0\Rightarrow f'(0)=0\]
+    $\blacksquare$
+\end{enumerate}
+\section*{3.2.}
+\subsection*{53.}
+\textbf{Generalizing the Product Rule}  The product Rule gives the formula
+\[\frac{d}{dx}(uv)=u\frac{dv}{dx}+v\frac{du}{dx}\]
+for derivative of the product $uv$ of two differentaible functions of $x$.
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item What is the analogous formula for the derivative of the product $uvw$ of \textit{three} differentiable functions of $x$?
+    \item What is the formula for the derivative of the product $u_1u_2u_3u_4$ of \textit{four} differentiable functions of $x$?
+    \item What is the formula for the derivative of a product $u_1u_2u_3\dots u_n$ of a finite number $n$ of differentiable functions of $x$?
+\end{enumerate}
+\subsection*{Solution.}
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item \[\frac{d}{dx}(uvw)=\frac{d}{dx}((uv)w)=w\frac{d}{dx}(uv)+uv\frac{dw}{dx}=w(u\frac{dv}{dx}+v\frac{du}{dx})+uv\frac{dw}{dx}=wu\frac{dv}{dx}+vw\frac{du}{dx}+uv\frac{dw}{dx}\]
+    \item \[\frac{d}{dx}(u_1u_2u_3u_4)=\frac{d}{dx}((u_1u_2u_3)u_4)\]
+    \[=u_4(u_1u_2\frac{du_3}{dx}+u_2u_3\frac{du_1}{dx}+u_3u_1\frac{du_2}{dx})+u_1u_2u_3\frac{du_4}{dx}=\frac{du_1}{dx}u_2u_3u_4+\frac{du_2}{dx}u_1u_3u_4+\frac{du_3}{dx}u_1u_2u_4+\frac{du_4}{dx}u_2u_3u_1\]
+    \item The following proves
+    \[\frac{d}{dx}\left(\prod _{i=1}^n u_i\right)=\sum _{i=1}^n \left(\prod_{\substack{j=1\\j\neq i}}^n u_j\right)\frac{du_i}{dx}\]
+    by induction.\newline
+    Let predicate $P(n)$ defined for all $n\in\mathbb{N}^*$ where
+    \[P(n):\frac{d}{dx}\left(\prod _{i=1}^n u_i\right)=\sum _{i=1}^n \left(\prod_{\substack{j=1\\j\neq i}}^n u_j\right)\frac{du_i}{dx}\]
+    Then $(\forall n)(n\in \mathbb{N}^*\rightarrow P(n))$.
+    \begin{enumerate} [label=\roman*)]
+        \item $P(1)$ is clearly true.
+        \item Assume $P(k)$ is true for some $k\in\mathbb{N}^*$, i.e. \[\frac{d}{dx}\left(\prod _{i=1}^k u_i\right)=\sum _{i=1}^k \left(\prod_{\substack{j=1\\j\neq i}}^k u_j\right)\frac{du_i}{dx}\]
+        $P(k+1):$
+        \[\frac{d}{dx}\left(\prod _{i=1}^{k+1} u_i\right)=\frac{d}{dx}\left(\left(\prod _{i=1}^k u_i\right)u_{k+1}\right)=u_{k+1}\frac{d}{dx}\left(\prod _{i=1}^k u_i\right)+\left(\prod _{i=1}^k u_i\right)\frac{du_{k+1}}{dx}\]
+        \[=u_{k+1}\sum _{i=1}^k \left(\prod_{\substack{j=1\\j\neq i}}^k u_j\right)\frac{du_i}{dx}+\left(\prod _{i=1}^k u_i\right)\frac{du_{k+1}}{dx}=\sum _{i=1}^k \left(\prod_{\substack{j=1\\j\neq i}}^{k+1} u_j\right)\frac{du_i}{dx}+\left(\prod _{i=1}^k u_i\right)\frac{du_{k+1}}{dx}\]
+        \[=\sum _{i=1}^{k+1} \left(\prod_{\substack{j=1\\j\neq i}}^{k+1} u_j\right)\frac{du_i}{dx}\]
+        Hence, $P(k)\Rightarrow P(k+1)$.
+    \end{enumerate}
+    By i),ii) and the principle of the first mathematical induction, $(\forall n)(n\in \mathbb{N}^*\rightarrow P(n)).\blacksquare$
+\end{enumerate}
+\section*{3.4.}
+\subsection*{47.}
+Is there a value of $c$ that will make 
+\[f(x)=\left\{\begin{array}{cc}
+\frac{\sin^2{3x}}{x^2}, & x\neq 0 \\
+c, & x=0
+\end{array}\right.\]
+continuous at $x=0$? Give reasons for your answer.
+\subsection*{Solution.}
+$c=9$ works.\newline
+$x=0$ is the removable discontinuity of $\frac{\sin^2{3x}}{x^2}$, as
+\[\lim _{x\to 0}\frac{\sin^2{3x}}{x^2}=\lim _{x\to 0}9\left(\frac{\sin{3x}}{3x}\right)^2=9.\]
+If $c=9$, then 
+\[\lim _{x\to 0} f(x)=f(0)=9.\]
+\subsection*{48.}
+Is there a value of $b$ that will make 
+\[g(x)=\left\{\begin{array}{ll}
+x+b, & x<0 \\
+\cos{x}, & x \geq 0
+\end{array}\right.\]
+continuous at $x=0$? Differentiable at $x=0$? Give reasons for your answers.
+\subsection*{Solution.}
+$g(x)$ is continuous at $x=0$ iff
+\[\lim _{x\to 0^+}g(x) =\lim _{x\to 0^-}g(x)=g(0)\]
+By definition, $g(0)=1$, and $\lim _{x\to 0^+}g(x)=1$. Hence $g(x)$ is continuous at $x=0$ iff 
+\[\lim _{x\to 0^-}g(x)=\lim _{x\to 0^-}(x+b)=1\Leftrightarrow b=1\]
+$g(x)$ is not diferentiable at $x=0$, since
+\[\lim _{h\to 0^-} \frac{g(h)-g(0)}{h}=\lim _{h\to 0^-}\frac{h+b-b}{h}=1\]
+But
+\[\lim _{h\to 0^+}\frac{g(h)-g(0)}{h}=\lim _{h\to 0^+}\frac{\cos{h}-1}{h}=\lim _{h\to 0^+}\frac{\cos^2{h}-1}{h(\cos{h}+1)}=\lim _{h\to 0^+}-\frac{\sin{h}}{h}\cdot\frac{\sin{h}}{\cos{h}+1}=0\]
+Hence $g(x)$ is continuous at $x=0$ iff $b=1$, and such value of $b$ making $g(x)$ differentiable at $x=0$ does not exist.
+\section*{3.5.}
+\subsection*{80.}
+Find parametric equations and a parameter interval for the motion of a particle that starts at (a,0) and traces the ellipse $(x^2/a^2)+(y^2/b^2)=1$
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item once clockwise.
+    \item once counterclockwise.
+    \item twice clockwise.
+    \item twice counterclockwise.
+\end{enumerate}
+\subsection*{Solution.}
+In this solution, $t\in \mathbb{R}$ is the parameter.
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item $\left\{\begin{array}{l}\cos{t}\\-\sin{t}\end{array}\right.,t\in [0,2\pi]$
+    \item $\left\{\begin{array}{l}\cos{t}\\\sin{t}\end{array}\right.,t\in [0,2\pi]$
+    \item $\left\{\begin{array}{l}\cos{t}\\-\sin{t}\end{array}\right.,t\in [0,4\pi]$
+    \item $\left\{\begin{array}{l}\cos{t}\\\sin{t}\end{array}\right.,t\in [0,4\pi]$
+\end{enumerate}
+\section*{3.6.}
+\subsection*{58.}
+\textbf{Tangents parallel to the coordinate axes }  Find points on the curve $x^2+xy+y^2=7$ 
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item where the tangent is parallel to the x-axis and
+    \item where the tangent is parallel to the y-axis.
+\end{enumerate}
+In the latter case, $dy/dx$ is not defined, but $dx/dy$ is. What value does $dx/dy$ have at these points?
+\subsection*{Solution.}
+Denote $y'$ as $\frac{dy}{dx}$.
+\[(x^2+xy+y^2)'=(7)'=0\Rightarrow 2x+y+xy'+2yy'=0\Rightarrow y'=-\frac{2x+y}{x+2y}\]
+Let $P(x_0,y_0)$ be a point of the locus of the curve.
+\begin{enumerate} [label=\textbf{\alph*.}]
+    \item 
+Tangent at P is parallel to the x-axis iff $y'=0$. 
+As the origin does not belong to the locus, we have
+\[\left\{\begin{array}{l}x_0^2+x_0y_0+y_0^2=7\\2x_0+y_0=0\end{array}\right.\]
+By substitution, $x_0^2+x_0(-2x_0)+(-2x_0)^2=3x_0^2=7$
+Hence, $\left(\pm\frac{\sqrt{21}}{3},\mp\frac{2\sqrt{21}}{3}\right)$ are points that its tangent to the curve is parallel to the x-axis.
+    \item 
+Tangent at P is parallel to the y-axis iff $y'$ is not defined. 
+As the origin does not belong to the locus, we have
+\[\left\{\begin{array}{l}x_0^2+x_0y_0+y_0^2=7\\x_0+2y_0=0\end{array}\right.\]
+By substitution, $(-2y_0)^2+(-2y_0)y_0+y_0^2=3y_0^2=7$
+Hence, $\left(\pm\frac{2\sqrt{21}}{3},\mp\frac{\sqrt{21}}{3}\right)$ are points that its tangent to the curve is parallel to the y-axis.
+At these two points, $1/y'=0$.
+\end{enumerate}
+\subsection*{71.}
+\textbf{Normals to a parabola  }Show that if it is possible to draw three normals from the point $(a,0)$ to  the prabola $x=y^2$, then $a$ must be greater than $1/2$. One of the normals is the x-axis. For what value of $a$ are the other two normals perpendicular?
+\subsection*{Solution.}
+\[x=y^2\Rightarrow \frac{dx}{dx}=\frac{d}{dx}(y^2)\Leftrightarrow 2y\frac{dy}{dx}=1\Leftrightarrow \frac{dy}{dx}=\frac{1}{2y}\]
+For any point $(x_0,y_0)$ that satisfies $x_0=y_0^2$, its normal to the curve is the locus of 
+\[y=y_0-\left(\left.\frac{dy}{dx}\right\vert _{(x,y)=(x_0,y_0)}\right)^{-1}(x-x_0)\]
+\[=y_0-2y_0(x-x_0)\]
+\[=-2y_0x+2x_0y_0+y_0\]
+The normal of the point intersects x-axis at a, so
+\[0=-2y_0a+2x_0y_0+y_0=y_0(-2a+2x_0+1)\]
+\[\Rightarrow y_0=0\lor -2a+2x_0+1=0\]
+As $(x_0,y_0)$ is on the parabola, $x_0=y_0^2\geq 0$
+\[-2a+2x_0+1=0\Leftrightarrow 2x_0=2a-1\geq 0 \Rightarrow a\geq 1/2.\]
+The parabola is symmetric on x-axis, thus if $(a,0)$ is on the normal of $(x_0,y_0)$ to the curve, then $(a,0)$ is on the normal of $(x_0,-y_0)$ to the curve. \newline
+The normals of $(x_0,y_0)$ and $(x_0,-y_0)$ are perpendicular if $(-2y_0)(2y_0)=-1\Rightarrow y_0=\pm \frac{1}{2}$\newline
+So, $0=\frac{1}{2}(-2a+\frac{1}{2}+1)\Rightarrow a=\frac{3}{4}.$
+\end{document}

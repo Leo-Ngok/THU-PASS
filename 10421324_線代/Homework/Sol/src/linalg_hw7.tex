@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Linear Algebra: Homework 7}
+\begin{document}
+\maketitle
+\subsection*{Question 1.}
+Compute $\det{(B^4)}$ for $B=\left[\begin{array}{rrrr}
+1 & 0 & 1 \\1 &1&2\\1&2&1 
+\end{array}\right]$.
+\subsection*{Solution 1.}
+\[\det(B^4)=\det(B)^4=\left\vert\begin{array}{rrrr}
+1 & 0 & 1 \\1 &1&2\\1&2&1 
+\end{array}\right\vert^4=\left\vert\begin{array}{rrrr}
+1 & 0 & 1 \\0 &1&1\\0&2&0 
+\end{array}\right\vert^4=(-2)^4=16\]
+\subsection*{Question 2.}
+Explain briefly the assertion.
+\begin{enumerate} [label=(\arabic*)]
+    \item If $A$ is invertible, then $\det(A^{-1})=\det(A)^{-1}$.
+    \item Let $A$ and $B$ be square matrices. Even thougth $AB$ and $BA$ may not be equal, it is always true that $\det(AB)=\det(BA)$.
+    \item Let $A$ and $P$ be square matrices with $P$ invertible, then $\det(PAP^{-1})=\det(A)$.
+    \item Let $U$ be a square matrix such that $U^TU=I_n$, then $\det(U)=\pm 1$.
+\end{enumerate} 
+\subsection*{Solution 2.}
+Suppose $A,B,P,U\in\mathbf{R}^{n\times n}$
+\begin{enumerate} [label=(\arabic*)]
+    \item \[A^{-1}A=I_n\Rightarrow \det(A^{-1}A)=\det(A^{-1})\det(A)=\det(I_n)=1\Leftrightarrow \det(A^{-1})=\det(A)^{-1}\,\,\,\,\,\blacksquare\]
+    \item \[\det(AB)=\det(A)\det(B)=\det(B)\det(A)=\det(BA)\,\,\,\,\,\blacksquare\]
+    \item \[\det(PAP^{-1})=\det(P)\det(A)\det(P^{-1})=\det(P)\det(A)\det(P)^{-1}=\det(A)\,\,\,\,\,\blacksquare\]
+    \item \[U^TU=I_n\Rightarrow \det(U^TU)=\det(U^T)\det(U)=\det(U)\det(U)=\det(I_n)=1\Rightarrow \det(U)=\pm 1\,\,\,\,\,\blacksquare\]
+\end{enumerate}
+\subsection*{Question 3.}
+Compute the adjugate of the matrix $\left[\begin{array}{ccc}
+3 & 5 & 4 \\1 & 0 & 1\\2 & 1 & 1\end{array}\right]$, and use the inversion formula to calculate its inverse.
+\subsection*{Solution 3.}
+Denote $C$ as the cofactor matrix of the matrix above,then
+\[adj \left[\begin{array}{rrr}
+3 & 5 & 4 \\1 & 0 & 1\\2 & 1 & 1\end{array}\right]=C^T=\left[\begin{array}{ccc}
++\left\vert\begin{array}{cc}0 & 1 \\ 1 & 1 \end{array}\right\vert &
+-\left\vert\begin{array}{cc}1 & 1 \\ 2 & 1 \end{array}\right\vert &
++\left\vert\begin{array}{cc}1 & 0 \\ 2 & 1 \end{array}\right\vert \\
+-\left\vert\begin{array}{cc}5 & 4 \\ 1 & 1 \end{array}\right\vert &
++\left\vert\begin{array}{cc}3 & 4 \\ 2 & 1 \end{array}\right\vert &
+-\left\vert\begin{array}{cc}3 & 5 \\ 2 & 1 \end{array}\right\vert \\
++\left\vert\begin{array}{cc}5 & 4 \\ 0 & 1 \end{array}\right\vert &
+-\left\vert\begin{array}{cc}3 & 4 \\ 1 & 1 \end{array}\right\vert &
++\left\vert\begin{array}{cc}3 & 5 \\ 1 & 0 \end{array}\right\vert \\
+\end{array}\right]^T\]
+\[=\left[\begin{array}{rrr}
+-1 & 1 & 1 \\ -1 & -5 & 7 \\ 5 & 1 & -5\end{array}\right]^T=\left[\begin{array}{rrr}
+-1 & -1 & 5 \\ 1 & -5 & 1 \\ 1 & 7 & -5\end{array}\right]\]
+\[\left\vert\begin{array}{rrr}
+3 & 5 & 4 \\1 & 0 & 1\\2 & 1 & 1\end{array}\right\vert=\left\vert\begin{array}{rrr}
+-5 & 1 & 0 \\-1 & -1 & 0\\2 & 1 & 1\end{array}\right\vert=6\]
+Hence, 
+\[\left[\begin{array}{rrr}
+3 & 5 & 4 \\1 & 0 & 1\\2 & 1 & 1\end{array}\right]^{-1}=\frac{adj \left[\begin{array}{rrr}
+3 & 5 & 4 \\1 & 0 & 1\\2 & 1 & 1\end{array}\right]}{\left\vert\begin{array}{rrr}
+3 & 5 & 4 \\1 & 0 & 1\\2 & 1 & 1\end{array}\right\vert}=\left[\begin{array}{rrr}
+-1/6 & -1/6 & 5/6\\
+1/6& -5/6 &1/6 \\1/6 & 7/6 & -5/6
+\end{array}\right]\]
+\subsection*{Question 4.}
+Suppose that all the entries of $A$ are integers and $\det(A)=1$. Explain why all the entries of $A^{-1}$ are integers.
+\subsection*{Solution 4.}
+Denote $C$ as the cofactor matrix of $A$.
+\[(A^{-1})_{ij}=\left(\frac{A^*}{\det(A)}\right)_{ij}=(A^*)_{ij}=(C)_{ji}=(-1)^{i+j}M_{ji},\]
+where $M_{ji}$ is the determinant of part of the matrix. Determinant involves addition and multiplication of matrix entries only. Since integers are closed under addition and multiplication, all entries $A^{-1}$ must be integers. $\blacksquare$
+\subsection*{Question 5.}
+Find the volume of the parallelepiped with one vertex at the origin and adjacent vertices at $(1,0,-3)$, $(1,2,4)$ and $(5,1,0)$.
+\subsection*{Solution 5.}
+Volume of that parallelepiped
+$=\left\vert\begin{array}{rrr} 1 & 1 & 5 \\ 0 & 2 & 1 \\ -3 & 4 & 0 \end{array}\right\vert=\left\vert\begin{array}{rrr} 1 & 1 & 5 \\ 0 & 2 & 1 \\ 0 & 7 & 15 \end{array}\right\vert=23$
+\subsection*{Question 6.}
+Let $R$ be the triangle with vertices at $(x_1,y_1)$, $(x_2,y_2)$ and $(x_3,y_3)$. Show that the area of $R$ equals the absolute value of 
+\[\frac{1}{2}\det \left[\begin{array}{lll}
+x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1
+\end{array}\right].\]
+\subsection*{Solution 6.}\begin{align}
+    \frac{1}{2}\left\vert\left\vert\begin{array}{lll}
+x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1
+\end{array}\right\vert\right\vert=\frac{1}{2}\left\vert\left\vert\begin{array}{ccc}
+x_1 & y_1 & 1 \\ x_2-x_1 & y_2-y_1 & 0 \\ x_3-x_1 & y_3-y_1 & 0
+\end{array}\right\vert\right\vert=\frac{1}{2}\left\vert\left\vert\begin{array}{rr}
+x_2-x_1 & y_2-y_1 \\
+x_3-x_1 & y_3-y_1
+\end{array}\right\vert\right\vert
+\end{align}
+
+Alternatively, translate $R$ by a constant vector of $-\left[\begin{array}{r}
+x_1 \\ y_1 \end{array}\right]$, and denote it as $R'$, in which $(x_2-x_1,y_2-y_1)$, $(x_3-x_1,y_3-y_1)$ and the origin are the vertices. \newline
+We can create a linear transformation that maps $\Vec{e_1}$ to $\left[\begin{array}{r}x_2-x_1\\y_2-y_1\end{array}\right]$, and $\Vec{e_2}$ to $\left[\begin{array}{r}x_3-x_1\\y_3-y_1\end{array}\right]$. \newline
+The determinant of the matrix representation of a transformation in $\mathbf{R}^2$ is defined as the enlargement factor of the area of the unit square determined by $\Vec{e_1}$ and $\Vec{e_2}$ to the area of the parallelogram determined by $\left[\begin{array}{r}x_2-x_1\\y_2-y_1\end{array}\right]$ and $\left[\begin{array}{r}x_3-x_1\\y_3-y_1\end{array}\right]$.\newline
+Hence, 
+\begin{align}
+    \text{area of }R'=\frac{1}{2}\left\vert\left\vert\begin{array}{rr}
+x_2-x_1 & x_3-x_1 \\
+y_2-x_1 & y_3-y_1
+\end{array}\right\vert\right\vert=\frac{1}{2}\left\vert\left\vert\begin{array}{rr}
+x_2-x_1 & y_2-y_1 \\
+x_3-x_1 & y_3-y_1
+\end{array}\right\vert\right\vert
+\end{align}
+Hence, by (1) and (2), area of $R=\frac{1}{2}\left\vert\left\vert\begin{array}{lll}
+x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1
+\end{array}\right\vert\right\vert.\blacksquare$
+\subsection*{Question 7.}
+Let $T:\mathbf{R}^3\to\mathbf{R}^3$ be the linear transformation determined by the matrix $A=\left[\begin{array}{lll}a\\&b\\&&c\end{array}\right]$, with $a,b,c$ positive. Let $S$ be the unit ball, bounded by the surface $x_1^2+x_2^2+x_3^2=1$.
+\begin{enumerate} [label=(\arabic*)]
+    \item Show that $T(S)$ is bounded by the ellipsoid $\frac{x_1^2}{a^2}+\frac{x_2^2}{b^2}+\frac{x_3^2}{c^2}=1$.
+    \item It is known that the volume of the unit ball is $\frac{4}{3}\pi$. Calculate the volume of $T(S)$.
+\end{enumerate}
+\subsection*{Solution 7.}
+Since
+
+\begin{enumerate} [label=(\arabic*)]
+    \item Let $\Vec{x}=\left[\begin{array}{r}x_1\\x_2\\x_3\end{array}\right]$. $\Vec{x}$ is inside the sphere if and only if $||\Vec{x}||\leq 1$. $T(\Vec{x})=\left[\begin{array}{r}ax_1\\bx_2\\cx_3\end{array}\right]$. Substitute $T(\Vec{x})$ in the ellipsoid, then $\frac{(ax_1)^2}{a^2}+\frac{(bx_2)^2}{b^2}+\frac{(cx_3)^2}{c^2}=x_1^2+x_2^2+x_3^2\leq 1$, thus it lies inside the ellipsoid.
+    \item Volume of $T(S)$=$\det(A)\cdot\frac{4\pi}{3}=\frac{4}{3}\pi abc$.
+\end{enumerate}
+\subsection*{Question 8.}
+Let $S$ be the tetrahedron in $\mathbf{R}^3$ with vertices at the vectors $0,\Vec{e_1},\Vec{e_2},\Vec{e_3}$. Let $S'$ be the tetrahedron with vertices at the vectors $0,\Vec{v_1},\Vec{v_2},\Vec{v_3}$.
+\begin{enumerate} [label=(\arabic*)]
+    \item Describe a linear transformation that maps $S$ onto $S'$.
+    \item Find a formula for the volume of $S'$, using the fact that the volume of $S$ equals 
+    \[\frac{1}{3}\cdot \{\text{area of the base}\}\cdot \{\text{height}\}\]
+\end{enumerate}
+\subsection*{Solution 8.}
+\begin{enumerate} [label=(\arabic*)]
+    \item $[\begin{array}{ccc}\Vec{v_1}&\Vec{v_2}&\Vec{v_3}\end{array}]$.
+    \item Volume of $S$=(1/2)(1/3)=1/6\newline
+    Volume of $S'$ = $\vert \begin{array}{ccc}\Vec{v_1}&\Vec{v_2}&\Vec{v_3}\end{array}\vert\cdot$ (Volume of $S$)
+    =$\frac{1}{6}\vert \begin{array}{ccc}\Vec{v_1}&\Vec{v_2}&\Vec{v_3}\end{array}\vert$
+\end{enumerate}
+\end{document}

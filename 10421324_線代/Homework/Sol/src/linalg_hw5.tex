@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Linear Algebra: Homework 5}
+\begin{document}
+\maketitle
+\subsection*{Question 1.}
+The inverse of $\left[\begin{array}{ccc}I\\C&I\\A&B&I\end{array}\right]$ is $\left[\begin{array}{ccc}I\\Z&I\\X&Y&I\end{array}\right]$. Find $X,Y,Z$ in terms of $A,B,C$.
+\subsection*{Solution 1.}
+\[\left[\begin{array}{ccc}I\\C&I\\A&B&I\end{array}\right]\left[\begin{array}{ccc}I\\Z&I\\X&Y&I\end{array}\right]=\left[\begin{array}{ccc}I\\C+Z&I\\A+BZ+X&B+Y&I\end{array}\right]\]
+\[\Rightarrow C+Z=A+BZ+X=B+Y=0\Rightarrow Y=-B,Z=-C,X=-A-BZ=-A+BC\]
+\subsection*{Question 2.}
+Suppose that $A_{11}$ is invertible. Find $X$ and $Y$ such that
+\[\left[\begin{array}{cc}A_{11}&A_{12}\\A_{21}&A_{22}\end{array}\right]=\left[\begin{array}{cc}I\\X&I\end{array}\right]\left[\begin{array}{cc}A_{11}\\&S\end{array}\right]\left[\begin{array}{cc}I&Y\\&I\end{array}\right].\]
+where $S=A_{22}-A_{21}A_{11}^{-1}A_{12}$.
+\subsection*{Solution 2.}
+\[\left[\begin{array}{cc}A_{11}&A_{12}\\A_{21}&A_{22}\end{array}\right]=\left[\begin{array}{cc}I\\X&I\end{array}\right]\left[\begin{array}{cc}A_{11}\\&S\end{array}\right]\left[\begin{array}{cc}I&Y\\&I\end{array}\right]=\left[\begin{array}{cc}I\\X&I\end{array}\right]\left[\begin{array}{cc}A_{11}&A_{11}Y\\&S\end{array}\right]=\left[\begin{array}{cc}A_{11}&A_{11}Y\\XA_{11}&XA_{11}Y+S\end{array}\right]\]
+Thus,
+\[A_{12}=A_{11}Y,A_{21}=XA_{11}\Rightarrow X=A_{21}A_{11}^{-1},Y=A_{11}^{-1}A_{12}\]
+\subsection*{Question 3.}
+Use partitioned matrices to prove by induction that for $n=2,3,\cdots,$ the $n\times n$ matrix $A$ shown below is invertible and $B$ is its inverse.
+\[A=\left[\begin{array}{ccccc}1\\1&1\\1&1&1\\\vdots&&\ddots&\ddots\\1&1&\cdots&1&1\end{array}\right], B=\left[\begin{array}{rrrrr}1\\-1&1\\0&-1&1\\\vdots&&\ddots&\ddots\\0&0&\cdots&-1&1\end{array}\right]\]
+\subsection*{Solution 3.}
+Every column of $A$ is pivot column, thus $A$ is invertible.\newline
+Let $P(n): A_n^{-1} =B_n= \left[\begin{array}{rrrrr}1\\-1&1\\&-1&1\\&&\ddots&\ddots\\&&&-1&1\end{array}\right]_{n\times n}$\newline
+$(\forall n\in \{2,3,\cdots\})P(n)$ will be proved.\newline
+$P(2):\left[\begin{array}{rr}1\\1&1\end{array}\right]\left[\begin{array}{rr}1\\-1&1\end{array}\right]=\left[\begin{array}{rr}1\\&1\end{array}\right]$, thus $P(2)$ is true.\newline
+Assume $P(k)$ is true for some integer $k\geq 2$, i.e. $A_k^{-1} =B_k= \left[\begin{array}{rrrrr}1\\-1&1\\&-1&1\\&&\ddots&\ddots\\&&&-1&1\end{array}\right]_{k\times k}$\newline
+$P(k+1):$\newline
+Let $A_{k+1}^{-1}=\left[\begin{array}{rr}L_1&\Vec{b_1}\\\Vec{b_2}^t&d\end{array}\right]$\newline
+$A_{k+1}\cdot\left[\begin{array}{rr}L_1&\Vec{b_1}\\\Vec{b_2}^t&d\end{array}\right]=\left[\begin{array}{rr}A_k&\Vec{0}\\\Vec{1}^t&1\end{array}\right]\cdot\left[\begin{array}{rr}L_1&\Vec{b_1}\\\Vec{b_2}^t&d\end{array}\right]=\left[\begin{array}{rr}I_n&\Vec{0}\\\Vec{0}^t&1\end{array}\right]$.
+Thus,
+\[\left\{\begin{array}{l}A_kL_1=I_n\\A_k\Vec{b_1}=0\\\Vec{1}^tL_1+\Vec{b_2}^t=0\\\Vec{1}^t\Vec{b_1}+d=1\end{array}\right.\]
+Hence, $L_1=B_k,\Vec{b_1}=0,d=1,$\newline
+$\Vec{b_2}^t=-\Vec{1}^tL_1=-[\begin{array}{rrrr}1&1&\cdots&1\end{array}]\left[\begin{array}{rrrrr}1\\-1&1\\&-1&1\\&&\ddots&\ddots\\&&&-1&1\end{array}\right]_{k\times k}=[\begin{array}{rrrrr}0&0&\cdots&0&-1\end{array}]$\newline
+Hence $A_{k+1}^{-1}=B_{k+1}$, $P(k)\Rightarrow P(k+1)$\newline
+By first principle of mathematical induction, $P(n)$ is true for all integers $n \geq 2$.
+\subsection*{Question 4.}
+Without using row reductions, find the inverse of $A=\left[\begin{array}{ccccc}1&2\\3&5\\&&2\\&&&7&8\\&&&5&6\end{array}\right]$
+\subsection*{Solution 4.}
+Let $A_{11}=\left[\begin{array}{rrr}1&2\\3&5\\&&2\end{array}\right],A_{12}=(0)_{3 \times 2}, A_{21}=(0)_{2\times 3}, A_{22}=\left[\begin{array}{rr}7&8\\5&6\end{array}\right]$\newline
+Let $B=A^{-1}$ s.t. $B=\left[\begin{array}{rr}B_{11}&B_{12}\\B_{21}&B_{22}\end{array}\right]$\newline
+Thus, $AB=\left[\begin{array}{rr}A_{11}B_{11}+A_{12}B_{21}&A_{11}B_{12}+A_{12}B_{22}\\A_{21}B_{11}+A_{22}B_{21}&A_{21}B_{12}+A_{22}B_{22}\end{array}\right]=\left[\begin{array}{rr}A_{11}B_{11}&A_{11}B_{12}\\A_{22}B_{21}&A_{22}B_{22}\end{array}\right]=\left[\begin{array}{rr}I_3&0\\0&I_2\end{array}\right]$.\newline
+Clearly, $A_{11},A_{22}$ are both invertible. Thus $B_{12}$ and $B_{21}$ are zero matrices.\newline
+$B_{11}=A_{11}^{-1}, B_{22}=A_{22}^{-1}$.
+$B_{22}=\frac{1}{7\cdot 6- 5\cdot 8}\left[\begin{array}{rr}6&-8\\-5&7\end{array}\right]=\left[\begin{array}{rr}3&-4\\-5/2&7/2\end{array}\right]$.\newline
+Let $A_{11}=\left[\begin{array}{rr}A_{111}&\Vec{0}\\\Vec{0}^t&2\end{array}\right],B_{11}=\left[\begin{array}{rr}b_{111}&b_{112}\\b_{121}&b_{122}\end{array}\right]$.
+Thus, $b_{122}=1/2,A_{111}b_{111}=I_2,A_{111}b_{112}=\Vec{0},2b_{121}=\Vec{0}^t$.\newline
+Hence, $b_{111}=A_{111}^{-1}=\frac{1}{5-6}\left[\begin{array}{rr}5&-2\\-3&1\end{array}\right]=\left[\begin{array}{rr}-5&2\\3&-1\end{array}\right]$, $b_{112}=\Vec{0},b_{121}=\Vec{0}^t$.\newline
+Therefore, $A^{-1}=\left[\begin{array}{rrrrr}-5&2\\3&-1\\&&1/2\\&&&3&-4\\&&&-5/2&7/2\end{array}\right]$
+\subsection*{Question 5.}
+Find the $LU$-factorization of the matrices:
+\[A=\left[\begin{array}{rrrr}2&-4&4&-2\\6&-9&7&-3\\-1&-4&8&0\end{array}\right], B=\left[\begin{array}{rrr}2&-6&6\\-4&5&-7\\3&5&-1\\-6&4&-8\\8&-3&9\end{array}\right]\]
+\subsection*{Solution 5.}
+\[A=\left[\begin{array}{rrr}1\\3&1\\-\frac{1}{2}&0&1\end{array}\right] \left[\begin{array}{rrrr}2&-4&4&-2\\0&3&-5&3\\0&-6&10&-1\end{array}\right]=\left[\begin{array}{rrr}1\\3&1\\-\frac{1}{2}&-2&1\end{array}\right] \left[\begin{array}{rrrr}2&-4&4&-2\\0&3&-5&3\\0&0&0&5\end{array}\right]\]
+
+\[B=\left[\begin{array}{rrrrr}1\\-2&1\\3/2&0&1\\-3&0&0&1\\4&0&0&0&1\end{array}\right]\left[\begin{array}{rrr}2&-6&6\\0&-7&5\\0&14&-10\\0&-14&10\\0&21&-15\end{array}\right]=\left[\begin{array}{rrrrr}1\\-2&1\\3/2&-2&1\\-3&2&0&1\\4&-3&0&0&1\end{array}\right]\left[\begin{array}{rrr}2&-6&6\\0&-7&5\\0&0&0\\0&0&0\\0&0&0\end{array}\right]\]
+\subsection*{Question 6.}
+Suppose $A=UDV^t$, where $U$ and $V$ are $n\times n$ matrices with the property that $U^tU=I$ and $V^tV=I$, and where $D$ is a diagonal matrix with positive numbers $\sigma_1,\cdots,\sigma_n$ on the diagonal. Show that $A$ is invertible and find a formula for $A^{-1}$.
+\subsection*{Solution 6.}
+Lemma: $D^{-1}=\left[\begin{array}{rrrr}\sigma_1^{-1}\\&\sigma_2^{-1}\\&&\ddots\\&&&\sigma_n^{-1}\end{array}\right]$.\newline
+Proof: $\left[\begin{array}{rrrrrrrr}\sigma_1&&&&1\\&\sigma_2&&&&1\\&&\ddots&&&&\ddots\\&&&\sigma_n&&&&1\end{array}\right]\sim \left[\begin{array}{rrrrrrrr}1&&&&\sigma_1^{-1}\\&1&&&&\sigma_2^{-1}\\&&\ddots&&&&\ddots\\&&&1&&&&\sigma_n^{-1}\end{array}\right]$.\newline
+Given also $U^tU=I,V^tV=I$, hence $U^{-1}=U^t,V^{-1}=V^t$, thus $U,D,V$ are invertible.\newline
+$AV=UDV^tV=UD \Rightarrow AVD^{-1}=U\Rightarrow AVD^{-1}U^t=UU^t=(U^tU)^t=I^t=I$\newline
+Thus, $A$ is invertible, and $A^{-1}=VD^{-1}U^t$.
+\subsection*{Question 7.}
+Suppose a $3\times3$ matrix $A$ admits a factorization as $A=PDP^{-1}$, where $P$ is some invertible $3\times3$ matrix and $D$ is the diagonal matrix
+\[D=\left[\begin{array}{ccc}1\\&1/2\\&&1/3\end{array}\right].\]
+Show that this factorization is useful when computing high powers of A. Find fairly simple formulas for $A^2,A^3$ and $A^k$ using P and the entries of $D$.
+\subsection*{Solution 7.}
+Let $P(n): D^n=\left[\begin{array}{rrr}1\\&2^{-n}\\&&3^{-n}\end{array}\right]$.
+The following proves $(\forall n\in \mathbb{N}^*)P(n)$.
+\begin{enumerate}
+    \item $P(1)$ is clearly true.
+    \item Assume $P(k)$ is true for some $k\in\mathbb{N}^*$, i.e. $D^k=\left[\begin{array}{rrr}1\\&2^{-k}\\&&3^{-k}\end{array}\right]$.\newline
+$P(k+1): D^{k+1}=\left[\begin{array}{rrr}1\\&2^{-k}\\&&3^{-k}\end{array}\right]\left[\begin{array}{rrr}1\\&2^{-1}\\&&3^{-1}\end{array}\right]=\left[\begin{array}{rrr}1\\&2^{-(k+1)}\\&&3^{-(k+1)}\end{array}\right]$, thus $P(k)\Rightarrow P(k+1)$.
+\end{enumerate}
+By (1),(2) and the first principle of mathematical induction, $P(n)$ is true for all positive integers n.\newline
+$A^k=(PDP^{-1})(PDP^{-1})\cdots(PDP^{-1})=P D^k P^{-1}$, where $D^k=\left[\begin{array}{rrr}1\\&2^{-k}\\&&3^{-k}\end{array}\right]$
+
+\subsection*{Question 8.}
+Find bases for the column space and the null space of $A=\left[\begin{array}{rrrrr}3&-5&0&-1&3\\-7&9&-4&9&-11\\-5&7&-2&5&-7\\3&-7&-3&4&0\end{array}\right]$.
+\subsection*{Solution 8.}
+\[\left[\begin{array}{rrrrr}3&-5&0&-1&3\\-7&9&-4&9&-11\\-5&7&-2&5&-7\\3&-7&-3&4&0\end{array}\right]\sim\left[\begin{array}{rrrrr}3&-5&0&-1&3\\0&-8/3&-4&20/3&-4\\0&10/3&-2&10/3&-2\\0&-2&-3&5&-3\end{array}\right]\sim\left[\begin{array}{rrrrr}3&-5&0&-1&3\\0&-2&-3&5&-3\\0&5&-3&5&-3\\0&-2&-3&5&-3\end{array}\right]\]
+\[\sim\left[\begin{array}{rrrrr}3&-5&0&-1&3\\0&-2&-3&5&-3\\0&5&-3&5&-3\\0&-2&-3&5&-3\end{array}\right]\sim\left[\begin{array}{rrrrr}3&-5&0&-1&3\\0&-2&-3&5&-3\\0&0&-21/2&35/2&-21/2\\0&0&0&0&0\end{array}\right]\sim\left[\begin{array}{rrrrr}3&-5&0&-1&3\\0&-2&-3&5&-3\\0&0&-3&5&-3\\0&0&0&0&0\end{array}\right]\]
+For the column space of $A$,
+\[\mathcal{B}=\left\{\left[\begin{array}{r}3\\0\\0\\0\end{array}\right],\left[\begin{array}{r}-5\\-2\\0\\0\end{array}\right],\left[\begin{array}{r}0\\-3\\-3\\0\end{array}\right]\right\}\]
+Let $\Vec{x}=[\begin{array}{ccccc}x_1&x_2&x_3&x_4&x_5\end{array}]^t$ be any vector in the null space of $A$.
+Let $x_4=t_1',x_5=t_2$. Then, $x_3=\frac{5}{3}t_1'-t_2$, $x_2=\frac{1}{2}(-3x_3+5x_4-3x_5)=0$, $x_1=\frac{1}{3}t_1'-t_2$. Also let $t_1=t_1'/3$
+\[\Vec{x}=\left[\begin{array}{r}\frac{1}{3}t_1'-t_2\\0\\\frac{5}{3}t_1'-t_2\\t_1'\\t_2\end{array}\right]=t_1\left[\begin{array}{r}1\\0\\5\\3\\0\end{array}\right]+t_2\left[\begin{array}{r}-1\\0\\-1\\0\\1\end{array}\right]\]
+For the null space of $A$,
+\[\mathcal{B}=\left\{\left[\begin{array}{r}1\\0\\5\\3\\0\end{array}\right],\left[\begin{array}{r}-1\\0\\-1\\0\\1\end{array}\right]\right\}\]
+\subsection*{Question 9.}
+Determine whether $\Vec{w}$ is in the column space of $A$, the null space of $A$, or both, where 
+\[\Vec{w}=\left[\begin{array}{r}1\\1\\-1\\-3\end{array}\right], A=\left[\begin{array}{rrrr}7&6&-4&1\\-5&-1&0&-2\\9&-11&7&-3\\19&-9&7&1\end{array}\right]\]
+\subsection*{Solution 9.}
+$A\Vec{w}=\left[\begin{array}{r}7+6+4-3\\-5-1+0+6\\9-11-7+9\\19-9-7-3\end{array}\right]=\left[\begin{array}{r}14\\0\\0\\0\end{array}\right]\neq 0$, thus $\Vec{w}\notin \mathcal{N}(A)$.\newline
+Consider $[A\Vec{w}]$.
+\[\left[\begin{array}{rrrrr}7&6&-4&1&1\\-5&-1&0&-2&1\\9&-11&7&-3&-1\\19&-9&7&-1&-3\end{array}\right]\sim\left[\begin{array}{rrrrr}7&6&-4&1&1\\0&23/7&-20/7&-9/7&12/7\\0&-131/7&95/7&-30/7&-16/7\\0&-177/7&125/7&-12/7&-40/7\end{array}\right]\]
+\[\sim\left[\begin{array}{rrrrr}7&6&-4&1&1\\0&23/7&-20/7&-9/7&12/7\\0&0&-665/161&-1869/161&1204/161\\0&0&-665/161&-1869/161&1204/161\end{array}\right]\sim\left[\begin{array}{rrrrr}7&6&-4&1&1\\0&23/7&-20/7&-9/7&12/7\\0&0&-665/161&-1869/161&1204/161\\0&0&0&0&0\end{array}\right]\]
+Thus, $\Vec{w}\in\mathcal{R}(A)$
+\subsection*{Question 10.}
+Let $\Vec{a_1},\cdots,\Vec{a_5}$ be the column vectors of $A=\left[\begin{array}{rrrrr}5&1&2&2&0\\3&3&2&-1&-12\\8&4&4&-5&12\\2&1&1&0&-2\end{array}\right]$, let $B=[\begin{array}{ccc}\Vec{a_1}&\Vec{a_2}&\Vec{a_4}\end{array}]$.
+\begin{enumerate}
+    \item Explain why $\Vec{a_3}$ and $\Vec{a_5}$ are in the column space of $B$.
+    \item Find a set of vectors that spans Nul($A$).
+    \item Let $T:\mathbb{R}^5\rightarrow\mathbb{R}^4$ be defined by $T(\Vec{x})=A\Vec{x}$. Explain why $T$ is neither one-to-one nor onto.
+\end{enumerate}
+\subsection*{Solution 10.}
+\begin{enumerate}
+    \item To begin, compute the row echelon form for A.
+\[A\sim \left[\begin{array}{rrrrr}5&1&2&2&0\\0&12/5&4/5&-11/5&-12\\0&12/5&4/5&-41/5&12\\0&3/5&1/5&-4/5&-2\end{array}\right]\]
+\[\sim \left[\begin{array}{rrrrr}5&1&2&2&0\\0&12/5&4/5&-11/5&-12\\0&0&0&-6&24\\0&0&0&-1/4&1\end{array}\right]\sim \left[\begin{array}{rrrrr}5&1&2&2&0\\0&12/5&4/5&-11/5&-12\\0&0&0&-6&24\\0&0&0&0&0\end{array}\right]\]
+Both $\Vec{a_3}$ and $\Vec{a_5}$ are free columns in A. Each of these two column vectors can be expressed as a linear combination of $\Vec{a_1},\Vec{a_2}$ and $\Vec{a_4}$. Hence, $\Vec{a_3},\Vec{a_5}\in \mathcal{R}(B)$.
+\item Let $\Vec{x}\in\mathbb{R}^5$ s.t. $A\Vec{x}=0$. Also treat $t_1,t_2\in\mathbb{R}$ as parameters and $x_3=t_1,x_5=t_2$.\newline
+Then, $x_4=4t_2$, $12x_2+4t_1-11(4t_2)-60t_2=0\Rightarrow x_2=\frac{1}{3}(-t_1+26t_2)$,\newline
+$5x_1+x_2+2x_3+2x_4=0\Rightarrow x_1=-\frac{1}{3}(t_1+10t_2)$
+\[\Vec{x}=t_1\left[\begin{array}{r}-\frac{1}{3}\\-\frac{1}{3}\\1\\0\\0\end{array}\right]+t_2\left[\begin{array}{r}-\frac{10}{3}\\\frac{26}{3}\\0\\4\\1\end{array}\right]\]
+\[\mathcal{N}(A)=Span\left\{\left[\begin{array}{r}-\frac{1}{3}\\-\frac{1}{3}\\1\\0\\0\end{array}\right],\left[\begin{array}{r}-\frac{10}{3}\\\frac{26}{3}\\0\\4\\1\end{array}\right]\right\}\]
+\item The column vectors of $A$ are linearly dependent, so $T(\Vec{x})=A\Vec{x}=0$ has non-trivial solutions.\newline 
+$\Rightarrow T$ is not one-to-one.\newline
+A has 3 pivot columns, so dim $\mathcal{R}(A) =3$. However, dim $\mathbb{R}^4$=4\newline
+$\Rightarrow$ dim $\mathcal{R}(A)<$ dim $\mathbb{R}^4\Leftrightarrow \mathbb{R}^4\symbol{92}\mathcal{R}(A)\neq \emptyset\Leftrightarrow T$ is not onto.
+\end{enumerate}
+
+\subsection*{Question 11.}
+It is known that a linear independent set $\{\Vec{v_1},\cdots,\Vec{v_k}\}$ in $\mathbb{R}^n$ can be expanded to a basis for $\mathbb{R}^n$. One way to do this is to consider the matrix $A=[\begin{array}{cccccc}\Vec{v_1}&\cdots&\Vec{v_k}&\Vec{e_1}&\cdots&\Vec{e_n}\end{array}]$ with $\Vec{e_1},\cdots,\Vec{e_n}$ the standard basis of $\mathbb{R}^n$. The pivot columns of $A$ form a basis for $\mathbb{R}^n$.
+\begin{enumerate}
+    \item Use the method described to extend the following vectors to a basis of $\mathbb{R}^5$.
+    \[\Vec{v_1}=\left[\begin{array}{r}-9\\-7\\8\\-5\\7\end{array}\right],\Vec{v_2}=\left[\begin{array}{r}9\\4\\1\\6\\-7\end{array}\right],\Vec{v_3}=\left[\begin{array}{r}6\\7\\-8\\5\\-7\end{array}\right].\]
+    \item Explain why the method works in general: Why are the original vectors $\Vec{v_1},\cdots,\Vec{v_k}$ included in the basis found for Col($A$)? Why is Col($A$)=$\mathbb{R}^n$?
+\end{enumerate}
+\subsection*{Solution 11.}
+\begin{enumerate}
+    \item 
+    \[A=\left[\begin{array}{rrrrrrrr}-9&9&6&1&0&0&0&0\\-7&4&7&0&1&0&0&0\\8&1&-8&0&0&1&0&0\\-5&6&5&0&0&0&1&0\\7&-7&-7&0&0&0&0&1\end{array}\right]\]
+    \[\sim\left[\begin{array}{rrrrrrrr}-9&9&6&1&0&0&0&0\\0&-3&7/3&-7/9&1&0&0&0\\0&9&-8/3&8/9&0&1&0&0\\0&1&5/3&-5/9&0&0&1&0\\0&0&-7/3&7/9&0&0&0&1\end{array}\right]\sim\left[\begin{array}{rrrrrrrr}-9&9&6&1&0&0&0&0\\0&-3&7/3&-7/9&1&0&0&0\\0&0&13/3&-13/9&3&1&0&0\\0&0&22/9&-22/27&1/3&0&1&0\\0&0&-7/3&7/9&0&0&0&1\end{array}\right]\]
+    \[\sim\left[\begin{array}{rrrrrrrr}-9&9&6&1&0&0&0&0\\0&-3&7/3&-7/9&1&0&0&0\\0&0&13/3&-13/9&3&1&0&0\\0&0&0&0&-53/39&-22/39&1&0\\0&0&0&0&21/13&7/13&0&1\end{array}\right]\]
+    \[\sim\left[\begin{array}{rrrrrrrr}-9&9&6&1&0&0&0&0\\0&-3&7/3&-7/9&1&0&0&0\\0&0&13/3&-13/9&3&1&0&0\\0&0&0&0&-53/39&-22/39&1&0\\0&0&0&0&0&-7/53&63/53&1\end{array}\right]\]
+    Hence $\{\Vec{v_1},\Vec{v_2},\Vec{v_3},\Vec{e_2},\Vec{e_3}\}$ of $A$ forms a basis of $\mathbb{R}^5$.
+    \item The original set of vectors are assumed to be independent, and these vectors are put on the left, hence these vectors correspond to the first $k$ pivot columns. Columns of $A$ includes all standard basis vectors of $\mathbb{R}^n$, so the columns of $A$ spans the whole $\mathbb{R}^n \Rightarrow \mathcal{R}(A)=\mathbb{R}^n$.
+\end{enumerate}
+\end{document} 

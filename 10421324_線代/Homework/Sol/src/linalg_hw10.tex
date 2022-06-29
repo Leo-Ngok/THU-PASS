@@ -1,0 +1,465 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\title{Linear Algebra: Homework 10}
+\begin{document}
+\maketitle
+\subsection*{Question 1.}
+Let $\mathbf{y}=\left[\begin{array}{r}5\\-9\\5\end{array}\right]$, $\mathbf{u}_1=\left[\begin{array}{r}-3\\-5\\1\end{array}\right]$, $\mathbf{u}_2=\left[\begin{array}{r}-3\\2\\1\end{array}\right]$. Find the distance from $\mathbf{y}$ to the plane in $\mathbf{R}^3$ spanned by $\mathbf{u}_1$ and $\mathbf{u}_2$.
+\subsection*{Solution 1.}
+Let $A=\left[
+\begin{array}{rr}
+-3 & -3 \\
+-5 &  2 \\
+ 1 &  1
+\end{array}
+\right]$. Then, distance
+\[=||\mathbf{y}-A(A^TA)^{-1}A^T\mathbf{y}||\]
+\[=\left|\left| 
+\left[\begin{array}{r}5\\-9\\5\end{array}\right]-
+\left[
+\begin{array}{rr}
+-3 & -3 \\
+-5 &  2 \\
+ 1 &  1
+\end{array}
+\right]
+\left[
+\begin{array}{rr}
+35 &  0 \\
+ 0 &  14 \\
+\end{array}
+\right]^{-1}
+\left[\begin{array}{r}35\\-28\end{array}\right]
+ \right|\right|\]
+ \[
+=\left|\left| 
+\left[\begin{array}{r}5\\-9\\5\end{array}\right]-
+\left[
+\begin{array}{rr}
+-3 & -3 \\
+-5 &  2 \\
+ 1 &  1
+\end{array}
+\right]
+\left[\begin{array}{r}1\\-2\end{array}\right]
+ \right|\right|
+=\left|\left| 
+\left[\begin{array}{r}2\\0\\6\end{array}\right]\right|\right|
+=2\sqrt{10}
+ \]
+\subsection*{Question 2.}
+Mark each statement true or false, and justify your answer.
+\begin{enumerate} [label=(\arabic*)]
+    \item If $W$ is a subspace of $\mathbf{R}^n$ and if $\mathbf{v}$ is both in $W$ and $W^\perp$, then $\mathbf{v}$ must be the zero vector.
+    \item In the orthogonal decomposition theorem, each term in the fomula for Proj$_W(\mathbf{y})$ is itself an orthogonal projection of $\mathbf{y}$ onto a subspace of $W$.
+    \item If $\mathbf{y}=\mathbf{z}_1+\mathbf{z}_2$, with $\mathbf{z}_1\in  W$ and $\mathbf{z}_2\in W^\perp$, then $\mathbf{z}_1$ must be orthogonal projection of $\mathbf{y}$ onto $W$.
+    \item The best approximation to $\mathbf{y}$ by elements of a subspace $W$ is given by the vector $\mathbf{y}-$Proj$_W(\mathbf{y})$.
+    \item if an $n\times p$ matrix $U$ has orthonormal columns, then $UU^T\mathbf{x}=\mathbf{x}$ for all $\mathbf{x}\in\mathbf{R}^n$.
+\end{enumerate}
+\subsection*{Solution 2.}
+\begin{enumerate} [label=(\arabic*)]
+    \item \textbf{True.}\newline
+$W^\perp$ is defined as
+$W^\perp =\{\mathbf{v}\in\mathbf{R}^n:(\forall \mathbf{w}\in W) \langle \mathbf{v},\mathbf{w}\rangle=0\}$ \newline
+Hence, $\forall \mathbf{x}\in (W\cap W^\perp),\langle \mathbf{x},\mathbf{x}\rangle=0\Rightarrow \mathbf{x}=0$
+    \item \textbf{True.} \newline
+    Let $\mathbf{u}\in W$. Then, projection of $\mathbf{y}$ on $\mathbf{u}$ is 
+    \[\frac{\langle\mathbf{u},\mathbf{y}\rangle}{||\mathbf{u}||^2}\mathbf{u},\]
+    its projection is 
+    \[\frac{\langle\mathbf{u},\frac{\langle\mathbf{u},\mathbf{y}\rangle}{||\mathbf{u}||^2}\mathbf{u}\rangle}{||\mathbf{u}||^2}\mathbf{u}=\frac{\langle\mathbf{u},\mathbf{y}\rangle}{||\mathbf{u}||^2}\frac{\langle\mathbf{u},\mathbf{u}\rangle}{||\mathbf{u}||^2}\mathbf{u}=\frac{\langle\mathbf{u},\mathbf{y}\rangle}{||\mathbf{u}||^2}\mathbf{u}\]
+    \item \textbf{True.} \newline
+    i). $\mathbf{z}_1\in W$, so Proj$_W(\mathbf{z}_1)=\mathbf{z}_1$.\newline
+    ii). $\mathbf{z}_2\in W^\perp$, so Proj$_W(\mathbf{z}_2)=0$.\newline
+    By i) ii) and the linearity of projection, \newline
+    Proj$_W(\mathbf{y})=$Proj$_W(\mathbf{z}_1+\mathbf{z}_2)=\mathbf{z}_1$
+    \item \textbf{False.} 
+    If $\mathbf{y}\notin W$, then $(\mathbf{y}-$Proj$_W(\mathbf{y}))\notin W$. In fact, it should be Proj$_W(\mathbf{y})$, that gives the best approximation.
+    \item \textbf{False.} 
+    Let $U=\left[
+\begin{array}{rr}
+ 1 &  0 \\
+ 0 &  1 \\
+ 0 &  0
+\end{array}
+\right]$. Then $UU^T=\left[
+\begin{array}{rrr}
+ 1 &  0 & 0\\
+ 0 &  1 & 0\\
+ 0 &  0 & 0 
+\end{array}
+\right]$ is not an identity matrix.
+\end{enumerate}
+\subsection*{Question 3.}
+Find an orthogonal basis for the column space of the matrix 
+\[\left[
+\begin{array}{rrr}
+ 1 & 3 & 5 \\
+-1 &-3 & 1 \\
+ 0 & 2 & 3 \\
+ 1 & 5 & 2 \\
+ 1 & 5 & 8
+\end{array}
+\right]\]
+and a $QR$-factorization of it.
+\subsection*{Solution 3.}
+Let $A=\left[
+\begin{array}{rrr}
+ 1 & 3 & 5 \\
+-1 &-3 & 1 \\
+ 0 & 2 & 3 \\
+ 1 & 5 & 2 \\
+ 1 & 5 & 8
+\end{array}
+\right], \mathbf{a}_1=[$1  -1  0  1  1$]^T$, $\mathbf{a}_2=[$3  -3  2  5  5$]^T$, $\mathbf{a}_3=[$5   1  3  2  8$]^T$
+\[\mathbf{q}_1=\mathbf{a}_1\]
+
+\[\mathbf{q}_2=\mathbf{a}_2-\mathbf{q}_1\frac{\mathbf{q}_1^T\mathbf{a}_2}{||\mathbf{q}_1||^2}=\mathbf{a}_2-4\mathbf{q}_1=[\begin{array}{rrrrr}-1&1&2&1&1\end{array}]^T\]
+\[\mathbf{q}_3=\mathbf{a}_3-\mathbf{q}_1\frac{\mathbf{q}_1^T\mathbf{a}_3}{||\mathbf{q}_1||^2}-\mathbf{q}_2\frac{\mathbf{q}_2^T\mathbf{a}_3}{||\mathbf{q}_2||^2}=\mathbf{a}_3-\frac{7}{2}\mathbf{q}_1-\frac{3}{2}\mathbf{q}_2=\mathbf{a}_3-\frac{1}{2}[\begin{array}{rrrrr}4&-4&6&10&10\end{array}]^T=[\begin{array}{rrrrr}3&3&0&-3&3\end{array}]^T\]
+So we can set
+\[Q=
+\left[
+\begin{array}{rrr}
+ 1/2 &-\sqrt{2}/4 & 1/2 \\
+-1/2 & \sqrt{2}/4 & 1/2 \\
+ 0   & \sqrt{2}/2 & 0   \\
+ 1/2 & \sqrt{2}/4 &-1/2 \\
+ 1/2 & \sqrt{2}/4 & 1/2
+\end{array}
+\right]
+\]
+\[
+R=Q^TA=
+\left[
+\begin{array}{rrrrr}
+ 1/2        &       -1/2 &          0 &         1/2 & 1/2 \\
+-\sqrt{2}/4 & \sqrt{2}/4 & \sqrt{2}/2 & \sqrt{2}/4 & \sqrt{2}/4 \\
+ 1/2        &        1/2 & 0          & -1/2       & 1/2  
+\end{array}
+\right]
+\left[
+\begin{array}{rrr}
+ 1 & 3 & 5 \\
+-1 &-3 & 1 \\
+ 0 & 2 & 3 \\
+ 1 & 5 & 2 \\
+ 1 & 5 & 8
+\end{array}
+\right]
+=
+\left[
+\begin{array}{rrr}
+ 2 & 8 & 7 \\
+ 0 & 2\sqrt{2} & 3\sqrt{2} \\
+ 0 &0 & 6
+\end{array}
+\right]
+\]
+%basis 3
+%normalzie
+\subsection*{Question 4.}
+Mark each statement true or false, and justify your answer.
+\begin{enumerate} [label=(\arabic*)]
+    \item If $A=QR$ and $Q$ has orthonormal columns, then $R=Q^TA$.
+    \item Let $W=$Span$\{\mathbf{x}_1,\mathbf{x}_2,\mathbf{x}_3\}$ with $\mathbf{x}_1,\mathbf{x}_2,\mathbf{x}_3$ linearly independent, let $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ be an orthogonal set in $W$, then $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ is a basis for $W$.
+    \item If $\mathbf{x}$ is not in the subspace $W$, then $\mathbf{x}-$Proj$_W(\mathbf{x})$ is non-zero.
+    \item In a $QR$-factorization $A=QR$, where $A$ has linearly independent columns, the column vectors of $Q$ form an orthonormal basis for Col($A)$.
+\end{enumerate}
+\subsection*{Solution 4.}
+\begin{enumerate} [label=(\arabic*)]
+    \item \textbf{True.} \newline
+    Columns of Q are orthonormal, hence $Q^TQ=I$.
+    \[A=QR\Rightarrow Q^TA=Q^TQR=R\]
+    \item \textbf{True.}\newline
+    Each of $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3$, by definition, is a specific linear combination of $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3$. So, $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\in W$. Dim $W$=3, and orthogonal vectors are  linearly independent. So $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ is a basis for $W$.
+    \item \textbf{True.} \newline
+    Assume $\mathbf{x}\in\mathbf{R}^n$, $W\subset \mathbf{R}^n$.
+    Let $A\in \mathbf{R}^{n\times p}$, where $p=$dim $W$ be a matrix with columns as the basis of $W$.
+    Since $x\notin W$, $\forall \mathbf{c}\in \mathbf{R}^p$, $\exists \epsilon\in\mathbf{R}^n,\epsilon\neq 0$ s.t.
+    \[A\mathbf{c}+\mathbf{\epsilon}=\mathbf{x}\]
+    \item \textbf{True.} \newline
+    The columns of $Q$ are calculated by Gram-Schmidt orthogonalization of the basis of $A$, in which each of the vector in the basis is still the linear combination of the columns of $A$, so the basis formed by these orthonormal vectors still spans the same space.
+\end{enumerate}
+\subsection*{Question 5.}
+\begin{enumerate} [label=(\arabic*)]
+    \item Let $A=QR$, where $Q$ is $m\times n$ and $R$ is $n\times n$. Show if that the columns of $A$ are linearly independent, then $R$ must be invertible.
+    \item Let $A=QR$ with $R$ invertible, show that $A$ and $Q$ have the same columns space.
+\end{enumerate}
+\subsection*{Solution 5.}
+\begin{enumerate} [label=(\arabic*)]
+    \item Assume $R$ is singular, then $\exists \mathbf{x}\in \mathbf{R}^n, \mathbf{x}\neq 0$ s.t. $R\mathbf{x}=0$
+    \[\Rightarrow Q(R\mathbf{x})=Q\cdot 0=0\Rightarrow (QR)\mathbf{x}=A\mathbf{x}=0,\]
+    Hence, the columns of $A$ are linearly dependent. $\square$
+    \item Let $A,Q\in\mathbf{R}^{n\times p}$. $R\in \mathbf{R}^{p\times p}$.\newline
+    For each column $\mathbf{a}_j$ of $A$, $j\in\{1,2,\cdots,p\}$, 
+    \[\mathbf{a}_j=\sum _{i=1}^p \mathbf{q}_i(R)_{ij}\]
+    Hence every element in Col($A$) is also a specific linear combination of $\mathbf{q}_i$,  $i\in\{1,2,\cdots,p\}$
+    \[\Rightarrow \text{Col}(A)\subseteq\text{Col}(Q)\]
+    R is invertible, so $Q=AR^{-1}$. 
+    
+    Hence every element in Col($Q$) is also a specific linear combination of $\mathbf{a}_i$,  $i\in\{1,2,\cdots,p\}$
+    \[\Rightarrow \text{Col}(Q)\subseteq\text{Col}(A)\]
+    \[\Rightarrow \text{Col}(A)=\text{Col}(Q)\blacksquare\]
+\end {enumerate}
+\subsection*{Question 6.}
+Let $A$ be a $QR$ factorization of an $m\times n$ matrix $A$ with linearly independent columns. Partition $A$ as $[A_1$ $A_2]$, where $A_1$ has $p$ columns. Show how to obtain a $QR$-factorization of $A_1$ and explain the reason.
+\subsection*{Solution 6.}
+For each column $\mathbf{a}_j$ of $A$, 
+\[\mathbf{a}_j=\sum_{i=1}^n \mathbf{q}_i(R)_{ij}\]
+R is upper-triangular, so $(R)_{ij}=0$ for $i>j$. Specially, for $j=p$,
+\[\mathbf{a}_p=\sum_{i=1}^p  \mathbf{q}_i(R)_{ip}\]
+Then, $A_1=[\begin{array}{rrrr}\mathbf{q}_1&\mathbf{q}_2&\cdots&\mathbf{q}_p
+\end{array}]\left[\begin{array}{rrrr}
+R_{11} & R_{12}&\cdots&R_{1p} \\
+ &R_{22}&\cdots&R_{2p}\\
+ &&\ddots&\vdots\\
+ &&&R_{pp}
+\end{array}\right]$.\newline
+Partition $Q$ as $[Q_1$ $Q_2]$, $R$ as as $[R_1$ $R_2]$, where both of $Q_1$ and $R_1$ have $p$ columns.\newline
+Since the $p+1$-th to the $m-$th rows of $R_1$ are zeros, pick the first p rows of $R_1$ to form $R'$. Then, $A_1=Q_1R'$.
+\subsection*{Question 7.}
+Find the least-square solution of $A\mathbf{x}=\mathbf{b}$ by solving the corresponding normal equation:
+\[\text{(1)   }
+A=\left[
+\begin{array}{rr}
+ 1 & -2 \\
+-1 &  2 \\
+ 0 &  3 \\
+ 2 & 5
+\end{array}
+\right], \mathbf{b}=\left[\begin{array}{r}3\\1\\-4\\2\end{array}\right];
+\text{    (2)   }
+A=\left[
+\begin{array}{rrr}
+ 1 &  1  & 0 \\
+ 1 &  1  & 0 \\
+ 1 &  0  & 1 \\
+ 1 &  0  & 1
+\end{array}
+\right], \mathbf{b}=\left[\begin{array}{r}1\\3\\8\\2\end{array}\right]
+\]
+\subsection*{Solution 7.}
+The following assumes $A\mathbf{\hat{x}}+\mathbf{\epsilon}=\mathbf{b}$, where $A^T\mathbf{\epsilon}=0$, so it becomes finding $\mathbf{\hat{x}}$, for $A^TA\mathbf{\hat{x}}=A^T\mathbf{b}$.
+\begin{enumerate} [label=(\arabic*)]
+    \item 
+    \[A^TA=\left[\begin{array}{rr}
+    6 & 6 \\
+    6 & 42
+    \end{array}\right],A^T\mathbf{b}=\left[\begin{array}{r}
+    6\\-6\end{array}\right]\]
+    \[\left[\begin{array}{rrr}
+    6 & 6 & 6 \\
+    6 &42 & -6 
+    \end{array}\right]\sim
+    \left[\begin{array}{rrr}
+    6 & 6 & 6 \\
+    0 &36 & -12 
+    \end{array}\right]\sim
+    \left[\begin{array}{rrr}
+    1 & 1 & 1 \\
+    0 &1 & -1/3 
+    \end{array}\right]\sim
+    \left[\begin{array}{rrr}
+    1 & 0 & 4/3 \\
+    0 &1 & -1/3 
+    \end{array}\right]
+    \]
+    \[\mathbf{\hat{x}}=\left[\begin{array}{r}
+    4/3\\-1/3\end{array}\right]\]
+    \item 
+    \[A^TA=\left[\begin{array}{rrr}
+    4 & 2 & 2\\
+    2 & 2 & 0 \\
+    2 & 0 & 2
+    \end{array}\right],A^T\mathbf{b}=\left[\begin{array}{r}
+    14\\4\\10\end{array}\right]\]
+    \[\left[\begin{array}{rrrr}
+    4 & 2 & 2 & 14 \\
+    2 & 2 & 0 & 4 \\
+    2 & 0 & 2 & 10
+    \end{array}\right]\sim
+    \left[\begin{array}{rrrr}
+    1 & 1/2 & 1/2 & 7/2 \\
+    1 & 1 & 0 & 2 \\
+    1 & 0 & 1 & 5
+    \end{array}\right]\sim
+    \left[\begin{array}{rrrr}
+    1 & 1/2 & 1/2 & 7/2 \\
+    0 & 1/2 &-1/2 & -3/2 \\
+    0 &-1/2 & 1/2 &  3/2
+    \end{array}\right]\sim
+    \]
+    \[
+    \left[\begin{array}{rrrr}
+    1 & 1/2 & 1/2 & 7/2 \\
+    0 & 1/2 &-1/2 &-3/2 \\
+    0 &  0  &   0 & 0
+    \end{array}\right]\sim
+    \left[\begin{array}{rrrr}
+    1 & 1 & 0 & 2 \\
+    0 & 1 &-1 &-3\\
+    0 &  0  &   0 & 0
+    \end{array}\right]
+    \]
+    Treating $x_3$ as free variable, $x_2=-3+x_3$, $x_1=2-x_2=5-x_3$
+    \[\mathbf{\hat{x}}=\left[\begin{array}{r}
+    5\\-3\\0\end{array}\right]+x_3\left[\begin{array}{r}
+    -1\\1\\1\end{array}\right]\]
+\end{enumerate}
+\subsection*{Question 8.}
+Find the orthognal projection of $\mathbf{b}$ onto Col($A$) and the least square solution of $A\mathbf{x}=\mathbf{b}$:
+\[\text{(1)   }
+A=\left[
+\begin{array}{rr}
+ 1 &  2 \\
+-1 &  4 \\
+ 1 &  2
+\end{array}
+\right], \mathbf{b}=\left[\begin{array}{r}3\\-1\\5\end{array}\right];
+\text{    (2)   }
+A=\left[
+\begin{array}{rrr}
+ 4 &  0  & 1 \\
+ 1 & -5  & 1 \\
+ 6 &  1  & 0 \\
+ 1 & -1  &-5
+\end{array}
+\right], \mathbf{b}=\left[\begin{array}{r}9\\0\\0\\0\end{array}\right];
+\]
+\subsection*{Solution 8.}
+Let $\mathbf{\hat{b}}$=Proj$_{\text{Col}(A)}(\mathbf{b})$
+\begin{enumerate} [label=(\arabic*)]
+    \item $\mathbf{\hat{b}}=\frac{9}{3}\left[\begin{array}{r}1\\-1\\1\end{array}\right]+\frac{12}{24}\left[\begin{array}{r}2\\4\\2\end{array}\right]=\left[\begin{array}{r}4\\-1\\4\end{array}\right]$
+    \[\left[\begin{array}{rrr}
+    1 & 2 & 4 \\
+    -1& 4 &-1 \\
+    1 & 2 & 4
+    \end{array}\right]\sim
+    \left[\begin{array}{rrr}
+    1 & 2 & 4 \\
+    0 & 1 & 1/2\\
+    0 & 0& 0
+    \end{array}\right]\sim
+    \left[\begin{array}{rrr}
+    1 & 0 & 3 \\
+    0 & 1 & 1/2\\
+    0 & 0 & 0
+    \end{array}\right]
+    \]
+    Hence,
+    \[\mathbf{\hat{x}}=\left[\begin{array}{r}3\\1/2\end{array}\right]\]
+    \item $\mathbf{\hat{b}}=\frac{36}{54}\left[\begin{array}{r}4\\1\\6\\1\end{array}\right]+\frac{0}{27}\left[\begin{array}{r}0\\-5\\1\\-1\end{array}\right]+\frac{9}{27}\left[\begin{array}{r}1\\1\\0\\-5\end{array}\right]=\left[\begin{array}{r}3\\1\\4\\-1\end{array}\right]$
+    \[\left[\begin{array}{rrrr}
+    4 & 0 & 1 & 3 \\
+    1 &-5 & 1 & 1 \\
+    6 & 1 & 0 & 4 \\
+    1 &-1 &-5 & -1
+    \end{array}\right]\sim
+    \left[\begin{array}{rrrr}
+    1 & 0 & 1/4 & 3/4 \\
+    0 &-5 & 3/4 & 1/4 \\
+    0 & 1 &-3/2 &-1/2 \\
+    0 &-1 &-21/4&-7/4
+    \end{array}\right]\sim
+    \left[\begin{array}{rrrr}
+    1 & 0 & 1/4 & 3/4 \\
+    0 & 1 &-3/20&-1/20\\
+    0 & 0 &-27/20&-9/20\\
+    0 & 0 &-108/20&-36/20
+    \end{array}\right]\]\[\sim
+    \left[\begin{array}{rrrr}
+    1 & 0 & 1/4 & 3/4 \\
+    0 & 1 &-3/20&-1/20\\
+    0 & 0 &  1  & 1/3 \\
+    0 & 0 &  0  &  0
+    \end{array}\right]\sim
+    \left[\begin{array}{rrrr}
+    1 & 0 &  0  & 2/3 \\
+    0 & 1 &  0  &  0  \\
+    0 & 0 &  1  & 1/3 \\
+    0 & 0 &  0  &  0
+    \end{array}\right]
+    \]
+    Hence,
+    \[\mathbf{\hat{x}}=\left[\begin{array}{r}2/3\\0\\1/3\end{array}\right]\]
+\end{enumerate}
+\subsection*{Question 9.}
+With the given $QR$-factorization of $A$, compute the least square solution of $A\mathbf{x}=\mathbf{b}$:
+\[
+A=\left[
+\begin{array}{rr}
+ 2 &  3 \\
+ 2 &  4 \\
+ 1 &  1
+\end{array}
+\right]
+=\left[
+\begin{array}{rr}
+ 2/3 &  -1/3 \\
+ 2/3 &   2/3 \\
+ 1/3 &  -2/3
+\end{array}
+\right]\left[
+\begin{array}{rr}
+ 3 &  5 \\
+ 0 &  1
+\end{array}
+\right], \mathbf{b}=\left[\begin{array}{r}7\\3\\1\end{array}\right]
+\]
+\subsection*{Solution 9.}
+Let $\mathbf{\epsilon}=A\mathbf{\hat{x}}-\mathbf{b}$,  in which $A^T\mathbf{\epsilon}=0$.\newline
+Then, $R^TQ^T\mathbf{\epsilon}=0$. Since $R$ is invertible, $Q^T\mathbf{\epsilon}=0$.
+\[Q^TQR\mathbf{\hat{x}}+Q^T\mathbf{\epsilon}=R\mathbf{\hat{x}}=Q^T\mathbf{b},\]
+\[Q^T\mathbf{b}=\left[\begin{array}{r}7\\-1\end{array}\right]\]
+Hence, 
+\[\left[
+\begin{array}{rr}
+ 3 &  5 \\
+ 0 &  1
+\end{array}
+\right]\mathbf{\hat{x}}=\left[\begin{array}{r}7\\-1\end{array}\right]\Rightarrow \mathbf{\hat{x}}=\left[\begin{array}{r}4\\-1\end{array}\right]\]
+\subsection*{Question 10.}
+Let $A$ be an $m\times n$ matrix. Use the steps below to show that a vector $\mathbf{x}\in\mathbf{R}^n$ satisfies $A\mathbf{x}=0$ if and only if $A^TA\mathbf{x}=0$. This implies Nul($A$)=Nul($A^TA$).
+\begin{enumerate} [label=(\arabic*)]
+    \item Show that if $A\mathbf{x}=0$, then $A^TA\mathbf{x}=0$.
+    \item Suppose that $A^TA\mathbf{x}=0$. Explain why $\mathbf{x}^TA^TA\mathbf{x}=0$ and deduce from it that $A\mathbf{x}=0$.
+\end{enumerate}
+Deduce from the above results that rk($A^TA$)=rk($A$).
+\subsection*{Solution 10.}
+\begin{enumerate} [label=(\arabic*)]
+    \item $A\mathbf{x}=0\Rightarrow A^TA\mathbf{x}=A^T(A\mathbf{x})=A^T\cdot 0=0$
+    \item $A^TA\mathbf{x}=0\Rightarrow \mathbf{x}^TA^TA\mathbf{x}=\mathbf{x}^T(A^TA\mathbf{x})=\mathbf{x}^T\cdot 0=0$,\newline
+    $\mathbf{x}^TA^TA\mathbf{x}=(A\mathbf{x})^T(A\mathbf{x})=||A\mathbf{x}||^2=0\Rightarrow||A\mathbf{x}||=0\Rightarrow A\mathbf{x}=0$
+\end{enumerate}
+By (1)(2), $(\forall x\in \mathbf{R}^n)(\mathbf{x}\in$Nul($A$)$\leftrightarrow\mathbf{x}\in$Nul($A^TA$))$\Rightarrow$ dim Nul($A$)= dim Nul($A^TA$).\newline
+By rank-nullity theorem,\newline
+rk($A^TA$)+dim Nul($A^TA$)=$n$=rk($A$)+dim Nul($A$)$\Rightarrow$ rk($A^TA$)=rk($A$).$\blacksquare$
+\subsection*{Question 11.}
+A certain experiment produces the data $(1,7.9)$, (2,5.4), (3,-0.9). Describe the model that produces a least squares fit of these points by a function of the form $y=A\cos(x)+B\sin(x)$.
+\subsection*{Solution 11.}
+\[
+\left[
+\begin{array}{rr}
+ \cos 1 &  \sin 1 \\
+ \cos 2 &  \sin 2 \\
+ \cos 3 &  \sin 3 \\
+\end{array}
+\right]
+\left[
+\begin{array}{r}A\\B
+\end{array}
+\right]
++\Vec{\varepsilon}=
+\left[
+\begin{array}{r}7.9\\5.4\\-0.9
+\end{array}
+\right]
+\]
+\end{document}
