@@ -72,14 +72,13 @@ sudo apt-get install build-essential gdb
 
 ##### 1.1.3.1. Set up environment variables  (For mac users only, otherwise skip until 'create new project' )
 
-After VSCODE is downloaded, drag it into the 'Application' folder via finder.
+After VSCODE is downloaded, drag it into the 'Applications' folder via finder.
 
 Then, open VSCODE and press ```⌘``` + ```shift``` + ```P``` , to open the **command palette**.
 
 Type the following sequentially.
 
 ```
-Shell Command: Uninstall 'code' command from PATH
 Shell Command: Install 'code' command in PATH
 ```
 
