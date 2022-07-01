@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 11}
+\begin{document}
+\maketitle
+Note: $\mathrm{sgn}$ of a permutation is $(-1) ^\text{\{number of inversions of the permutation\}} $.
+\subsection*{Solution 1.11.1.}
+\begin{enumerate}
+    \item 
+    \[e^1 \otimes e^2(e_1\otimes e_2) = e^1(e_1)e^2(e_2)=1\]
+    \item 
+    \[\mathrm{Alt}(e^1\otimes e^2) (e_1\otimes e_2) = \frac{1}{2}(e^1\otimes e^2 - e^2\otimes e^1)(e_1\otimes e_2) = \frac{1}{2}\]
+    \item
+    \[e^1\otimes e^2 (\mathrm{Alt}(e_1\otimes e_2)) = e^1\otimes e^2(\frac{1}{2}(e_1\otimes e_2 - e_2\otimes e_1)) = \frac{1}{2}\]
+    \item
+    \[\mathrm{Alt}(e^1\otimes e^2)\mathrm{Alt}(e_1\otimes e_2) = \frac{1}{4}(e^1\otimes e^2 - e^2 \otimes e^1)(e_1\otimes e_2 - e_2\otimes e_1) = \frac{1}{2}\]
+    \item 
+    \[e^1\wedge e^2 (\mathrm{Alt}(e_1\otimes e_2)) = 2\mathrm{Alt}(e^1\otimes e^2)\mathrm{Alt}(e_1\otimes e_2) = 1\]
+    \item 
+    \[e^1\wedge e^2(e_1\otimes e_2) = 2\mathrm{Alt}(e^1\otimes e^2) (e_1\otimes e_2) = 1\]
+    \item
+    \[e^1\otimes e^2 (e_1 \wedge e_2) = 2e^1\otimes e^2 (\mathrm{Alt}(e_1\otimes e_2)) = 1\]
+    \item
+    \[e^1 \wedge e^2 (e_1\wedge e_2) = 4\mathrm{Alt}(e^1\otimes e^2)\mathrm{Alt}(e_1\otimes e_2) = 2\]
+    \item 
+    \[\langle e_1\otimes e_2, e_1\otimes e_3 \rangle = \langle e_1,e_1\rangle \langle e_2,e_3\rangle = 0\]
+    \[\langle u_1 \wedge v_1, u_2 \wedge v_2\rangle = \langle u_1 \otimes v_1 - v_1 \otimes u_1, u_2 \otimes v_2 - v_2 \otimes u_2\rangle\]
+    \[=\langle u_1\otimes v_1, u_2\otimes v_2\rangle - \langle u_1\otimes v_1, v_2\otimes u_2\rangle - \langle v_1\otimes u_1, u_2\otimes v_2\rangle + \langle v_1\otimes u_1, v_2\otimes u_2\rangle \]
+    \[=\langle u_1, u_2\rangle\langle v_1,v_2\rangle - \langle u_1, v_2\rangle\langle v_1,u_2\rangle - \langle v_1, u_2\rangle\langle u_1,v_2\rangle+\langle v_1, v_2\rangle\langle u_1,u_2\rangle\]
+    \[=2(\langle u_1, u_2\rangle\langle v_1,v_2\rangle - \langle u_1, v_2\rangle\langle v_1,u_2\rangle)\]
+    \[\langle e_1 \wedge e_2, e_1\wedge e_3\rangle = 2(\langle e_1,e_1\rangle \langle e_2, e_3\rangle - \langle e_1, e_3\rangle \langle e_1, e_2\rangle) = 0\]
+    \item
+    \[\langle e_1 \wedge e_2 \wedge e_3,e_1 \wedge e_2 \wedge e_3 \rangle \]
+    \[ = \sum_{\sigma,\tau \in S_3} \mathrm{sgn}(\sigma)\mathrm{sgn}(\tau)\langle \sigma(e_{123}),\tau(e_{123})\rangle\]
+    \[=\sum_{\sigma,\tau \in S_3} \mathrm{sgn}(\sigma)\mathrm{sgn}(\tau)\delta_{il}\delta_{jm}\delta_{ln}e_{\sigma(1)}^i e_{\sigma(2)}^j e_{\sigma(3)}^k e_{\tau(1)}^l e_{\tau(2)}^m e_{\tau(3)}^n\]
+    Any term in this sum is 1 iff $\sigma = \tau$, and 0 otherwise. So,
+    \[ = \sum_{\sigma,\tau \in S_3} \mathrm{sgn}(\sigma)\mathrm{sgn}(\tau)\langle \sigma(e_{123}),\tau(e_{123})\rangle\]
+    \[=\sum_{\sigma\in S_3}\delta_{il}\delta_{jm}\delta_{ln}e_{\sigma(1)}^i e_{\sigma(2)}^j e_{\sigma(3)}^k e_{\sigma(1)}^l e_{\sigma(2)}^m e_{\sigma(3)}^n = 6\]
+    \[\Rightarrow ||e_1 \wedge e_2 \wedge e_3|| = \sqrt{6}\]
+    \[||\mathrm{Alt}(e_1\otimes e_2 \otimes e_3)|| = ||\frac{1}{3!} e_1 \wedge e_2 \wedge e_3|| = \frac{\sqrt{6}}{6}\]
+    \[||\mathrm{Alt}(e_1\otimes e_2)\wedge e_3|| = \frac{1}{2!}||e_1 \wedge e_2 \wedge e_3|| = \frac{\sqrt{6}}{2}\]
+\end{enumerate}
+\subsection*{Solution 1.11.2.}
+\begin{enumerate}
+    \item In $\bigwedge_3 R^3$, $\forall u,v,w \in R^3$
+    \[\mathrm{det}(u,v,w) = \sum _{\sigma \in S_3} \mathrm{sgn}(\sigma) u ^ {\sigma(1)} v ^ {\sigma(2)} w ^ {\sigma(3)}\]
+    By definition of Levi-Civita notation, 
+    \[e_{ijk} = \left\{\begin{array}{ll}
+    0, & (i-j)(j-k)(k-i) = 0 \\
+    \mathrm{sgn}(\sigma), & \text{otherwise}
+    \end{array}\right.\]
+    where for the latter case, in particular, $\sigma(1) = i, \sigma(2) = j, \sigma(3) = k$. That immediately yields
+    \[\mathrm{det}(u,v,w) = e_{ijk} u^i v^j w^k = e_{ijk} e^i(u)e^j(v)e^k(w) = (e_{ijk} e^i \otimes e^j \otimes e^k)(u,v,w)\]
+    \item $\forall u,v\in R^2, \alpha, \beta \in (R^2)^*$,
+    \[e_{ij} e^{mn}u^i v^j \alpha_m \beta_n = e_{ij} u^iv^je^{mn} \alpha_m \beta_n = \mathrm{det}\left(\left[\begin{array}{cc}
+    \alpha(u) & \alpha(v) \\
+    \beta(u) & \beta(v)
+    \end{array}\right]\right) = \alpha(u)\beta(v) - \alpha(v)\beta(u)\]
+    \[(\delta_i^m\delta_j^n-\delta_i^n\delta_j^m)(u^iv^j\alpha_m\beta_n) = \delta_i^m u^i \alpha_m \delta_j^n v^j \beta_n -\delta_i^n u^i \beta_n \delta_j^m v^j \alpha_m = \alpha(u)\beta(v) - \beta(u)\alpha(v)\]
+    \[\Rightarrow \delta_i^m\delta_j^n-\delta_i^n\delta_j^m = e_{ij} e^{mn}\]
+    \item
+    For a component of $e_{ijk} e^{imn}$ to be nonzero, only $j=m, k = n$ or $j = n, k = m$ is possible. \\
+    For the former case, the parities of the two permutations are the same, which yields 1. \\
+    For the latter case, the parities of the two permutations are different, which yields -1. \\
+    Therefore, $e_{ijk} e^{imn} = \delta_j ^ m \delta_k^ n -\delta_j ^ n\delta _k ^m$     $\square$.
+    \item Set $m=j$, then $e_{ijk} e^{ijn} = \delta_j ^ j \delta_k^ n -\delta_j ^ n\delta _k ^j = 3\delta_k^ n - \delta_k ^n = 2\delta_k^n$ \\
+    Set $n = k$, then $e_{ijk} e^{ijk} = 2\delta_k^k = 6$
+\end{enumerate}
+\subsection*{Solution 1.11.3.}
+\begin{enumerate}
+    \item $\tau^2 = \frac{1}{2}(e_{1122}-e_{1221}-e_{2112}+e_{2211})$, 
+    $$\langle a\otimes b\otimes c \otimes d, e\otimes f \otimes g \otimes h\rangle = \langle a\otimes b, e\otimes f\rangle \langle c\otimes d, g\otimes h\rangle = \langle a,e\rangle\langle b,f\rangle\langle c,g\rangle\langle d,h\rangle $$
+    So expansion of the inner product by enumerating all combinations (through distributing properties) ignores non-identical terms.
+    \[\langle \tau^2,\tau^2\rangle = \frac{1}{4}\left(
+    \langle e_{1122}, e_{1122}\rangle +\langle e_{1221}, e_{1221}\rangle + \langle e_{2112}, e_{2112}\rangle +\langle e_{2211}, e_{2211}\rangle \right) = 1\Rightarrow ||\tau^2|| = 1\]
+    Suppose $\tau = u\otimes v$. Then W.L.O.G. let $u = u^1e_1+u^2e_2, v=v^1e_1+v^2e_2$. 
+    \[\tau = u\otimes v = (u^1e_1+u^2e_2)\otimes (v^1e_1+v^2e_2) = u^1v^1e_1\otimes e_1 + u^1v^2e_1\otimes e_2 + u^2v^1e_2\otimes e_1 + u^2v^2 e_2\otimes e_2\]
+    Hence, $u^1v^1=u^2v^2=0,u^1v^2=\frac{1}{\sqrt{2}}, u^2v^1 = -\frac{1}{\sqrt{2}}$, and $0 = u^1v^1u^2v^2 = -\frac{1}{2}$, which is impossible. $\square$
+    \item Trivially its matrix representation is $\left[\begin{array}{cc} 1 \\ & -1 \end{array}\right]$, so $M_A = e_1^T \otimes e_1^T - e_2^T \otimes e_2^T$.
+    \item Its matrix representation is $
+    \left[\begin{array}{cc} 1 & 1 \\ 1 & -1 \end{array}\right]
+    \left[\begin{array}{cc} 1 \\ & -1 \end{array}\right]
+    \left[\begin{array}{cc} 1 & 1\\ 1 & -1 \end{array}\right] ^ {-1} = \left[\begin{array}{cc}  & 1 \\ 1 \end{array}\right]$, \\
+    $N_A = e_1^T \otimes e_2^T + e_2^T \otimes e_1^T$.
+    \item Matrix multiplication is associative, and is distributive over addition, so the matrix representation of the sum of the two bilinear map is just the sum of the matrix: \\
+    For $M_B$, its representation is 
+    \[\frac{1}{\sqrt{2}} \left[\begin{array}{cc} 1 & 1 \\ 1 & -1 \end{array}\right]\]
+    That matrix has determinant -1 and trace 0, so $\pm 1$ are the eigenvalues. \\
+    For $N_B$, its representation is 
+    \[\frac{1}{\sqrt{2}} \left[\begin{array}{cc} 1 & -1 \\ -1 & -1 \end{array}\right]\]
+    That matrix has determinant -1 and trace 0, so $\pm 1$ are the eigenvalues.
+    \item 
+    \[M_A \otimes M_B + M_A\otimes N_B+N_A\otimes M_B - N_A\otimes N_B \]
+    \[=\frac{1}{\sqrt{2}}(
+    M_A\otimes M_A + M_A\otimes N_A + M_A\otimes M_A - M_A\otimes N_A + N_A\otimes M_A + N_A\otimes N_A - N_A\otimes M_A + N_A\otimes N_A )\]
+    \[=\sqrt{2}(M_A\otimes M_A + N_A \otimes N_A) = \sqrt{2}((e^{11}-e^{22})\otimes(e^{11}-e^{22})+(e^{12}+e^{21})\otimes(e^{12}+e^{21}) )\]
+    \[=\sqrt{2}(e^{1111}-e^{1122}-e^{2211}+e^{2222}+e^{1212}+e^{1221}+e^{2112}+e^{2121}),\]
+    \[(M_A \otimes M_B + M_A\otimes N_B+N_A\otimes M_B - N_A\otimes N_B)(\tau^2)\]
+    \[=\frac{\sqrt{2}}{2}(-e^{1122}(e_{1122})+e^{1221}(-e_{1221})+e^{2112}(-e_{2112})-e^{2211}(e_{2211})) = -2\sqrt{2}\]
+    \item 
+    Let $v = \cos \theta e_1 + \sin \theta e_2$, $w = \cos\phi e_1 + \sin\phi e_2$.
+    \[v\otimes v = \cos^2\theta e_{11} + \cos\theta \sin\theta (e_{12}+e_{21}) + \sin^2 \theta e_{22}\]
+    \[v\otimes v \otimes w \otimes w = \cos^2\theta \cos^2 \phi e_{1111} + \cos^2\theta \sin^2 \phi e_{1122} \]
+    \[+ \cos\theta \sin\theta \cos \phi\sin\phi (e_{1212}+e_{1221}+e_{2112}+e_{2121}) + \sin^2\theta \cos^2 \phi e_{2211} + \sin^2 \theta \sin^2 \phi e_{2222} +\cdots\]
+    The 8 other terms are neglected as they are irrelevant in calculation below.
+    \[(M_A \otimes M_B + M_A\otimes N_B+N_A\otimes M_B - N_A\otimes N_B)(v\otimes v \otimes w \otimes w)\]
+    \[=\sqrt{2}(\cos^2\theta \cos^2 \phi-\cos^2\theta \sin^2 \phi + 4\cos\theta \sin\theta \cos \phi\sin\phi -\sin^2\theta \cos^2 \phi + \sin^2 \theta \sin^2 \phi)\]
+    \[=\sqrt{2}((\cos^2\theta-\sin^2\theta)(\cos^2\phi-\sin^2\phi)+ \sin(2\theta)\sin(2\phi))\]
+    \[=\sqrt{2}(\cos(2\theta)\cos(2\phi)+\sin(2\theta)\sin(2\phi)) = \sqrt{2}\cos(2\theta - 2\phi),\]
+    It is trivial that $-\sqrt{2}\leq \sqrt{2}\cos(2\theta - 2\phi) \leq \sqrt{2}.$  $\blacksquare$
+\end{enumerate}
+\end{document}

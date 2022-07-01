@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 8}
+\begin{document}
+\maketitle
+* Credit to Fan Sunqi for some parts in Sol. 1.8.2.
+\subsection*{Solution 1.8.1.}
+\begin{enumerate}
+    \item $(\alpha \otimes \beta \otimes \gamma)_{ijk} = \alpha_i \beta_j \gamma_k$, where subscript $n$ is the index of component of the row vector.
+    \item  
+    \textbf{Lemma1 :} \\
+    Let $U = \alpha \otimes \beta \otimes \gamma$, $\mathcal{K}(u,v,w) = u \otimes v \otimes w$, 
+    $L$ be a $1\times 8$ row vector that its entries are in the form of $\alpha_i\beta_j\gamma_k$, where $i,j,k$ are put in lexicographic order. Then,  
+    $U = L \circ \mathcal{K}$. \\
+    \textbf{Proof 1:} \\
+    $U(u,v,w) = \alpha(u)\beta(v)\gamma(v)$. Expand the R.H.S. directly follows. \\
+    \textbf{Lemma 2:} \\
+    $M_E(U) = M_E'(L) \circ \mathcal{K}$, where $M_E'$ is just a matrix, whenever $E$ is an elementary matrix. \\
+    \textbf{Proof 2:} \\
+    Case 1: $E = \left[\begin{array}{cc}
+    0 & 1 \\
+    1 & 0
+    \end{array}\right]$, then $M_E'(L) = L \cdot \left[\begin{array}{cc}
+    0 & I_4 \\
+    I_4 & 0
+    \end{array}\right]$. \\
+    Case 2: $E = \left[\begin{array}{cc}
+    s_1 & 0 \\
+    0 & s_2
+    \end{array}\right]$, then $M_E'(L) = L \cdot \left[\begin{array}{cc}
+    s_1I_4 & 0 \\
+    0 & s_2I_4
+    \end{array}\right]$ \\
+    Case 3: $E = \left[\begin{array}{cc}
+    1 & 0 \\
+    k & 1
+    \end{array}\right]$, then $M_E'(L) = L \cdot \left[\begin{array}{cc}
+    I_4 & 0 \\
+    kI_4 & I_4
+    \end{array}\right]$ \\
+    Let $U_1 = L_1 \circ \mathcal{K}$, $U_2 = L_2 \circ \mathcal{K}$, then $aU_1 + bU_2 = aL_1 \circ \mathcal{K} + bL_2 \circ \mathcal{K} = (aL_1 + bL_2) \circ \mathcal{K},$ 
+    \[M_E(aU_1 + bU_2) = M_E'(aL_1+bL_2)\circ \mathcal{K} = aM_E'(L_1)\circ \mathcal{K} + bM_E'(L_2) \circ \mathcal{K} = aM_E(U_1) + bM_E(U_2)\]
+    Other matrices in $((R ^ 2) ^ *) ^ {\otimes 3}$ are just linear combinations of the $U$ 's, the proof directly follows.
+    \item Suppose $M = \sum_{i = 1} ^ r a_i U_i$, where $U_i =$ , $a_i\neq 0$ and $\sum_{i = 1} ^ r t_i U_i = 0$ yields $t_1 = t_2 = \cdots = t_r = 0$, then 
+    \[M_E(M) = M_E\left(\sum_{i = 1} ^ r a_i U_i\right) = \sum_{i = 1} ^ r a_i M_E(U_i)\]
+    By the way, $M_E$ is bijective, since elementary operations $E$ are always invertible, so $M_E(M)$ is a rank $r$ tensor.
+    \item  Assume the 3D matrix $M$ to have rank less than r, then $M = \sum_{i = 1} ^ {r'} a_i U_i$, $r'<r$ and $U_i$ are simple tensors. Then for each $a_iU_i$, that layer has rank 1, and the sum yields that, that layer can only have rank less than $r$, which is a contradiction.
+    \item It is rank two, since $M =( [1,-1]\otimes[1,-1]\otimes[1,-1] + [1,1]\otimes[1,1]\otimes[1,1]) / 2.$
+\end{enumerate}
+
+\subsection*{Solution 1.8.2.}
+\begin{enumerate}
+    \item 
+    \[M(v,v,v) = v^T\left(x\left[\begin{array}{ccc}
+    3 & 4 & 5 \\
+    4 & 5 & 6 \\
+    5 & 6 & 7
+    \end{array}\right] + y\left[\begin{array}{ccc}
+    4 & 5 & 6 \\
+    5 & 6 & 7 \\
+    6 & 7 & 8
+    \end{array}\right] +
+    z\left[\begin{array}{ccc}
+    5 & 6 & 7 \\
+    6 & 7 & 8 \\
+    7 & 8 & 9
+    \end{array}\right]\right)v\]
+    It can be treated as a "cubic form", analogous to quadratic forms, so it is
+    \[M(v,v,v) = 3x ^ 3 + 6y ^ 3 + 9z ^ 3 + 12x ^ 2 y + 15xy ^ 2 + 15 x ^ 2 z + 21xz ^ 2 + 21y ^ 2 z + 24yz ^ 2 + 36xyz\]
+    \item Similar to 1.8.1, convert M to be a composition of a $1\times 27$ row vector and the Kronecker product of the three input vectors, $M = L \circ \mathcal{K}$. Then, for each entry in $\mathcal{K}(v_1, v_2, v_3)$, 
+    it must be in the form of $v_1 ^ i v_2 ^ j v_3 ^ k$, where superscript denotes the position of entry in its own vector. \\
+    Let $\sigma'$ be an element in a group that isomorphic to $S_6$, that $\sigma'(v_1, v_2, v_3) = (v_{\sigma(1)}, v_{\sigma(2)}, v_{\sigma(3)}),$ then $\sigma'$ induces $\sigma''$ which is another element that comes from another group isomorphic to $S_6$ and $\sigma''$ correspond to $\sigma'$, 
+    \[\mathcal{K}(\sigma'(v_1,v_2,v_3)) = \sigma''\circ \mathcal{K}(v_1, v_2, v_3)\]
+    $L \circ \sigma''$ gives a row vector that permutates around the entries of $L$. As entries of $L$ implicitly refers to the entries of $M$, $L = [3,4,5,4,5,6,\cdots]$, that $L_1 =(1,1,1)$ entry, $L_2 = (1,1,2)$ entry and so on, $L\circ \sigma''$ permutates the subscript of the entry that the entry of $L$ refers to in $M$. However, in $M$, $M_{ijk} = i + j + k$  is invariant over permutation, so $L \circ \sigma'' = L$.\\
+    Intuitively, M can be thought as a cube that is invariant over "rotations of triangles that results rotational symmetry", on the axis that pass through $(1,1,1)$ and $(3,3,3)$. In addition, straighten up the axis. Watch the cube from the top, then it has two-fold reflectional symmetry.
+    \item 
+    On one hand, rank of $M$ is not less than 2 by 1.8.1.4.\\
+    On the other hand, the upper layer and the lower layer can be treated as adding or subtracting a layer of matrix with all ones. \\
+    Further crack down the layer of 
+    $\left[
+    \begin{array}{ccc}
+     4 & 5 & 6\\
+     5 & 6 & 7\\
+     6 & 7 & 8
+    \end{array}
+    \right]$: it is a rank two matrix, 
+    \[\left[
+    \begin{array}{ccc}
+     4 & 5 & 6\\
+     5 & 6 & 7\\
+     6 & 7 & 8
+    \end{array}
+    \right] = [5,6,7]^T[1,1,1]+[1,1,1]^T[-1,0,1]\]
+    Moreover, 
+    \[\left[
+    \begin{array}{ccc}
+     1 & 1 & 1\\
+     1 & 1 & 1\\
+     1 & 1 & 1
+    \end{array}
+    \right] = [1,1,1]^T[1,1,1]\]
+    So, 
+    \[M = [5,6,7]\otimes[1,1,1]\otimes[-1,0,1] + [1,1,1]\otimes[-1,0,1]\otimes[-1,0,1] + [1,1,1]\otimes[1,1,1]\otimes[-1,0,1]\]
+    $M$ is expressed as sum of three simple tensors, so its rank is at most 3.
+\end{enumerate}
+
+\end{document}

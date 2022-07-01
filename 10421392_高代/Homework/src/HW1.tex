@@ -1,0 +1,259 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 1}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.1.1.}
+\begin{enumerate}
+    \item 
+    To begin, inspect the case when $n=2$.\newline
+    When $n=2$, it is equivalent to finding a linear transformation that, when it is a composite transformation of its own, that composite transformation maps any vector on the plane to another vector in its opposite direction. That can be done by rotation matrix of $\pm \frac{\pi}{2}$, or any matrix similar to that rotation matrix. Then we have
+    \[\mathrm{Rot}\left(\frac{\pi}{2}\right)=\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right],
+    \mathrm{Rot}\left(\frac{\pi}{2}\right)^2=\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right]\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right]=\left[\begin{array}{rr}
+    -1 & 0 \\
+    0 &  -1
+    \end{array}\right]\]
+    Let $A_1=\mathrm{Rot\left(\frac{\pi}{2}\right)}$. The following proves that when $n=2k$, the matrix would be in the form that the main diagonal of the matrix is filled with blocks of $A_1$, and elsewhere zero, or any matrix similar to that.\newline
+    Let $S(k):(A_k)^2=-I_{2k\times 2k}$.\newline
+    The proof of $S(1)$ is shown above. \newline
+    Assume $S(k)$ is true, then for $S(k+1)$,
+    \[A_{k+1}=\left[\begin{array}{rr}
+    A_k   \\
+    & A_1 
+    \end{array}\right], A_{k+1}^2=\left[\begin{array}{rr}
+    A_k   \\
+    & A_1 
+    \end{array}\right]\left[\begin{array}{rr}
+    A_k   \\
+    & A_1 
+    \end{array}\right]=\left[\begin{array}{rr}
+    -I_{2k}   \\
+    & -I_2 
+    \end{array}\right]=-I_{2(k+1)\times 2(k+1)}\]
+    So we have $S(k)\Rightarrow S(k+1)$.
+    By the first principle of mathematical induction, $S(k)$ is true for any positive integer $k$, and hence
+    \[A=\left[\begin{array}{rrr}
+    A_1 &  \\
+     & \ddots\\
+     && A_1
+    \end{array}\right]\]
+    or any other matrices similar to that are possible solutions.
+    \item
+    First, consider a Jordan block. Every Jordan block would be in the form of
+    \[J=\left[\begin{array}{rrrrr}
+    \lambda & 1 \\
+     &  \lambda &1 \\
+     &&\ddots&\ddots\\
+     &&&\lambda & 1\\
+     &&&&\lambda
+    \end{array}\right],J^2=\left[\begin{array}{rrrrrr}
+    \lambda^2 & 2\lambda&1 \\
+     &  \lambda^2 &2\lambda&1 \\
+     &&\ddots&\ddots&\ddots\\
+     &&&\lambda^2 & 2\lambda&1\\
+     &&&&\lambda^2&2\lambda\\
+     &&&&&\lambda^2
+    \end{array}\right]\]
+    Assume that $A\in\mathbf{R}^{n\times n}$, then its characteristic polynomial would be a polynomial with real coefficients. By Vieta's theorem, if a complex number $z$ is an eigenvalue of $A$, then $\Bar{z}$ is another eigenvalue of $A$, and hence when $n$ is odd, there exists real eigenvalue to $A$.\newline
+    Factorize $A$ in the form that $A=XJX^{-1}$, where $X$ are generalized eigenvectors w.r.t. Jordan blocks in $J$, then we have\newline
+    \[A^2=XJ^2X^{-1}=-I\Leftrightarrow J^2=-I,\]
+    so $A$ should be diagonalizable, and nothing other than $\pm i$ can be eigenvalues of $A$, contradicting the fact that there exists real eigenvalue to $A$.  $\blacksquare$ 
+\end{enumerate}
+\subsection*{Solution 1.1.2.}
+\begin{enumerate}
+    \item $A$ is known as a linear complex structure. \newline
+    Let $k=x+iy$, where $x,y\in\mathbf{R},k\in\mathbf{C}$.
+    \newline
+    Let $P=B(kv)-kB(v)$, then
+    \[P=B(kv)-kB(v)=B(x+iy)v-(x+iy)Bv=B(xI+Ay)v-(xI+Ay)Bv\]
+    Since $A,B\in M_n(\mathbf{R})$, $A$ and $B$ are both $\mathbf{R}-$linear, then
+    \[P=xBv+yBAv-xBv-yABv=yBAv-yABv\]
+    As $v$ and $y$ are both arbitary,
+    \[B(kv)=k(Bv)\Leftrightarrow P=0\Leftrightarrow AB=BA\]
+    \item No. Consider the case when 
+    \[A=\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right], X=\left[\begin{array}{rr}
+    1 & -2 \\
+    1 & -1
+    \end{array}\right]\]
+    Then 
+    \[AX-XA=\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right]\left[\begin{array}{rr}
+    1 & -2 \\
+    1 & -1
+    \end{array}\right]-\left[\begin{array}{rr}
+    1 & -2 \\
+    1 & -1
+    \end{array}\right]\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right]=\left[\begin{array}{rr}
+    3 & -2 \\
+    -2 & 1
+    \end{array}\right]\neq 0\]
+    \item Set A=$\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right]$, then $C=\mathrm{Ref}(\theta)=\left[\begin{array}{rr}
+    \cos{2\theta} & \sin{2\theta} \\
+    \sin{2\theta} & -\cos{2\theta}
+    \end{array}\right]$, $\theta \in [0,\pi)$.\newline
+    Clearly, $\mathrm{Ref}(\theta)$ represents a reflection matrix, which implies $C^2=I$.\newline
+    \[CA+AC=\left[\begin{array}{rr}
+    \cos{2\theta} & \sin{2\theta} \\
+    \sin{2\theta} & -\cos{2\theta}
+    \end{array}\right]\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right]+\left[\begin{array}{rr}
+    0 & -1 \\
+    1 &  0
+    \end{array}\right]\left[\begin{array}{rr}
+    \cos{2\theta} & \sin{2\theta} \\
+    \sin{2\theta} & -\cos{2\theta}
+    \end{array}\right]\]
+    \[=\left[\begin{array}{rr}
+    \sin{2\theta} & -\cos{2\theta} \\
+    -\cos{2\theta} & -\sin{2\theta}
+    \end{array}\right]+\left[\begin{array}{rr}
+    -\sin{2\theta} & \cos{2\theta} \\
+    \cos{2\theta} & \sin{2\theta}
+    \end{array}\right]=0\]
+    For example, 
+    \[C_1=\left[\begin{array}{rr}
+    0 & 1 \\
+    1 & 0
+    \end{array}\right], C_2=\left[\begin{array}{rr}
+    0 & -1 \\
+    -1 & 0
+    \end{array}\right].\]
+\end{enumerate}
+\pagebreak
+\subsection*{Solution 1.1.3.}
+\begin{enumerate}
+    \item $C$ is real linear, but not complex linear. $\forall a\in \mathbf{R}$, $\forall v\in \mathbf{C}^n$, 
+    \[C(a\mathbf{v})=C\left[\begin{array}{c}ax_1+iay_1\\ax_2+iay_2\\\vdots\\ax_n+iay_n\end{array}\right]=\left[\begin{array}{c}ax_1-iay_1\\ax_2-iay_2\\\vdots\\ax_n-iay_n\end{array}\right]\]
+    \[a(C\mathbf{v})=a\left(C\left[\begin{array}{c}x_1+iy_1\\x_2+iy_2\\\vdots\\x_n+iy_n\end{array}\right]\right)=a\left[\begin{array}{c}x_1-iy_1\\x_2-iy_2\\\vdots\\x_n-iy_n\end{array}\right]=\left[\begin{array}{c}ax_1-iay_1\\ax_2-iay_2\\\vdots\\ax_n-iay_n\end{array}\right]\]
+    However, $C$ is not complex linear. For instance, 
+    \[C\left(i\cdot\left[\begin{array}{c}1+i\\2\\3+i\end{array}\right]\right)=C\left[\begin{array}{c}-1+i\\2i\\-1+3i\end{array}\right]=\left[\begin{array}{c}-1-i\\-2i\\-1-3i\end{array}\right],\]
+    but then
+    \[i\cdot C\left[\begin{array}{c}1+i\\2\\3+i\end{array}\right]=i\cdot \left[\begin{array}{c}1-i\\2\\3-i\end{array}\right]=\left[\begin{array}{c}1+i\\2i\\1+3i\end{array}\right]\]
+    \item $\mathbf{C}$-linear $\Rightarrow$ $\mathbf{R}$-linear. Sufficiency is proved by the fact that reals are complex number with zero imaginary component. Necessity is disproved in (1).
+    \item $\mathbf{R}$-basis: $\mathcal{B}=\left\{\left[\begin{array}{r}1\\0\end{array}\right],\left[\begin{array}{r}i\\0\end{array}\right],\left[\begin{array}{r}0\\1\end{array}\right],\left[\begin{array}{r}0\\i\end{array}\right]\right\}$, 
+    $\mathbf{C}$-basis: $\mathcal{B}=\left\{\left[\begin{array}{r}1\\0\end{array}\right],\left[\begin{array}{r}0\\1\end{array}\right]\right\}$.\newline
+    Real-dimension of $\mathbf{C}^2$=size of $\mathbf{R}$-basis=4,
+    complex-dimension of $\mathbf{C}^2$=size of $\mathbf{C}$-basis=2.
+    \item $\mathbf{C}$-linearly independent $\Rightarrow$ $\mathbf{R}$-linearly independent. Consider matrix $B$ with basis column vectors. Let $\mathbf{v}=\mathbf{x}+i\mathbf{y}$, where $\mathbf{x},\mathbf{y}\in\mathbf{R}^n$. $B$ is filled by basis, so $B\mathbf{v}=B\mathbf{x}+Bi\mathbf{y}=0$ has $\mathbf{x}=\mathbf{y}=0$, proving sufficiency. Necessity is disproved by considering (3) that 
+    \[\left[\begin{array}{r}1\\0\end{array}\right]+i\cdot\left[\begin{array}{r}i\\0\end{array}\right]+\left[\begin{array}{r}0\\1\end{array}\right]+i\cdot\left[\begin{array}{r}0\\i\end{array}\right]=0\]
+    \item $\mathbf{R}$-spanning $\Rightarrow$ $\mathbf{C}$-spanning. Any vector in a space w.r.t. the set of spanning vectors can be expressed as a linear combination of the spanning vectors. $\mathbf{R}$-spanning means the coefficients corresponding to the linear combination are real, which is a special case of expressing the vectors in a linear combination with coefficients of complex numbers, in the sense that the imaginary part is zero. Necessity is disproved by (3) that  $\mathcal{B}=\left\{\left[\begin{array}{r}1\\0\end{array}\right],\left[\begin{array}{r}0\\1\end{array}\right]\right\}$ failed to span $\mathbf{C}^2$ as non real vectors in $\mathbf{C}^2$ are missed out.
+\end{enumerate}
+\pagebreak
+\subsection*{Solution 1.1.4.}
+By given conditions, 
+\[P=\left[\begin{array}{rrrr}
+ & 1 \\
+ &&1 \\
+ &&&1\\
+ 1
+\end{array}\right]\]
+\begin{enumerate}
+    \item 
+\[P\left[\begin{array}{r}1\\1\\1\\1\end{array}\right]
+=\left[\begin{array}{r}1\\1\\1\\1\end{array}\right], 
+P\left[\begin{array}{r}1\\i\\-1\\-i\end{array}\right]
+=\left[\begin{array}{r}i\\-1\\-i\\1
+\end{array}\right]\]
+    \item
+    \[F_4=\left[\begin{array}{rrrr}
+ 1 & 1 & 1 & 1 \\
+ 1 & i &-1 &-i \\
+ 1 &-1 & 1 &-1 \\
+ 1 &-i &-1 & i
+\end{array}\right],F_4^{-1}PF_4=\frac{1}{4}\left[\begin{array}{rrrr}
+ 1 & 1 & 1 & 1 \\
+ 1 &-i &-1 & i \\
+ 1 &-1 & 1 &-1 \\
+ 1 & i &-1 &-i
+\end{array}\right]
+\left[\begin{array}{rrrr}
+ 1 & i &-1 &-i \\
+ 1 &-1 & 1 &-1 \\
+ 1 &-i &-1 & i \\
+ 1 & 1 & 1 & 1
+\end{array}\right]
+=\left[\begin{array}{rrrr}
+ 1 & 0 & 0 & 0 \\
+ 0 & i & 0 & 0 \\
+ 0 & 0 &-1 & 0 \\
+ 0 & 0 & 0 &-i
+\end{array}\right]\]
+$D$ is similar to $P$, so $\lambda_k=i^k,(k=0,1,2,3)$ are eigenvalues of $P$, corresponding eigenvectors are 
+\[ 
+\left[\begin{array}{c}1\\1\\1\\1\end{array}\right],
+\left[\begin{array}{c}1\\i\\-1\\-i\end{array}\right],
+\left[\begin{array}{c}1\\-1\\1\\-1\end{array}\right],
+\left[\begin{array}{c}1\\-i\\-1\\i\end{array}\right].
+\]
+    \item
+    \[C=\left[\begin{array}{rrrr}
+ c_0 & c_1 & c_2 & c_3 \\
+ c_3 & c_0 & c_1 & c_2 \\
+ c_2 & c_3 & c_0 & c_1 \\
+ c_1 & c_2 & c_3 & c_0
+\end{array}\right]\]
+\[C \left[\begin{array}{c}1\\1\\1\\1\end{array}\right]
+=\left[\begin{array}{c}c_0+c_1+c_2+c_3\\c_0+c_1+c_2+c_3\\c_0+c_1+c_2+c_3\\c_0+c_1+c_2+c_3\end{array}\right],
+C \left[\begin{array}{c}1\\i\\-1\\-i\end{array}\right]
+=\left[\begin{array}{c}(c_0-c_2)+(c_1-c_3)i\\(c_3-c_1)+(c_0-c_2)i\\(c_2-c_0)+(c_3-c_1)i\\(c_1-c_3)+(c_2-c_0)i\end{array}\right]
+\]
+    \item 
+    \[C=c_0I+c_1P+c_2P^2+c_3P^3\]
+    As $C$ is similar to $F_4^{-1}CF_4$, $C$ and $F_4^{-1}CF_4$ shares the same eigenvalues.
+    \[F_4^{-1}CF_4=c_0I+c_1F_4^{-1}PF_4+c_2F_4^{-1}P^2F_4+c_3F_4^{-1}P^3F_4\]
+    \[=c_0I+c_1D+c_2D^2+c_3D^3
+    \]\[=
+    \left[\begin{array}{cccc}
+ c_0+c_1+c_2+c_3 & 0                    & 0 & 0 \\
+ 0               & (c_0-c_2)+(c_1-c_3)i & 0 & 0 \\
+ 0               & 0                    & c_0-c_1+c_2-c_3 & 0 \\
+ 0               & 0                    & 0               & (c_0-c_2)+(c_3-c_1)i
+\end{array}\right]\]
+Thus $\lambda_0=c_0+c_1+c_2+c_3$,\newline
+$\lambda_1=(c_0-c_2)+(c_1-c_3)i$,\newline
+$\lambda_2=c_0-c_1+c_2-c_3$ and\newline
+$\lambda_3=(c_0-c_2)+(c_3-c_1)i$ are the eigenvalues associated with C, the four associated eigenvectors are
+\[
+\left[\begin{array}{c}1\\1\\1\\1\end{array}\right],
+\left[\begin{array}{c}1\\i\\-1\\-i\end{array}\right],
+\left[\begin{array}{c}1\\-1\\1\\-1\end{array}\right],
+\left[\begin{array}{c}1\\-i\\-1\\i\end{array}\right].
+\]
+\end{enumerate}
+\end{document}

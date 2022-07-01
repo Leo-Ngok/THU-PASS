@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 10}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.10.1.}
+\begin{enumerate}
+\item 
+\[T^{11} = T^{22} =  -\frac{1}{\sqrt{2}} -1, T^{12} = T^{21} = -1\]
+\item
+
+Indeed, by observation, the two columns in $\mathrm{Rot}(\pi/4)$ are possible to be $x$ and $y$, so let 
+\[\mathbf{x} = \frac{1}{\sqrt{2}}\left[\begin{array}{c} 1 \\ 1 \end{array}\right],\mathbf{y} = \frac{1}{\sqrt{2}}\left[\begin{array}{c} -1 \\ 1 \end{array}\right] \]
+Then, 
+\[\mathbf{x} \otimes \mathbf{x}\]
+has all entries $1/2$, and 
+\[\mathbf{y} \otimes \mathbf{y}\]
+has entry $1/2$ when having equal indices, and  $-1/2$ when having distinct indices. \\
+Immediately
+\[T = -(\sqrt{2}+1)\mathbf{x} \otimes \mathbf{x} - \mathbf{y} \otimes \mathbf{y}\]
+\item
+By observing the result of (2) and the definiton of $T$, the resultant magnitude of force in $\frac{1}{\sqrt{2}}\left[\begin{array}{c} 1 \\ 1\end{array}\right]$ direction is larger than that of $\frac{1}{\sqrt{2}}\left[\begin{array}{c} -1 \\ 1\end{array}\right]$ direction, so the direction of major axis is
+$\frac{1}{\sqrt{2}}\left[\begin{array}{c} -1 \\ 1\end{array}\right]$, while the direction of minor is $\frac{1}{\sqrt{2}}\left[\begin{array}{c} 1 \\ 1\end{array}\right]$
+\item
+As the force are "normal" to the circle, 
+\[T = \sum_{k=1} ^ r c_k \mathbf{x}_k \otimes \mathbf{x}_k\]
+where $\mathbf{x}_k \in R^2$, $c_k\in R$, $||\mathbf{x}_k||=1$(in different directions), $c_k < 0,$ $k = 1,2, \cdots, r.$ \\
+(Here only only consider forces on upper half of the circle, and the force on lower part are moved to the position $\pi$ rad apart of the original position of the circle, with direcction reversed). 
+Let $\mathbf{x_k} = a_ki + b_kj, $ then
+Matrix form of $T_{ij}$ is $T_j ^ i$
+\[T_j ^ i = \left[ \begin{array}{cc}
+\sum_{k=1} ^ r c_k (a_k)^2 & \sum_{k=1} ^ r c_k a_kb_k  \\
+\sum_{k=1} ^ r c_k a_kb_k & \sum_{k=1} ^ r c_k (b_k)^2
+\end{array}\right] \]
+By Cauchy-Schwarz inequality, 
+\[\mathrm{det}(T_j^i) = \left(\sum_{k=1} ^ r c_k (a_k)^2\right)\left(\sum_{k=1} ^ r c_k (b_k)^2\right) - \left(\sum_{k=1} ^ r c_k a_kb_k\right)^2\]
+\[ = \left(\sum_{k=1} ^ r (\sqrt{-c_k}a_k)^2\right)\left(\sum_{k=1} ^ r (\sqrt{-c_k}b_k)^2\right) - \left(\sum_{k=1} ^ r (\sqrt{-c_k}a_k)(\sqrt{-c_k}b_k)\right)^2 \geq 0\]
+Equality holds iff 
+\[\frac{\sqrt{-c_k}a_k}{\sqrt{-c_k}b_k} = C\]
+However, it is not possible, unless $r=1$. \\
+And trivially, $\mathrm{tr}(T_j^i) <0$, so the matrix is negative semi-definite.
+It is negative definite iff $r>1$. Moreover, the matrix is symmetric, when the matrix representation is not symmetric, or when it is not negative semi-definite, there must be force that is not perpendicularly towards the center of circle.\\
+For instance, $T^{ij} = \delta ^{ij}$ is not possible.
+\end{enumerate}
+\subsection*{Solution 1.10.2.}
+\begin{enumerate}
+\item $\forall \alpha \in V^*, v \in V$, 
+\[\alpha_{\mathcal{B}}(v_{\mathcal{B}}) = \alpha_{\mathcal{C}}(v_{\mathcal{C}}) = \alpha_{\mathcal{C}}(Mv_{\mathcal{B}})\]
+\[\Leftrightarrow \alpha_{\mathcal{B}} = \alpha_{\mathcal{C}}M \Leftrightarrow \alpha_{\mathcal{C}} =  \alpha_{\mathcal{B}} M ^{-1}\]
+\item
+
+\[T(v,w) = (\sum_{i,j} x_{ij} b_i ^* \otimes b_j ^*)(u,v) = \sum_{i,j} x_{ij} b_i ^*(v)b_j^*(w)= x_{ij} v_{\mathcal{B}} ^ i w_{\mathcal{B}} ^ j = v_{\mathcal{B}} ^ i \delta_{ik} x_j ^ k w_{\mathcal{B}} ^ j = v_{\mathcal{B}}^T T_{\mathcal{B}} w_{\mathcal{B}}\]
+\item
+Replacing $x$ and $b$ to $y$ and $c$ in the proof above immediately yields
+\[v_{\mathcal{C}}^T T_{\mathcal{C}} w_{\mathcal{C}}=T(u,v)=v_{\mathcal{B}}^T T_{\mathcal{B}} w_{\mathcal{B}}\]
+Moreover, $v_\mathcal{C} = Mv_{\mathcal{B}}$, therefore
+\[v_{\mathcal{B}}^T M^T T_{\mathcal{C}} Mw_{\mathcal{B}}=v_{\mathcal{B}}^T T_{\mathcal{B}} w_{\mathcal{B}}\]
+for any $v,w$, and hence
+\[M^T T_{\mathcal{C}} M = T_{\mathcal{B}} \Rightarrow T_{\mathcal{C}} = (M^T)^{-1}T_{\mathcal{B}} M ^{-1}\]
+\item From 1, $\alpha_{\mathcal{B}} = \alpha_{\mathcal{C}}M$, so
+\[ \alpha_{\mathcal{C}} T_{\mathcal{C}} \beta_{\mathcal{C}} ^T= T(\alpha, \beta)  = \alpha_{\mathcal{B}} T_{\mathcal{B}} \beta_{\mathcal{B}} ^T =\alpha_{\mathcal{C}}M T_{\mathcal{B}} M ^ T\beta_{\mathcal{C}} ^T\]
+for any $\alpha, \beta$, and similarly
+\[T_{\mathcal{C}}=MT_{\mathcal{B}}M^T\]
+\item Similar to above,
+\[\alpha_{\mathcal{C}}T_{\mathcal{C}} v_{\mathcal{C}}=T(\alpha, v) = \alpha_{\mathcal{B}}T_{\mathcal{B}} v_{\mathcal{B}} = \alpha_{\mathcal{C}} M T_{\mathcal{B}} M^{-1} v_{\mathcal{C}} \]
+So
+\[T_{\mathcal{C}} = MT_{\mathcal{B}}M ^{-1}\]
+\end{enumerate}
+\subsection*{Solution 1.10.3.}
+Gradient:
+\[\nabla f = 2xi+2yj+2zk\]
+New function:
+\[f_{\mathrm{new}}(x+y, y+z, z) = x^2+y^2+z^2\]
+Let $u = x+y, v= y+z$, then 
+\[f_{\mathrm{new}}(u,v,z) = (u-v+z)^2+(v-z)^2 + z^2 \]
+\[= u^2+v^2+z^2-2uv-2vz+2uz+v^2+z^2-2vz+z^2\]
+\[=u^2+2v^2+3z^2 -2uv-4vz+2zu\]
+\[f_{\mathrm{new}}(x,y,z) = x^2+2y^2+3z^2-2xy-4yz+2zx\]
+Gradient of new function:
+\[\nabla f_{\mathrm{new}} = (2x-2y+2z)i+(4y-2x-4z)j+(6z-4y+2x)k\]
+\[(M ^{-1})^T = ((I+N)^{-1})^T = (I-N+N^2) ^ T = \left[\begin{array}{ccc}
+1  \\ -1 & 1 \\ 1 & -1 & 1 \end{array}\right]\]
+Verification:
+\[\text{R.H.S.} = (M ^{-1})^T(\nabla f(x,y,z) = 2xi + (-2x+2y)j + (2x-2y+2z)k\]
+\[\text{L.H.S.} = \nabla f(x+y, y+z, z) = (2(x+y)-2(y+z)+2z)i + (4(y+z)-2(x+y)-4z)j + (6z-4(y+z)+2(x+y))k\]
+\[=2xi +(2y-2x)j + (2z-2y+2x)k\]
+So L.H.S = R.H.S. 
+\end{document}

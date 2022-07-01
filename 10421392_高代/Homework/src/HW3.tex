@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 3}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.3.1.}
+\begin{enumerate}
+    \item 
+    \[A:\left[\begin{array}{r}
+\Re(x) \\ \Im(x)\\\Re(y)\\\Im(y)\end{array}\right] \mapsto \left[\begin{array}{r}
+\Re(x)-\Re(y) \\ -\Im(x)\\\Im(x)-\Re(y)\\\Im(x)-\Im(y)\end{array}\right],\]
+So
+\[A=\left[\begin{array}{rrrr}
+1&&-1\\&-1\\&1&-1\\&1&&-1
+\end{array}\right],A-\lambda I=\left[\begin{array}{rrrr}
+1-\lambda&&-1\\&-1-\lambda\\&1&-1-\lambda\\&1&&-1-\lambda
+\end{array}\right]
+,\]
+Then $\lambda = 1$ (multiplicity 1), $\lambda = -1$ (multiplicity 3).\newline
+W.R.T. $\lambda = 1$, eigenvector $v = \left[\begin{array}{r}
+1\\0\\0\\0\end{array}\right]$.\\
+W.R.T. $\lambda = -1$, 
+\[A+I=\left[\begin{array}{rrrr}
+2&&-1\\&0\\&1&0\\&1&&0
+\end{array}\right],(A+I)^2=\left[\begin{array}{rrrr}
+4&-1&-2&0\\0&0&0&0\\0&0&0&0\\0&0&0&0
+\end{array}\right]\]
+By observation, $\mathrm{Dim(Ker}(A+I))=2,\mathrm{Dim(Ker}(A+I)^2)=3,$ so 
+\[\left[\begin{array}{r}
+0\\2\\-1\\0
+\end{array}\right],
+\left[\begin{array}{r}
+1\\0\\2\\2
+\end{array}\right],
+\left[\begin{array}{r}
+0\\0\\0\\1
+\end{array}\right],
+\] 
+are the basis of the generalized eigenspace associated with $\lambda = -1$.
+If we let 
+\[B=\left[\begin{array}{rrrr}
+1&&&1\\&2\\2&-1\\2&&1
+\end{array}\right], J=\left[\begin{array}{rrrr}
+-1&1\\&-1\\&&-1\\&&&1
+\end{array}\right]\]
+Then,
+\[A=\left[\begin{array}{rrrr}
+1&&&1\\&2\\2&-1\\2&&1
+\end{array}\right]\left[\begin{array}{rrrr}
+-1&1\\&-1\\&&-1\\&&&1
+\end{array}\right]\cdot\frac{1}{4}\left[\begin{array}{rrrr}
+&1&1\\&2\\&-2&-4&4\\4&-1&-2
+\end{array}\right]\]
+The column vectors of the leftmost matrix is the basis in which the mapping is in its JCF.
+\item
+\[A:\left[\begin{array}{r}
+p_0 \\ p_1\\p_2\\p_3\\p_4\end{array}\right] \mapsto \left[\begin{array}{r}
+p_0+p_1 \\2p_2\\p_1+3p_3\\4p_4\\0\end{array}\right],\]
+So
+\[A=\left[\begin{array}{rrrrr}
+1&1\\&&2\\&1&&3\\&&&&4\\0&0&0&0&0
+\end{array}\right],A-\lambda I =\left[\begin{array}{rrrrr}
+1-\lambda&1\\&-\lambda&2\\&1&-\lambda&3\\&&&-\lambda&4\\&&&&-\lambda
+\end{array}\right], \]
+\[\mathrm{det}(A-\lambda I)= (1-\lambda)(\lambda^2)(\lambda^2-2),\]
+so $\lambda = 1$, $\lambda =\pm\sqrt{2}$, $\lambda = 0$(multiplicity 2).\\
+W.R.T. $\lambda = 1$, eigenvector $v = \left[\begin{array}{r}
+1\\0\\0\\0\\0\end{array}\right]$.\\
+W.R.T. $\lambda = \sqrt{2}$, eigenvector $v = \left[\begin{array}{r}
+2+\sqrt{2}\\\sqrt{2}\\1\\0\\0\end{array}\right]$.\\
+W.R.T. $\lambda = -\sqrt{2}$, eigenvector $v = \left[\begin{array}{r}
+2+\sqrt{2}\\-\sqrt{2}\\1\\0\\0\end{array}\right]$.\\
+W.R.T. $\lambda = 0$, observe that 
+\[A^2=\left[\begin{array}{rrrrr}
+1&1&2\\&2&&6\\&&2&&12\\&&&0\\&&&&0
+\end{array}\right]\]
+\[\left[\begin{array}{r}
+12\\0\\-6\\0\\1\end{array}\right]\in\mathrm{Ker}(A^2),\text{ but } A\left[\begin{array}{r}
+12\\0\\-6\\0\\1\end{array}\right]=\left[\begin{array}{r}
+12\\-12\\0\\4\\0\end{array}\right]\notin \mathrm{Ker}(A),\]
+so 
+\[\left\{\left[\begin{array}{r}
+12\\-12\\0\\4\\0\end{array}\right],
+\left[\begin{array}{r}
+12\\0\\-6\\0\\1\end{array}\right],
+\left[\begin{array}{r}
+2+\sqrt{2}\\\sqrt{2}\\1\\0\\0\end{array}\right],
+\left[\begin{array}{r}
+1\\0\\0\\0\\0\end{array}\right],
+\left[\begin{array}{r}
+2+\sqrt{2}\\-\sqrt{2}\\1\\0\\0\end{array}\right]
+\right\}\]
+is the basis in which the transformation would be expressed in JCF, in which 
+\[J=\left[\begin{array}{rrrrr}
+0&1\\&0\\&&\sqrt{2}\\&&&1\\&&&&-\sqrt{2}
+\end{array}\right]\]
+\item
+Since
+\[\left[\begin{array}{rrrr}
+&&&a_1\\&&a_2\\&a_3\\a_4
+\end{array}\right]\left[\begin{array}{rrrr}
+1\\&&1\\&&&1\\&1
+\end{array}\right]=\left[\begin{array}{rrrr}
+&a_1\\&&&a_2\\&&a_3\\a_4
+\end{array}\right],\]
+\[\left[\begin{array}{rrrr}
+1\\&&1\\&&&1\\&1
+\end{array}\right]\left[\begin{array}{rrrr}
+&a_1\\a_4\\&&&a_2\\&&a_3
+\end{array}\right]=\left[\begin{array}{rrrr}
+&a_1\\&&&a_2\\&&a_3\\a_4
+\end{array}\right],\]
+$\left[\begin{array}{rrrr}
+&a_1\\a_4\\&&&a_2\\&&a_3
+\end{array}\right]$ and $\left[\begin{array}{rrrr}
+&&&a_1\\&&a_2\\&a_3\\a_4
+\end{array}\right]$ shares the same JCF.\\
+Further decompose $\left[\begin{array}{rrrr}
+&a_1\\a_4\\&&&a_2\\&&a_3
+\end{array}\right]$ into two parts:  $\left[\begin{array}{rr}
+&a_1\\a_4\end{array}\right]$ and $\left[\begin{array}{rr}
+&a_2\\a_3\end{array}\right]$.\\
+Then the problem boils down to finding the Jordan decomposition of the two blocks, in which both in the form of $\left[\begin{array}{rr}
+&a\\b\end{array}\right]$.\\
+\begin{enumerate}
+    \item $a=b=0$, then the basis in this block relative to the matrix we had been decomposed are standard basis:$\left[\begin{array}{r}
+1\\0\end{array}\right]$ and $\left[\begin{array}{r}
+0\\1\end{array}\right]$, and the Jordan block is zero matrix.
+\item $a=0,b\neq 0$, then it is $\left[\begin{array}{r}
+0\\1\end{array}\right]$ and $\left[\begin{array}{r}
+1\\0\end{array}\right]$, corresponds to the Jordan block of $\left[\begin{array}{rr}
+0&1\\0&0\end{array}\right]$
+\item $a\neq 0,b = 0$, then it is $\left[\begin{array}{r}
+1\\0\end{array}\right]$ and $\left[\begin{array}{r}
+0\\1\end{array}\right]$, corresponds to the Jordan block of $\left[\begin{array}{rr}
+0&1\\0&0\end{array}\right]$.
+\item Otherwise, the block is diagonalizable, and $\left[\begin{array}{r}
+\sqrt{a}\\\sqrt{b}\end{array}\right]$ is the eigenvector of $\lambda=-\sqrt{ab}$, $\left[\begin{array}{r}\sqrt{a}\\-\sqrt{b}\end{array}\right]$ is the eigenvector of $\lambda=\sqrt{ab}$
+\end{enumerate}
+Use the basis generated above to form a matrix that preserves the order of decomposing the matrix, and use $\left[\begin{array}{rrrr}
+1\\&&1\\&&&1\\&1
+\end{array}\right]$ to multiply that matrix, then the column vectors of the product would be the basis, and putting the Jordan blocks correspond to each block back in order will be the Jordan block of that anti-diagonal matrix. 
+\end{enumerate}
+
+\subsection*{Solution 1.3.2.}
+\begin{enumerate}
+    \item The number of dots in the k-th row, is $\mathrm{Dim}(\mathrm{Ker}(A^k)-\mathrm{Ker}(A^{k-1})+\{0\})$, which is the dimension gap between the kernels of adjacent matrix raised to power k and k-1, also representing number of "basis vectors" that span the gap between the kernels of the matrix powers, ignoring zero element.\\\\
+    Meanwhile, the number of dots in the k-th column, is the length of the Jordan chain corresponding to the k-th generalized eigenvector. Moreover, the number of columns is the dimension of the kernel of A.
+    \item It is given that the summands are non-increasing. \\
+    So every self-conjugating partition has one-to-one correspondence to layers of L, in which number of dots in each L are strictly decreasing from top to bottom. \\
+    This claim can be proved by contradiction that if it is not decreasing, then one "arm" of the L shaped dots, which is the row or the column of it would be longer than its preceding row or column, which is a contradiction to the assumption. \\
+    The above prove distinctness. \\\\
+    Below proves bijection exists. \\
+    We treat summands of the distinct odd partitions as the number of dots in each "L". \\
+    Every "L" has $2(k-1)+1=2k-1$ dots, where $k$ is the number of dots in the row (or the column), which indicates that "L" has odd number of dots. \\
+    That also implies for any partition, \\
+    the distinct odd partition represented by the number of dots in each "L" for two self-conjugating partitions would be equal iff the two self-conjugating partitions are itself equal.
+    \item Suppose $A=\left[\begin{array}{rrrr}
+0&a_{12}&a_{13}&a_{14}\\&0&a_{23}&a_{24}\\&&0&a_{34}\\&&&0
+\end{array}\right]$.\\
+Then $A^2=\left[\begin{array}{cccc}
+0&0&a_{12}a_{23}&a_{12}a_{24}+a_{13}a_{34}\\&0&0&a_{23}a_{34}\\&&0&0\\&&&0
+\end{array}\right]$, $A^3=\left[\begin{array}{cccc}
+0&0&0&a_{12}a_{23}a_{24}\\&0&0&0\\&&0&0\\&&&0
+\end{array}\right]$.\\
+Let $k$ be the smallest integer satisfies $\mathrm{Ker(}A^k)=N_\infty(A)$\\
+Then $k=4$ iff none of the elements in the upper diagonal is zero.\\
+$k=3$ iff some of the elements in upper diagonal is zero. That requires $a_{12}$ and $a_{34}$ cannot both be zero.\\
+$k=2$ iff $a_{12}=a_{34}=0$, or $a_{13}=a_{23}=a_{24}=0$.\\
+$k=1$ iff all elements are zero.\\
+As $X\sim \mathcal{U}(-1,1)$ is a continuous distribution if $X$ is an entry of the upper triangular matrix, \\
+$P(X=x)=0$, so $P(k=4)=1$, $P(k=3)=P(k=2)=P(k=1)=0$, means that it is almost certain that it would be in the case of $4=4$, and nothing else. So for case $4=4$, $P=1$, and $P=0$ otherwise.
+
+\end{enumerate}
+\end{document}

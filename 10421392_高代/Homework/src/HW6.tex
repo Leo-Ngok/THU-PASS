@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 6}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.6.1.}
+\begin{enumerate}
+    \item 
+    \[L = \left[
+    \begin{array}{ccccc}
+    1 & a_1 & a_1 ^ 2 & \cdots & a_1 ^ {n - 1} \\
+    1 & a_2 & a_2 ^ 2 & \cdots & a_2 ^ {n - 1} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    1 & a_n & a_n ^ 2 & \cdots & a_n ^ {n - 1} \\
+    \end{array}
+    \right]
+    \]
+    $L$ is commonly known as Vandermonde matrix.
+    \item For any square Vandermonde matrix, 
+    \[\det(L) = \prod _{1\leq i < j \leq n} (a_j - a_i)\]
+    $det(L)\neq 0$ iff none of the factors above is zero iff $a_i \neq a_j$, $\forall i,j: 1 \leq i < j \leq n$
+    \item 
+    $a_i \neq a_j$, $\forall i,j: 1 \leq i < j \leq n$ $\Leftrightarrow$ $det(L) \neq 0$ $\Leftrightarrow$ all row vectors of $L(=\mathrm{ev}_{a_i})$ are linearly independent.\\
+    $n$ independent vectors are required to span $V ^ *$, so $\mathrm{ev}_{a_i}, 1\leq i\leq n$ are linearly independent $\Leftrightarrow$ $\mathrm{ev}_{a_1},\cdots,\mathrm{ev}_{a_n}$ form a basis of $V^*$.
+    \item The three vectors should satisfy
+    \[
+    \left[
+    \begin{array}{lll}
+    1 & -1 & 1 \\
+    1 &  0 & 0 \\
+    1 &  1 & 1
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{lll} p_1 & p_2 & p_3
+    \end{array}
+    \right]= I_3
+    \]
+    So inverting that Vandermonde matrix solves the three polynomials.
+    \[
+    \left[
+    \begin{array}{rrrrrr}
+    1 & -1 & 1 & 1 \\
+    1 & 0  & 0 & 0 & 1 \\
+    1 & 1 & 1 & 0 & 0 & 1
+    \end{array}
+    \right]\sim
+    \left[
+    \begin{array}{rrrrrr}
+    1 & -1 & 1 & 1 \\
+    0 & 1  & -1 & -1 & 1 \\
+    0 & 0 & 1 & 0.5 & -1 & 0.5
+    \end{array}
+    \right]\sim\left[
+    \begin{array}{rrrrrr}
+    1 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & -0.5 & 0 & 0.5 \\
+    0 & 0 & 1 & 0.5 & -1 & 0.5
+    \end{array}
+    \right]
+    \]
+    Therefore,
+    \[p_{-1}(x) = -\frac{1}{2}x+\frac{1}{2}x ^ 2, p_0(x) = 1 -x ^ 2, p_1(x) = \frac{1}{2}x+\frac{1}{2}x ^ 2\]
+    \item 
+    This is equivalent to finding the cokernel of the Vandermonde matrix
+    \[ x^TL = \left[
+    \begin{array}{llll}
+    1 & -2 & 4 & -8 \\
+    1 & -1 & 1 & -1 \\
+    1 &  0 & 0 &  0 \\
+    1 &  1 & 1 &  1 \\
+    1 &  2 & 4 &  8 
+    \end{array}
+    \right] = 0\]
+    So
+    \[
+    \left[
+    \begin{array}{lllll}
+     1 &  1 & 1 & 1 & 1 \\
+    -2 & -1 & 0 & 1 & 2 \\
+     4 &  1 & 0 & 1 & 4 \\
+    -8 & -1 & 0 & 1 & 8
+    \end{array}
+    \right]\sim
+    \left[
+    \begin{array}{lllll}
+     1 &  1 & 1 & 1 & 1 \\
+     0 &  1 & 2 & 3 & 4 \\
+     0 & -3 &-4 &-3 & 0 \\
+     0 &  7 & 8 & 9 & 16
+    \end{array}
+    \right]\sim
+    \left[
+    \begin{array}{lllll}
+     1 &  1 & 1 & 1 & 1 \\
+     0 &  1 & 2 & 3 & 4 \\
+     0 &  0 & 2 & 6 &12 \\
+     0 &  0 &-6 &-12&-12
+    \end{array}
+    \right]\]
+    \[\sim
+    \left[
+    \begin{array}{lllll}
+     1 &  1 & 1 & 1 & 1 \\
+     0 &  1 & 2 & 3 & 4 \\
+     0 &  0 & 1 & 3 & 6\\
+     0 &  0 & 0 & 1 & 4
+    \end{array}
+    \right], x = x_5 \cdot \left[\begin{array}{r} 1 \\ -4 \\ 6\\ -4 \\ 1
+    \end{array}
+    \right] 
+    \]
+    Therefore, 
+    \[\mathrm{ev}_{-2}-4\mathrm{ev}_{-1}+6\mathrm{ev}_{0}-4\mathrm{ev}_{1}+\mathrm{ev}_{2} = 0\]
+\end{enumerate}
+\subsection*{Solution 1.6.2.}
+Dual vectors are linear maps, so linearity should be checked.
+\begin{enumerate}
+    \item It is.
+    \[0\mapsto \mathrm{ev}_5((x+1)\cdot 0) = 0\]
+    \[\forall p,q: p,q \in V, \forall c_1,c_2 : c_1,c_2\in F\]
+    \[\mathrm{ev}_5((x+1)\cdot(c_1p+c_2q)(x)) = 6(c_1p+c_2q)(5) = c_1\cdot 6p(5)+c_2\cdot 6q(5)\]
+    \[ = c_1\mathrm{ev}_5((x+1)p(x)) + c_2\mathrm{ev}_5((x+1)q(x))\]
+    \item It is not. Suppose $p(x) = 1 - x ^ 2$, $q(x) = 1 + x ^ 2$,
+    \[(p+q)\mapsto \lim_{x\to+\infty} \frac{(p+q)(x)}{x} = 0,\]
+    But
+    \[\lim_{x\to+\infty} \frac{p(x)}{x} + \lim_{x\to+\infty} \frac{q(x)}{x} = -\infty + \infty\]
+    is not defined.
+    \item It is.
+    Suppose $p(x) = a_1+b_1x+c_1x^2$, $q(x) = a_2 + b_2x + c_2x ^ 2$,
+    \[\lim_{x\to+\infty} \frac{(Ap+Bq)(x)}{x ^ 2} = \lim_{x\to+\infty} \left(\frac{Aa_1+Ba_2}{x ^ 2} + \frac{Ab_1+Bb_2}{x} + (Ac_1+Bc_2)\right) = Ac_1+Bc_2,\]
+    \[\lim_{x\to+\infty} \frac{Ap(x)}{x^2} = \lim_{x\to+\infty} \left(\frac{Aa_1}{x ^ 2} + \frac{Ab_1}{x} + (Ac_1)\right) = Ac_1,\]
+    \[\lim_{x\to+\infty} \frac{Bq(x)}{x^2} = \lim_{x\to+\infty} \left(\frac{Ba_2}{x ^ 2} + \frac{Bb_2}{x} + (Bc_2)\right) = Bc_2\]
+    Sum up the last two equations yields the first. Moreover,
+    \[0\mapsto \lim_{x\to+\infty} \frac{0}{x ^ 2} = 0\]
+    \item It is not.
+    \[[(x ^ 2 + x)] \mapsto (3 ^ 2 + 3)(2(4)+1) = 108\]
+    \[[x ^ 2] \mapsto (3^2)(2(4)) = 72\]
+    \[[x] \mapsto (3)(1) = 3\]
+    Sum up the last 2 equations, it does not equal to the first.
+    \item It is not. Suppose $p(x)=x$, then
+    \[p \mapsto deg(p) = 1,\]
+    But 
+    \[2p \mapsto deg(2p) = 1,\]
+    So double of the first equation cannot yield the second, it is not linear.
+\end{enumerate}
+\subsection*{Solution 1.6.3.}
+Since $\nabla f: \mathbf{R} ^ 2 \to \mathbf{R}$, if the map is linear, it is a dual vector. \\
+The following lemma should be proved first: \\
+\textbf{Lemma:} Given differentiable function $f$, its directional derivative with direction $\mathbf{u}$ is
+\[\nabla_{\mathbf{u}}(f) = \nabla(f) \cdot \mathbf{u}\]
+where $\nabla(f) = [\begin{array}{rr}\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y}\end{array}]$.\\
+\textbf{Proof:}\\
+Directional derivative of $f$ at $\mathbf{p}$ with direction $u$ is
+\[\nabla_u(f) = \lim_{t\to 0}\frac{f(p_x + tu_x, p_y + tu_y) - f(p_x, p_y)}{t}\]
+Since $f$ is differentiable, at $(x_0, y_0)$, then 
+\[\Delta f = f(x_0 +\Delta x, y_0 + \Delta y) - f(x_0, y_0) = f_x'(x_0, y_0)\Delta x + f_y'(x_0, y_0)\Delta y + \epsilon_1\Delta x + \epsilon_2 \Delta y,\]
+where $\epsilon_1, \epsilon_2 \to 0$ when $\Delta x, \Delta y \to 0$ (as $\frac{\epsilon_1 \Delta x + \epsilon_2 \Delta y}{\sqrt{(\Delta x) ^ 2 + (\Delta y) ^ 2}} \leq |\epsilon_1| + |\epsilon_2|$).
+So, 
+\[ \lim_{t\to 0 ^ +}\frac{f(p_x + tu_x, p_y + tu_y) - f(p_x, p_y)}{t}\]\[
+=  \lim_{t\to 0 ^ +}\left(f_x'(p_x,p_y)\frac{tu_x}{t} + f_y'(p_x,p_y) \frac{tu_y}{t}\right) = f_x'(p_x,p_y)u_x+ f_y'(p_x,p_y)u_y \text{  } \square\]
+With regards to the zero element, 
+\[\nabla_0(f) = \nabla(f)\cdot 0 = 0\]
+With regards to linearity,
+\[\nabla_{au+bv}(f) = \nabla(f)\cdot(au+bv) = a\nabla(f)\cdot u + b\nabla(f)\cdot v = a \nabla_u(f) + b\nabla_v(f)\]
+It is trivial from the derivation above that the coordinates of the dual vector, is exactly the gradient of $f$.
+\subsection*{Solution 1.6.4.}
+Denote $U ^ 0$ as the annihilator of $U$.
+\begin{enumerate}
+    \item Let $\alpha \in W ^ *$.
+    \[\alpha\in (\mathrm{Ran}(L)) ^ 0 \Leftrightarrow \alpha(L(v)) = 0(\forall v\in V)\Leftrightarrow \alpha \circ L = 0 \Leftrightarrow L ^ * (\alpha) = 0\Leftrightarrow \alpha \in \mathrm{Ker}(L ^ *)\]
+    Hence $(\mathrm{Ran}(L)) ^ 0 = \mathrm{Ker}(L ^ *)$.
+    \item Let $\beta \in V ^ *$. \\
+    On one hand,
+    \[\beta \in \mathrm{Ran}(L ^ *)\Leftrightarrow \exists \omega \in W ^ *:\beta = L ^ * (\omega)\Leftrightarrow \exists \omega \in W ^ *: \beta(v) = \omega \circ L(v)\]
+    In particular, when $v\in \mathrm{Ker}(L),\beta(v) = \omega \circ L(v) = 0$.\\
+    Therefore $\mathrm{Ran}(L ^ *) \subseteq (\mathrm{Ker}(L)) ^ 0$. \\
+    Before proving the backward direction, define $\sim$ as an equivalence relation that:
+    \[x\sim y \Leftrightarrow L(x) = L(y)\]
+    It is trivial that $\sim$ is reflexive, symmetric and transitive. In particular,
+    \[[x] = [y]\Leftrightarrow (x - y) \in \mathrm{Ker}(L) \]
+    Let $f:V\to V/\sim$ be a surjective function such that $f:v\mapsto [v]$. Then $L = L_1 \circ f,$\\
+    where $L_1: V/\sim \to \mathrm{Ran}(L)$ is bijective. Immediately we have $f = L_1 ^ {-1} \circ L$. \\
+    So on the other hand, if $\beta \in (\mathrm{Ker}(L)) ^ 0$, $\mathrm{Ker}(L)\subseteq \mathrm{Ker}(\beta)$. Moreover $\beta$ can be factorized as $\beta = \xi \circ f$, where $\xi: V/\sim \to \mathbf{R}$.
+    \[\beta = \xi \circ f = \xi \circ (T_1 ^ {-1} \circ T) =(\xi\circ T_1 ^ {-1})\circ T = T ^ * (\xi \circ T_1 ^ {-1})\]
+    So, $(\mathrm{Ker}(L)) ^ 0 \subseteq \mathrm{Ran}(L ^ *)$.
+    Hence $(\mathrm{Ker}(L)) ^ 0 = \mathrm{Ran}(L ^ *)$.
+\end{enumerate}
+\end{document}

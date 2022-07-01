@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 7}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.7.1.}
+\begin{enumerate}
+    \item To show $(\cdot, \cdot)$ is inner product, bilinearity, symmetry and positive definitiveness of it should be shown. It is trivial that $A\in M_n(R)$.
+    \begin{enumerate} [label = \roman*)]
+        \item Bilinearity: \\
+        $\forall u, u_1, u_2, v, v_1, v_2\in R ^ n$, $a,b\in R$,
+        \[(au_1+bu_2,v) = (au_1+bu_2)^TAv = au_1^TAv + bu_2^TAv = a(u_1,v)+b(u_2,v)\]
+        \[(u,av_1+bv_2) = u^TA(av_1+bv_2) = a(u^TAv_1)+b(u^TAv_2) = a(u,v_1)+b(u,v_2)\]
+        \item Symmetry:
+        \[(u,v) = u^TAv = (u^TAv)^T = v^T A^Tu = v^TAu =(v,u)\]
+        \item Positive definitiveness: \\
+        By definition, $A$ is positive definite, therefore $\forall x \in R ^ n$,
+        \[x^TAx \geq 0\]
+        In addition, $x^TAx = 0 \Leftrightarrow x = 0$.
+    \end{enumerate}
+    \item Suppose $u$ is the pre-image of $v^T$ of the bra map. Then,
+    \[v^T = u^TA \Leftrightarrow v^TA ^{-1} = u^T \Leftrightarrow u = (A ^ {-1}) ^T v\]
+    So the Riesz map is 
+    \[v^T\mapsto A ^ {-1}v\]
+    \item Immediately from (2),
+    \[v \mapsto v^TA\]
+    \item Riesz is $V^*\to V$, so dual of Riesz is $V^* \to V ^{**}$, i.e. $v^T$ would be sent to an image such that the image is a linear functional: $V^* \to R$.
+    \[[\mathrm{Riesz} ^*(\alpha)](\beta)] = \alpha \circ \mathrm{Riesz}(\beta) = \beta A ^{-1} \alpha ^ T\]
+    For $\alpha, \beta \in V ^*$. So the dual will send $\alpha \in V^*$ in the following way:
+    \[\alpha\mapsto(\beta\mapsto \beta A^{-1} \alpha ^T)\]
+\end{enumerate}
+\subsection*{Solution 1.7.2.}
+\begin{enumerate}
+    \item $v$ is a linear functional, hence showing $v$ sends constant to zero requires $v$ sending one to zero. \\
+    Let $f(x) = a, g(x) = b$, then $v(fg) = abv(1),$  so we may let $f(x)\equiv g(x) \equiv 1,$
+    \[v(1) = f(p)v(g)+v(f)g(p) = v(1) + v(1)\]
+    The only possible solution for the above equation is $v(1)=0$.
+    \item Let $x_1 = x, x_2 = y, x_3 = z,$ then
+    \[v((x_i-p_i)f) = (x_i-p_i)(\mathbf{p})v(f) + v(x_i-p_i)f(\mathbf{p}) = (p_i-p_i)v(f) + v(x_i)f(\mathbf{p}) - v(p_i)f(\mathbf{p}) = v(x_i)f(\mathbf{p})\]
+    $(i = 1,2,3)$
+    \item By applying Leibniz's formula repeatedly,
+    \[v(fgh) = v(f)g(\mathbf{p})h(\mathbf{p}) + f(\mathbf{p})v(g)h(\mathbf{p}) + f(\mathbf{p})g(\mathbf{p})v(h)\]
+    $a,b,c$ are non-negative integers, and $a+b+c>1$, so W.L.O.G. let 
+    \[ (w_1-p_i)(w_2-p_j)Q = (x - p_1) ^ a (y - p_2) ^ b (z - p_3) ^ c, \]
+    where $Q$ is a function of $x,y,z$ and the two factors prior to it comes from the factor of the non-zero powers of $(x - p_1) ^ a (y - p_2) ^ b (z - p_3) ^ c$. \\
+    For instance, when $a = 2$, then $w_1 = w_2 =x, p_i = p_j = p_1$, when $a = b = 1$, $w_1 = x, w_2 = y, p_i = p_1, p_j = p_2$. Then
+    \[v((x - p_1) ^ a (y - p_2) ^ b (z - p_3) ^ c) = v((w_1-p_i)(w_2-p_j)Q)\]
+    \[= v(w_1-p_i)(w_2-p_j)(\mathbf{p})Q(\mathbf{p}) + (w_1-p_i)(\mathbf{p})v(w_2-p_j)Q(\mathbf{p}) + (w_1-p_i)(\mathbf{p})(w_2-p_j)(\mathbf{p})v(Q)\]
+    By setting $f\equiv 1$ in (2), the last expression immediately yields zero. 
+    \item Taylor expansion of $f$ at $p$ is
+    \[f(x,y,z) = \sum_{n = 0} ^ {+\infty} \sum_{\substack{i,j,k\geq 0 \\ i+j+k = n}} \left.\frac{\partial ^ {(i+j+k)} f}{\partial x ^ i \partial y ^ j \partial z ^ k}\right|_{\mathbf{p}} (x-p_1) ^ i (y - p_2) ^ j (z - p_3) ^ k\]
+    Since applying $v$ to constant yields zero, so does those polynomial with degree $\geq 2$, therefore
+    \[v(f) = v(f_x'(\mathbf{p})(x-p_1)) + v(f_y'(\mathbf{p})(y-p_2)) + v(f_z'(\mathbf{p})(z-p_3))\]
+    \[ = f_x'(\mathbf{p})v(x) + f_y'(\mathbf{p})v(y) + f_z'(\mathbf{p})v(z)\]
+    \item It is proved in solution 1.6.3. that, for any differentiable $f$ (which is done by generalizing the proof to higher dimension), $\nabla_u(f) = \nabla f \cdot u$, so for any $v = v(x)\mathbf{\hat{i}} + v(y) \mathbf{\hat{j}} + v(z)\mathbf{\hat{k}}$, and for any analytic $f$,
+    \[\nabla_v(f) = \nabla f \cdot v = f_x'(\mathbf{p})v(x) + f_y'(\mathbf{p})v(y) + f_z'(\mathbf{p})v(z) = v(f)\]
+    where $f$ is arbitrary analytic function, so $\nabla_v = v$.  $\blacksquare$
+\end{enumerate}
+\subsection*{Solution 1.7.3.}
+\begin{enumerate}
+    \item
+    \[X(fg) = X(f)g+fX(g),\]
+    So $\forall p: p\in M,$
+    \[X(fg)(p) = X(f)(p)\cdot g(p) + f(p) \cdot X(g)(p)\]
+    \[\Leftrightarrow X_p(fg) = X_p(f)\cdot g(p) + f(p)\cdot X_p(g)\]
+    The last equation satisfies Leibniz's rule. $\square$
+    \item $\forall p \in M,$
+    \[[X(f)](p) = X_p(f) = \nabla f|_p(X_p) = df|_p(X_p) = [df(X)](p)\]
+    Hence, $X(f) = df(X)$. $\blacksquare$
+    \item
+    Let $f$ and $g$ be two analytic functions, then the following should be proved:
+    \[(X\circ Y - Y \circ X)(fg) = [(X\circ Y)(f)]g + f[(X\circ Y - Y \circ X)(g)]\]
+    L.H.S.
+    \[= (X\circ Y - Y \circ X)(fg) = (X\circ Y)(fg) - (Y \circ X)(fg)\]
+    \[= X(Y(f)g+fY(g)) - Y(X(f)g+fX(g)) = X(Y(f)g) + X(fY(g)) - Y(X(f)g ) - Y(fX(g))\]
+    \[= X(Y(f))g + Y(f)X(g) + X(f)Y(g) + fX(Y(g)) - Y(X(f))g - X(f)Y(g) - Y(f)X(g) - fY(X(g))\]
+    \[=X(Y(f))g + fX(Y(g)) - Y(X(f))g - fY(X(g))\]
+    R.H.S.
+    \[=[(X\circ Y -Y \circ X)(f)]g + f[(X\circ Y - Y \circ X)(g)]\]
+    \[=X(Y(f))g - Y(X(f))g + fX(Y(g)) - fY(X(g))\]
+    Therefore L.H.S. = R.H.S. $\blacksquare$
+    \item $A$ and $B$ are both skew-symmetric, so
+    \[(AB-BA) ^ T = (AB)^T - (BA) ^ T = B^TA^T - A^TB^T=(-B)(-A) - (-A)(-B) = BA - AB = -(AB-BA) \blacksquare\]
+\end{enumerate}
+
+\end{document}

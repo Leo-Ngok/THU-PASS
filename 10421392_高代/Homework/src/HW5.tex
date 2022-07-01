@@ -1,0 +1,237 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 5}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.5.1.}
+First, examine the differentiability of $f$.\\
+For $f: C\to C$, $f = u + iv$ is differentiable at $z_0=x_0+iy_0$ iff 
+\[\left.\frac{\partial u}{\partial x}\right|_{x=x_0}= \left.\frac{\partial v}{\partial y}\right|_{y=y_0}, \left.\frac{\partial u}{\partial y}\right|_{y=y_0}=-\left.\frac{\partial v}{\partial x}\right|_{x=x_0}\]
+For $f(z)=z|z|$, $u(x,y)=x\sqrt{x^2+y^2}$,  $v(x,y)=y\sqrt{x^2+y^2}$, then \\
+\[ u_x = \sqrt{x^2+y^2}+\frac{x^2}{\sqrt{x^2+y^2}}, u_y=\frac{xy}{\sqrt{x^2+y^2}}\]
+\[v_x= \frac{xy}{\sqrt{x^2+y^2}}, v_y=\sqrt{x^2+y^2}+\frac{y^2}{\sqrt{x^2+y^2}}.\]
+Solving $u_x=v_y$, $v_x=-u_y$ yields 
+\[\left\{\begin{array}{l}x^2=y^2\\2xy=0\\x^2+y^2>0\end{array}\right.\]
+However, no such tuple $(x_0,y_0)$ satisfies all three equations above, and hence $f$ is nowhere complex differentiable.\\
+But if it is the case $f|_R: R\to R$, then it is real differentiable everywhere.\\
+
+$f(x)=x|x|=x\sqrt{x^2}$, then $f'(x)=\sqrt{x^2}+x\cdot \frac{x}{\sqrt{x^2}}=2|x|$
+\begin{enumerate}
+    \item 
+    \[A_t=
+    \left[\begin{array}{cc}
+    1 & 1 \\
+         & 1+t
+    \end{array}\right] =
+    \left[\begin{array}{cc}
+    1 & -x \\
+         & 1
+    \end{array}\right]
+    \left[\begin{array}{cc}
+    1 &  \\
+         & 1+t
+    \end{array}\right]
+    \left[\begin{array}{cc}
+    1 & -x \\
+         & 1
+    \end{array}\right]
+    \]
+    So $1 = -xt$, $x=-1/t$.
+    \[f(A_t)=
+    \left[\begin{array}{cc}
+    1 & 1/t \\
+         & 1
+    \end{array}\right]
+    \left[\begin{array}{cc}
+    1 &  \\
+         & (1+t)^2
+    \end{array}\right]
+    \left[\begin{array}{cc}
+    1 & -1/t \\
+         & 1
+    \end{array}\right]
+    =
+    \left[\begin{array}{cc}
+    1 & t+2 \\
+         & (1+t)^2
+    \end{array}\right], \forall t: t\geq -1
+    \]
+    So
+    \[\lim_{t\to 0} f(A_t) = \lim_{t\to 0}\left[\begin{array}{cc}
+    1 & t+2 \\
+         & (1+t)^2
+    \end{array}\right]=\left[\begin{array}{cc}
+    1 & 2 \\
+         & 1
+    \end{array}\right] \]
+    \item $f$ is real differentiable, but not complex differentiable, which is obviously not analytic, so $f$ cannot equal to its Taylor series, hence $f$ is not defined for matrices with complex eigenvalues.\\
+    Moreover, 
+    \[p_{A_t}(\lambda) = \det\left(\left[\begin{array}{cc}
+    1-\lambda & 1 \\
+    -t^2 & 1-\lambda
+    \end{array}\right]\right)=(1-\lambda)^2+t^2\]
+    so for $A_t$, $\lambda = 1 \pm it$.\\
+    As the limit is taking values from the punctured neighborhood of zero, the limit does not exist, so $f$ is not defined.
+\end{enumerate}
+
+\subsection*{Solution 1.5.2.}
+\begin{enumerate}
+    \item $\sin(z)=\frac{e^{iz}-e^{-iz}}{2i}$, so
+    \[\sin(tA)=\frac{e^{itA}-e^{-itA}}{2i},\frac{d}{dt}\sin(tA)=\frac{iAe^{itA}-(-iA)e^{-itA}}{2i}=\frac{A(e^{itA}+e^{-itA})}{2}=A\cos(tA)\]
+    \item W.L.O.G., assume $f$ is analytic at $z = 0$ for $f:\mathbf{C}\to \mathbf{C}$.\\
+    Then, 
+    \[f(z) = \sum_{k=0}^{+\infty} a_k z^k,\]
+    where 
+    \[a_k = \frac{1}{2\pi i}\oint_{|z|=\epsilon} \frac{f(z)dz}{z^{n+1}}\]
+    Before seeking for the solution, first prove a lemma:
+    \[S(n):\left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]^n = \left[\begin{array}{cc}
+    (2A)^n & n\cdot 2^{n-1} A^n \\
+     & (2A)^n
+    \end{array}\right],\forall n: n\in \mathbf{Z}^+\]
+    $S(1)$ is trivial.\\
+    Assume $S(k)$ holds, then for $S(k+1)$,
+    \[\left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]^{k+1} = 
+    \left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]^k 
+    \left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]
+    =
+    \left[\begin{array}{cc}
+    (2A)^k & k\cdot 2^{k-1} A^k \\
+     & (2A)^k
+    \end{array}\right]
+    \left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]\]
+    \[=\left[\begin{array}{cc}
+    (2A)^{k+1} & (2^k+k\cdot 2^k)A^{k+1} \\
+     & (2A)^{k+1}
+    \end{array}\right]=
+    \left[\begin{array}{cc}
+    (2A)^{k+1} & (k+1)\cdot 2^k A^{k+1} \\
+     & (2A)^{k+1}
+    \end{array}\right],S(k)\Rightarrow S(k+1)\]
+    By first principle of induction, $\forall n:n\in \mathbf{Z}^+\Rightarrow S(n)$. $\blacksquare$\\
+    So 
+    \[f\left(\left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]\right)= \sum_{k=0}^{+\infty} a_k \left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]^k = \sum_{k=0}^{+\infty}\left[\begin{array}{cc}
+    a_k (2A)^k & a_k\cdot k\cdot 2^{k-1} A^k \\
+     & a_k (2A)^k
+    \end{array}\right] \]
+    Let $X=BJ B^{-1}$, then for  $p(x)=x^n$, $p'(X)=Bp'(J)B^{-1}$, $p'(J)= n J^{n-1}$, so $p'(X)=nX^{n-1}$
+    \[\Rightarrow f'(X)=\sum_{k=1}^{+\infty} a_k\cdot k\cdot X^{k-1}\]
+    \[\Rightarrow f\left(\left[\begin{array}{cc}
+    2A & A \\
+     & 2A
+    \end{array}\right]\right) =\left[\begin{array}{cc}
+    f(2A) & f'(A)A \\
+     & f(2A)
+    \end{array}\right]\Rightarrow B=f'(A)\cdot A.\]
+    \item It can be disproved by letting $f(x)=x^2$, $A=\left[\begin{array}{cc}
+    1 & 1 \\
+     & 1
+    \end{array}\right]$ and $B = \left[\begin{array}{cc}
+    2 \\
+     & 3
+    \end{array}\right]$
+    \[f'(A)B=\left(\left[\begin{array}{cc}
+    f'(1) & f''(1) \\
+     & f'(1)
+    \end{array}\right]\right)\left[\begin{array}{cc}
+    2  \\
+     & 3
+    \end{array}\right] = \left[\begin{array}{cc}
+    4 & 6 \\
+     & 6
+    \end{array}\right]\]
+    \[f'\left(\left[\begin{array}{cc}
+    1+2t & 1 \\
+     & 1+3t
+    \end{array}\right]\right)=\left[\begin{array}{cc}
+    1 & -1/t \\
+     & 1
+    \end{array}\right]\left[\begin{array}{cc}
+    2+4t  \\
+     & 2+6t
+    \end{array}\right]\left[\begin{array}{cc}
+    1 & 1/t \\
+     & 1
+    \end{array}\right]=\left[\begin{array}{cc}
+    2+4t & -2 \\
+     & 2+6t
+    \end{array}\right]\]
+    Plugging in $t=0$ yields $\left[\begin{array}{cc}
+    2 & -2 \\
+     & 2
+    \end{array}\right].$\\
+    Actually, the proposition holds only when $[A,B]=0$. In this case, binomial theorem is suitable for matrices $A$ and $B$.
+    \[[f(A+tB)]' = \left(\sum_{n=0}^{+\infty}\sum_{k=0}^n a_n C_n^k A^{n-k}(Bt)^k \right)'=\sum_{n=0}^{+\infty}\sum_{k=0}^n a_n C_n^k A^{n-k}k B^kt^{k-1} \]
+    Plugging in $t=0$,
+    \[[f(A+tB)]'|_{t=0}=\sum_{n=1}^{+\infty} a_n C_n^1 A^{n-1} B=f'(A)\cdot B\]
+\end{enumerate}
+
+\subsection*{Solution 1.5.3.}
+\begin{enumerate}
+    \item Let $v$ be the common eigenvector of $A$ and $B$, $\lambda_A$ and $\lambda_B$ are the two eigenvalues associated with $v$ for $A$ and $B$.  $V_2$ is a matrix such that the column vectors are orthonormal basis of orthogonal complement of span of $v$. Then for $A$,
+    \[\left[\begin{array}{cc}v&V_2
+    \end{array}\right]^H A\left[\begin{array}{cc}v&V_2
+    \end{array}\right]=\left[\begin{array}{cc}v&V_2
+    \end{array}\right]^H\left[\begin{array}{cc}\lambda_Av &A V_2
+    \end{array}\right]=\left[\begin{array}{cc}\lambda_A&v^HAV_2\\0&V_2^HAV_2
+    \end{array}\right]\]
+    Similarly, for $B$, 
+    \[\left[\begin{array}{cc}v&V_2
+    \end{array}\right]^H B\left[\begin{array}{cc}v&V_2
+    \end{array}\right]=\left[\begin{array}{cc}\lambda_B&v^HBV_2\\0&V_2^HBV_2
+    \end{array}\right]\]
+    So $A_1=V_2^HAV_2$, $B_1=V_2^HBV_2$.\\
+    \[A_1B_1=V_2^HAV_2V_2^HBV_2=V_2^HABV_2\]
+    \[B_1A_1=V_2^HBV_2V_2^HAV_2=V_2^HBAV_2\]
+    The above two equations are equal as $A$ commutes with $B$, i.e.
+    \[[A,B]=0 \Rightarrow [A_1,B_1]=0\]
+    \item From (1), $[A_1,B_1]=0$, so $A_1$, $B_1$ should have a common eigenvector. We may assume that it is one of the column vectors of $V_2$, otherwise $V_2$ can be reconstructed in the previous step to contain that common eigenvector. \\
+    Moveover, when that common eigenvector is placed on the first column of $V_2$ in (1), then 
+    \[A_1=\left[\begin{array}{cc}\lambda_{A_1}&v'^HBV_{22}\\0&V_{22}^HA_1V_{22}
+    \end{array}\right],\] 
+    where $v'$ is the common eigenvector of $A_1$ and $B_1$. Same for $B_1$.\\
+    Hence we can iteratively apply that transformation to $(A_i)_{22}$ and $(B_i)_{22}$ for all $i$. \\
+    In addition, for each iteration, the size of $A_i$, $B_i$ strictly decreases.\\
+    Given that $A$ and $B$ are finite dimensional, the process of iteration eventually terminates. \\
+    The iterations terminate when $i$ is such that $A_i$ and $B_i$ has dimension one. \\
+    That gives
+    \[\left[\begin{array}{cc}v&V_2
+    \end{array}\right]^H A\left[\begin{array}{cc}v&V_2
+    \end{array}\right]\]
+    an upper triangular matrix. Same for $B$.  $\blacksquare$
+\end{enumerate}
+\end{document}

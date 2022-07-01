@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 9}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.9.1.}
+\begin{enumerate}
+    \item Proposition 10.5.16. yields $Au \otimes Bv = (A \otimes B)(u \otimes v)$. \\
+    $u \otimes v$ is Kronecker product, and by proposition 10.5.14, Kronecker product is bilinear. \\
+    Since $A\otimes B$ is linear, the map is the product of a linear map, and a bilinear map, which is automatically bilinear.
+    \item Since it is finite dimensional, the space should be isomorphic to some vector space. \\
+    Let $X$ and $Y$ in 1 to be the matrix in a vector space in which $X$ and $Y$ has Jordan blocks on its diagonal and elsewhere zero.\\
+    Then $X\otimes Y$ is an upper diagonal matrix, in which the diagonal elements are $\lambda_i\mu_j$, $i = 1, 2, \cdots, \mathrm{Dim}(V), j = 1,2, \cdots, \mathrm{Dim}(W)$, in which $\lambda, \mu$ are eigenvalues of $X$ and $T$. \\
+    So 
+    \[\mathrm{trace}(X\otimes Y) = \sum_{i=1} ^ {\mathrm{Dim}(V)} \sum_{j = 1} ^ {\mathrm{Dim}(W)}\lambda_i\mu_j = \sum_{i=1} ^ {\mathrm{Dim}(V)} \lambda_i \sum_{j = 1} ^ {\mathrm{Dim}(W)}\mu_j=\sum_{i=1} ^ {\mathrm{Dim}(V)} \lambda_i \mathrm{trace}(Y) = \mathrm{trace}(X)\mathrm{trace}(Y)\]
+\end{enumerate}
+\subsection*{Solution 1.9.2.}
+\[\mathrm{trace}\in \mathcal{L}(R^n \otimes (R^n)^*,R) = (R^n)^* \otimes (R ^n) ^{**} \otimes R = (R^n)^* \otimes R ^n\]
+Let $r$ be the rank of a particular matrix $A$, then
+\[\mathrm{trace}(A) = \sum_{i = 1} ^ r t_i \mathrm{trace} (u_iv_i^T) = \sum_{i=1}^r\sum_{j = 1}^n t_i u_i^jv_i^j\]
+Therefore, it is just a dot product of the rightmost vectors.\\
+Dot product is a special kind of inner product, in which it is the case for solution 1.7.1. when $A=I$, and hence
+\[\mathrm{trace}_{ij} = \delta_{ij}\]
+\subsection*{Solution 1.9.3.}
+\begin{enumerate}
+    \item
+    Symmetry:
+    \[(v_1\otimes w_1,v_2\otimes w_2) = (v_1,v_2)(w_1,w_2) = (v_2,v_1)(w_2,w_1) = (v_2\otimes w_2, v_1\otimes w_1)\]
+    Positive definiteness:
+    \[(v\otimes w, v\otimes w) = (v,v)(w,w)\]
+    It is zero iff $v=0$ or $w=0$, iff $v\otimes w = 0$
+    \item
+    \[(e_1\otimes e_1, e_2 \otimes e_2) = (e_1,e_2)(e_1, e_2)\]
+    Since $e_1, e_2$ are two basis vectors, their inner product must not be $\pm$1. (or else they lie on the same line and cannot be basis vectors).
+    There are two components, so the rank must not be greater than 2. These two simple tensors are not proportional, so rank must not be less than 2.
+    \item $\omega = v \otimes w$
+    \[(\omega,L\otimes I_B(\omega)) = (v\otimes w, Lv \otimes w) = (v_1^2-v_2^2)(w_1^2+w_2^2)\]
+    \[(\omega, I_A\otimes L(\omega)) = (v\otimes w, v \otimes Lw) = (v_1^2+v_2^2)(w_1^2-w_2^2)\]
+    Let the former to be $x$, and the latter to be $y$. Partition $R^2$ into four regions by the lines $x+y = 0$ and $x - y = 0$.\\
+    Case 1: $x + y \leq 0 \land x - y \leq 0$. Then let
+    \[v_1=0, v_2=\pm 1 \Rightarrow w_1 = \pm\sqrt{-\frac{x-y}{2}}, w_2 = \pm\sqrt{-\frac{x+y}{2}}\]
+    Case 2: $x +y \geq 0 \land x - y \geq 0$. Then let
+    \[v_1 = \pm 1, v_2 = 0 \Rightarrow w_1 = \pm \sqrt{\frac{x+y}{2}}, w_2 = \pm \sqrt{\frac{x-y}{2}}\]
+    Case 3: $x +y \geq 0 \land x - y \leq 0$. Then let
+    \[w_1 = \pm 1, w_2 = 0 \Rightarrow v_1 = \pm \sqrt{\frac{x+y}{2}}, v_2 = \pm \sqrt{-\frac{x-y}{2}}\]
+    Case 3: $x + y \leq 0 \land x - y \geq 0$. Then let
+    \[w_1=0, w_2= \pm 1 \Rightarrow w_1 = \pm\sqrt{-\frac{x+y}{2}}, w_2 = \pm\sqrt{\frac{x-y}{2}}\]
+    Hence it is possible to take any point of $(x,y)\in R^2$.
+    \item
+    \[L\otimes I_B(\omega) = L\otimes I_B(ae_1\otimes e_1) +L\otimes I_B(be_2\otimes e_2) = aLe_1\otimes e_1 + bLe_2 \otimes e_2 = ae_1\otimes e_1 - be_2\otimes e_2 \]
+    \[I_A\otimes L(\omega) = I_A\otimes L(ae_1\otimes e_1) +I_A\otimes L(be_2\otimes e_2) = ae_1\otimes Le_1 + be_2 \otimes Le_2 = ae_1\otimes e_1 - be_2\otimes e_2\]
+    So they are indeed identical.
+\end{enumerate}
+\end{document}

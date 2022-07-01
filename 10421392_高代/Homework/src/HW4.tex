@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 4}
+\begin{document}
+\maketitle
+\subsection*{Solution 1.4.1.}
+\begin{enumerate}
+    \item 
+    $B=\left[
+    \begin{array}{cc}
+    I & X \\
+         & I
+    \end{array}
+    \right]$, where $X$ satisfies 
+    \[\left[
+    \begin{array}{cc}
+    1 & 2 \\
+      & 1
+    \end{array}
+    \right]X-X\left[
+    \begin{array}{cc}
+    3 & 5 \\
+      & 4
+    \end{array}
+    \right]=\left[
+    \begin{array}{cc}
+    1 & 2 \\
+    3 & 4
+    \end{array}
+    \right]\]
+    Let $X=\left[
+    \begin{array}{cc}
+    a & b \\
+    c & d
+    \end{array}
+    \right]$, then
+    \[\left\{\begin{array}{lcc}
+    -2a+2c & = & 1 \\
+    -5a-3b+2d  & = & 2\\
+    -2c & = & 3\\
+    -5c-3d & = & 4
+    \end{array}\right.\]
+    So $B=\left[
+    \begin{array}{cccc}
+    1 & 0 & -2 & 31/9 \\
+    0 & 1 & -3/2 & 7/6 \\
+    &&1\\
+    &&&1
+    \end{array}
+    \right]$
+    \item 
+    \[\mathcal{B}=\left\{
+    \left[
+    \begin{array}{c} -4\\-3\\2\\0
+    \end{array}
+    \right],
+    \left[
+    \begin{array}{c} 62\\21\\0\\18
+    \end{array}
+    \right]
+    \right\}\]
+    is a basis that span $V_3+V_4$.
+\end{enumerate}
+\subsection*{Solution 1.4.2.}
+\begin{enumerate}
+    \item 
+    \[\left[
+    \begin{array}{cccc}
+    I\\&&I\\&I\\&&&I
+    \end{array}
+    \right]\left[
+    \begin{array}{cccc}
+    X&&I\\&Y&&I\\&&X\\&&&Y
+    \end{array}
+    \right]=\left[
+    \begin{array}{cccc}
+    X&&I\\&&X\\&Y&&I\\&&&Y
+    \end{array}
+    \right]
+    \]
+    \[\left[
+    \begin{array}{cccc}
+    X&I\\&X\\&&Y&I\\&&&Y
+    \end{array}
+    \right]\left[
+    \begin{array}{cccc}
+    I\\&&I\\&I\\&&&I
+    \end{array}
+    \right]=\left[
+    \begin{array}{cccc}
+    X&&I\\&&X\\&Y&&I\\&&&Y
+    \end{array}
+    \right]\]
+    Hence $\left[
+    \begin{array}{cccc}
+    X&&I\\&Y&&I\\&&X\\&&&Y
+    \end{array}
+    \right]$ and $\left[
+    \begin{array}{cccc}
+    X&I\\&X\\&&Y&I\\&&&Y
+    \end{array}
+    \right]$ are similar.
+    \item
+    \[p_B(x)=(3-x)(4-x)=12-7x+x^2,\]
+    \[p_A(x)=(3-x)^2(4-x)^2=144-168x+73x^2-14x^3+x^4\]
+    \item 
+    \[A=\left[
+    \begin{array}{cccc}
+    &1&1\\&&&1\\&&&1\\&&&0
+    \end{array}
+    \right]\]
+    A has two pivot columns, rank($A)=2$.\\
+    \[A^2=\left[
+    \begin{array}{cccc}
+    0&0&0&2\\&&&0\\&&&0\\&&&0
+    \end{array}
+    \right],\]
+    So rank($A^2)=1$, rank($A^3)=$rank($A^4)=0$.
+    \[J=\left[
+    \begin{array}{cccc}
+    0&1\\&0&1\\&&0\\&&&0
+    \end{array}
+    \right]\]
+    \item $p_B(x)=x^2,p_A(x)=x^3$
+    \item If 
+    \[p_B(x)=\prod_{i=1}^s (x-\lambda_i I)^{m_i},\]
+    where $m_i$ is the algebraic multiplicity of $\lambda_i$, and $s$ is number of distinct eigenvalues of $B$, then
+    \[p_A(x)=p_B(x)\cdot\prod_{i=1}^s(x-\lambda_i I)^{\mathrm{Dim(Ker(}A-\lambda_i I))}\]
+\end{enumerate}
+\subsection*{Solution 1.4.3.}
+\begin{enumerate}
+    \item $\forall a:a\in R,$ 
+    \[L(aI)=aX-Xa=aX-aX=0\]
+    \item
+    \[L(X)Y+XL(Y)=(AX-XA)Y+X(AY-YA)=AXY-XAY+XAY-XYA\]
+    \[=A(XY)-(XY)A=L(XY)\]
+    \item
+    Here we prove the following lemma first:
+    \[S(n): L(X^n)=n\cdot L(X)\cdot X^{n-1}\]
+    Showing that $S(n)$ holds $\forall n\in Z^+$.\\
+    $S(1)$ is trivial.\\
+    Suppose $S(k)$ holds, then for $S(k+1)$,\\
+    \[L(X^{k+1})=XL(X^k)+L(X)X^k\]
+    \[=X(kL(X)X^{k-1})+L(X)X^k=kL(X)X^k+L(X)X^k=(k+1)L(X)X^k,\]
+    So $S(k)\Rightarrow S(k+1)$. By first principle of induction, $(\forall n)(n\in Z^+\Rightarrow S(n))$.\\
+    $p(x)$ is a polynomial, i.e. it is analytic, and has finite terms in its Taylor's expansion, so W.L.O.G. let 
+    $p(x)=\sum_{i=0}^n a_ix^i$
+    \[L(p(X))=L(\sum_{i=0}^n a_i\cdot X^i)=\sum_{i=0}^n a_i\cdot L(X^i)=\sum_{i=1}^n a_i\cdot L(X^i)=\sum_{i=1}^n a_i\cdot i\cdot L(X) \cdot X^{i-1} = L(X) p'(X)\]
+    \item Given $L(X)=I$, then for any polynomial $p$,
+    \[L(p(X))=L(X)p'(X)=p'(X),\]
+    By choosing $p$ as the minimal polynomial of $X$, deg $p>0$, then
+    \[p'(X)=L(p(X))=L(0)=0,\]
+    So $X$ is one of the zeros of  $p'$, that deg $p'<$ deg $p$, contradicting the minimality of $p$, hence $L(X)=I$ is not possible.  
+    \item Given that $A$ is diagonalizable with distinct eigenvalues, so W.L.O.G. let $A=P\Lambda P^{-1}$, then
+    \[ L(X)=0 \Leftrightarrow AX=XA \Leftrightarrow P\Lambda P^{-1}X = X P\Lambda P^{-1}\Leftrightarrow \Lambda P^{-1} XP=P^{-1}XP\Lambda\]
+    So $L(X)=0$ iff $[P^{-1}XP,\Lambda]=0$ iff $P^{-1}XP$ is diagonal iff $A$ and $X$ shares the same eigenvectors, and hence Dim(Ker($L))=n$.
+    \item Let $t_1,t_2,t_3$ are all distinct. Then $\forall X:X\in M_n(R),$
+    \[L(X)=\left[\begin{array}{ccc}
+    t_1\\&t_2\\&&t_3
+    \end{array}\right]X
+    -X\left[\begin{array}{ccc}
+    t_1\\&t_2\\&&t_3
+    \end{array}\right]\]
+    \[
+    =\left[\begin{array}{ccc}
+    t_1\\&t_2\\&&t_3
+    \end{array}\right]
+    \left[\begin{array}{ccc}
+    a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}
+    \end{array}\right]-
+    \left[\begin{array}{ccc}
+    a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}
+    \end{array}\right]
+    \left[\begin{array}{ccc}
+    t_1\\&t_2\\&&t_3
+    \end{array}\right]
+    \]
+    \[
+    =\left[\begin{array}{ccc}
+    0&(t_1-t_2)a_{12}&(t_1-t_3)a_{13}\\
+    (t_2-t_1)a_{21}&0&(t_2-t_3)a_{23}\\
+    (t_3-t_1)a_{31}&(t_3-t_2)a_{32}&0
+    \end{array}\right]
+    \]
+    Ran($L)$ are hollow matrices.
+    For instance, 
+    \[A=\left[\begin{array}{ccc}
+    1\\&2\\&&3
+    \end{array}\right]\]
+\end{enumerate}
+\end{document}

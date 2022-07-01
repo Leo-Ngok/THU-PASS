@@ -1,0 +1,122 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+\title{Topics in Linear Algebra: Homework 2}
+\begin{document}
+\maketitle
+In the following, "linearly independent" is used interchangeably with "independent", and "linearly dependent" is used interchangeably with "dependent".
+\subsection*{Solution 1.2.1.}
+\begin{enumerate}
+    \item True. \newline 
+    Suppose that any three of the four given subspaces are linearly independent, but the four subspaces are not. Then assume 
+    \[v_i\in V_i, i = 1,2,3,4\]
+    Since the four subspaces are dependent, W.L.O.G. assume $\mathrm{dim}(V_4\cap (V_1+V_2+V_3))>0$, then
+    \[v_4=-(v_1+v_2+v_3)\]
+    So $||v_1||+||v_2||+||v_3||>0$, that means $V_4$ has intersection with at least one subspace, contradicting the assumption that $V_4$ and any other two of the three spaces are linearly independent. $\blacksquare$
+    \item False. \newline
+    Consider 
+    \[
+    V_1=\mathrm{span}\left\{\left[\begin{array}{r} 1\\0\\0
+    \end{array}\right]\right\}, 
+    V_2=\mathrm{span}\left\{\left[\begin{array}{r} 0\\1\\0
+    \end{array}\right]\right\}, 
+    V_3=\mathrm{span}\left\{\left[\begin{array}{r} 0\\0\\1
+    \end{array}\right]\right\}, 
+    V_4=\mathrm{span}\left\{\left[\begin{array}{r} 1\\1\\0
+    \end{array}\right]\right\}
+    \]
+    Here $V_4=V_1+V_2$, so $V_1, V_2, V_4$ are linearly dependent.
+    \item True. \newline
+     Assume 
+    \[v_i\in V_i, i = 1,2,3,4.\]
+    If the four subspaces are dependent, then 
+    \[v_1+v_2+v_3+v_4=0\]
+    has non-trivial solutions. Say 
+    \[v_4=-(v_1+v_2+v_3)\]
+    Hence $||v_1||+||v_2||+||v_3||>0$. So at least one of the three vectors is non-zero. If $v_3$ is non-zero, then it contradicts that "$V_3,V_4$ are independent". If $v_1$ or $v_2$ is non-zero, then 
+    \begin{enumerate}
+        \item If $v_1+v_2=0$, then $v_1=-v_2$, and both of which are non-zero. It violates that "$V_1,V_2$ are independent".
+        \item Else, since $v_4\in (V_3+V_4)$, and $v_1+v_2\neq 0$, then $(V_1+V_2)\cap (V_3+V_4)$ is a non-trivial space, which is another contradiction.  
+    \end{enumerate}
+    Switch $v_4$ to the vectors from the three other subspaces, and the same conclusion would be drawn. $\blacksquare$
+\end{enumerate}
+\subsection*{Solution 1.2.2.}
+By definition, 
+\[T:A\mapsto A^T\]
+and
+\[T^2(A) = (A^T)^T=A.\]
+By observation, 
+\[A\text{ is symmetric }\Leftrightarrow T(A)=A\]
+\[A\text{ is skew-symmetric }\Leftrightarrow T(A)=-A.\]
+$T$ is bijective, so if a matrix $A_0$ is both symmetric and anti-symmetric, then
+\[T(A_0)+T(A_0)=A_0+(-A_0)=0\Rightarrow A_0=0\]
+Thus, the space of symmetric and skew-symmetric matrices are independent. \\
+Denote the former as $\mathrm{Sym}$, and the latter as $\mathrm{Skew}$.
+Consider
+\[A=A_1+A_2,\]
+where
+\[A_1=\frac{1}{2}(A+T(A)), A_2=\frac{1}{2}(A-T(A))\]
+\[T(A_1)=\frac{1}{2}T(A+T(A))=\frac{1}{2}(T(A)+T^2(A))=\frac{1}{2}(T(A)+A)\in\mathrm{Sym}\]
+\[T(A_2)=\frac{1}{2}T(A-T(A))=\frac{1}{2}(T(A)-T^2(A))=\frac{1}{2}(T(A)-A)\in\mathrm{Skew}\]
+So every matrix can be expressed as a linear combination of two matrices, one from Sym, and one from Skew.
+Hence 
+\[V=\mathrm{Sym}\bigoplus\mathrm{Skew}\]
+In particular, the former has dimension $\frac{1}{2}n(n+1)$, and the latter has $\frac{1}{2}n(n-1)$.\\
+
+With regards to block form of $T$, \\
+\[T=\left[\begin{array}{rr}
+e_1 &  \\
+     & -e_2
+\end{array}\right],\]
+where $e_1$ is the block representing the transformation:
+\[T_1: \mathrm{Sym} \to \mathrm{Sym}, T_1\text{ is identity transformation}\]
+$e_2$ is the block representing the transformation:
+\[T_2: \mathrm{Skew} \to \mathrm{Skew}, T_2\text{ is identity transformation}\]
+\subsection*{Solution 1.2.3.}
+\begin{enumerate}
+    \item $\mathrm{Ker}(B)$:\\
+    $\forall v\in \mathrm{Ker}(B),$
+    \[B(Av)=BAv=ABv=A(Bv)=A\cdot 0 =0,\]
+    so $v\in \mathrm{Ker}(B) \Rightarrow Av \in \mathrm{Ker}(B)$   $\square$ \\
+    $\mathrm{Ran}(B):$ \\
+    $\forall w\in\mathrm{Ran}(B)$, $\exists v$ s.t. $Bv=w$.
+    \[A(w)=A(Bv)=ABv=BAv=B(Av),\]
+    so $w\in\mathrm{Ran}(B)\Rightarrow Aw\in \mathrm{Ran}(B)$.
+    \item
+    \[Ap(A)=A\cdot \sum_{i=0}^{n-1} p_i A^i=\sum_{i=0}^{n-1} p_i A^{i+1}=(\sum_{i=0}^{n-1}p_iA^i)A=p(A)A\]
+    \item Let $k$ be the smallest positive integer satisfies $\mathrm{Dim(}\mathrm{Ker}((A-\lambda I)^k)) = n$, where $k\leq n$. Then $\mathrm{Ker}((A-\lambda I)^k)=N_\infty(A-\lambda I)$, $\mathrm{Ran}((A-\lambda I)^k)=R_\infty(A-\lambda I)$.
+    As 
+    \[(A-\lambda I)^k=\sum_{i=0}^k\left(\begin{array}{r} k \\ i 
+    \end{array}\right) A^i(-\lambda)^{k-i} \]
+    is a polynomial of $A$, by (2) $A(A-\lambda I)^k=(A-\lambda I)^k A$, and by (1), and by the fact that $\lambda\in\mathbf{C}$ has no restriction, the conclusion is drawn.
+\end{enumerate}
+\subsection*{Solution 1.2.4.}
+\begin{enumerate}
+    \item Suppose $W$ is an A-invariant subspace, but none of the eigenvectors of $A$ belongs to $W$.\\
+    Then $\forall \lambda \in \mathbf{C}, \forall v \in W,$  $v\neq 0$
+    \[Av\neq \lambda v \Leftrightarrow (A-\lambda I)v\neq 0 \]
+    \[\Leftrightarrow |A|_W-\lambda I| \neq 0\]
+    Hence
+    \[p_{A|_W}(\lambda)\]
+    has no roots. By the fundamental theorem of algebra, $\mathrm{deg} p_{A|_W} = 0$.
+    Since $p_A(\lambda)=p_{A|_w}(\lambda)\cdot p_{A|_{W^\perp}}(\lambda)$,\\
+    $\mathrm{dim}(W)=\mathrm{deg} p_{A|_W}=0$ $\Rightarrow$ $W=\{0\}$, which contradicts the assumption that $v\neq 0$.  $\square$
+    \item
+    \[B(A-\lambda I)=BA-\lambda B=AB-\lambda B=(A-\lambda I)B,\]
+    so by 1.2.3.1. $\forall \lambda \in \mathbf{C}:$ $\mathrm{Ker}(A-\lambda I)$ is B-invariant. $\square$
+    \item In (1), let $W=\mathrm{Ker}(A-\lambda_1 I)$, and fix $\lambda_1$ as an eigenvalue of $A$, then $B$ has an eigenvector in $\mathrm{Ker}(A-\lambda_1 I),$ which is the $\lambda_1$-eigenspace of $A$, hence that eigenvector of B is also an eigenvector of A. $\blacksquare$
+\end{enumerate}
+\end{document}
